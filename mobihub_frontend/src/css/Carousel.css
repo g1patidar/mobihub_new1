@@ -1,0 +1,38 @@
+.carousel {
+    position: relative;
+    margin: 0 auto;
+  }
+  
+  .image-container {
+    display: flex;
+    overflow: hidden;
+  }
+  
+  .image-container img {
+    width: 100%;
+    transition: transform 0.5s ease; /* Add transition property */
+  }
+  
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: black;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1;
+    border-radius: 12px 2px 1px 15px;
+  }
+  
+  .left {
+    left: 0;
+  }
+  
+  .right {
+    right: 0;
+  }
+
+  
