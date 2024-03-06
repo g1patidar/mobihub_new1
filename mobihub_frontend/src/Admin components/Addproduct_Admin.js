@@ -3,60 +3,95 @@ import axios from "axios";
 
 const Addproduct_Admin = () => {
     const [input, setInput] = useState({});
-    // const [uploadFiles, setUploadFiles] = useState([]);
-    const [uploadFiles, setUploadFiles] = useState(null);
+    const [uploadFiles, setUploadFiles] = useState([]);
+    const [cloudinaryPaths, setCloudinaryPaths] = useState([]);
 
+    // handle images
     const handleFileChange = (e) => {
-        // const files = e.target.files;
-        // setUploadFiles(files);
-        setUploadFiles(e.target.files[0]);
+        const files = e.target.files;
+        const imagesArray = Array.from(files);
+
+        if (imagesArray.length !== 4) {
+            // Display an alert if the number of selected files is not exactly 4
+            alert('Please select exactly 4 photos.');
+            // Clear the file input to reset the selection
+            e.target.value = null;
+        } else {
+            // Set the state with the selected files
+            setUploadFiles(imagesArray);
+        }
     };
 
+
+    //  handle inputs 
     const inputHandle = (e) => {
         const name = e.target.name;
         const value = e.target.value;
         setInput((values) => ({ ...values, [name]: value }));
     };
 
-    const handleAddProduct = async () => {
-        const formdata = new FormData();
-    formdata.append("file", uploadFiles);
-    formdata.append("upload_preset", "ofkoxtub");
-    formdata.append("cloud_name", "dq1yrqhsl");
-    const response = await axios.post(
-        "https://api.cloudinary.com/v1_1/dq1yrqhsl/image/upload/",
-        formdata
-    );
-    const imgUrl = response.data.url;
 
-    const productDetails = {
-        ...input,
-        Image_URL: imgUrl,
+    const handleUploadImages = async () => {
+        try {
+            const uploadedPaths = await Promise.all(
+                uploadFiles.map(async (file) => {
+                    const formData = new FormData();
+                    formData.append('file', file);
+                    formData.append("upload_preset", "ofkoxtub");
+                    formData.append("cloud_name", "dq1yrqhsl");
+                    // Replace with your Cloudinary upload preset
+
+                    const response = await axios.post(
+                        "https://api.cloudinary.com/v1_1/dq1yrqhsl/image/upload/",
+                        formData
+                    );
+
+                    return response.data.secure_url;
+                })
+            );
+
+            setCloudinaryPaths(uploadedPaths);
+            console.log(uploadedPaths)
+        }
+        catch (error) {
+            console.error('Error uploading to Cloudinary:', error);
+        }
     };
+
+    /////////////////////////////////////////////////////////
+    const handleAddProduct = async () => {
+
+        const productDetails = {
+            ...input,
+            Image_URL: cloudinaryPaths,
+        };
 
 
         try {
-           
-            
             // Send productDetails to your backend API for further processing
             console.log("Product details:", productDetails);
 
-            const responseapi = await axios.post("http://localhost:7000/addproduct_admin", productDetails);
+            const responseapi = await axios.post("http://localhost:5000/api/user/ProdoctAdd", productDetails);
             console.log(responseapi);
             console.log("send detail of product successful !@!")
-
+            setInput({});
+            setCloudinaryPaths([])
 
         } catch (error) {
             console.error("Error uploading image:", error);
         }
     };
+    /////////////////////////////////////////////////
+
 
     return (
+
         <div className="AddProductForm">
-            
             <div className="Upload_img_main_div">
-            <h1>Add Product</h1>
+                <h1>Add Product</h1>
+
                 <div className="img_div">
+
                     <div>
                         <input
                             className="file_upload"
@@ -67,17 +102,17 @@ const Addproduct_Admin = () => {
                         <h3>Click to upload up to images</h3>
                     </div>
                 </div>
+                <center><button onClick={handleUploadImages}>Upload Images</button></center>
 
                 <div className="sec_box_img">
-                    <div>
-                        <img src="./Admin_images/app.png" alt="" />
-                    </div>
-                    <div>
-                        <img src="./Admin_images/Galaxy.png" alt="" />
-                    </div>
-                    <div>
-                        <img src="./Admin_images/i phone 13 2.png" alt="" />
-                    </div>
+                    
+                    {
+                        cloudinaryPaths.map((item) =>
+                            <div>
+                                <img src={item} alt="" />
+                            </div>
+                        )
+                    }
                 </div>
 
                 <div className="Input_div_start">
