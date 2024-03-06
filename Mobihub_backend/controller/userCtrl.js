@@ -1,3 +1,4 @@
+//User Controler
 const { Tokengenreter } = require("../config/JwtToken");
 const User = require("../models/user/userModel");
 const Managedryaddress = require("../models/user/UsermanageDlvryAddress");
