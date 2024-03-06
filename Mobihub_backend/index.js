@@ -1,62 +1,63 @@
-const express = require ("express");
-const dbConnect = require("./config/dbConnect");
-const passport = require("passport");
-const cookieSession = require("cookie-session");
+
+const express = require("express");
 const app = express();
 const cors = require("cors");
-app.use(cors());
-const authRouter = require ('./routes/authRoute');
-const bodyParser = require("body-parser");
-const { errorHandler, notFound } = require("./middlewares/errorHandler");
-const dotenv = require ('dotenv').config();
-const PORT = process.env.PORT || 4000;
-dbConnect();
-require("./controller/passport");
+app.use(cors({
+        origin: "http://localhost:3000",
+        methods: "GET, POST, PUT, DELETE",
+        credentials: true
+}));  
 
+const dbConnect = require("./config/dbConnect");
+const passport = require("./config/passwordconfig");
+const cookieSession = require('cookie-session'); 
+const authRouter = require('./routes/authRoute');
+const {getUserData} = require("./controller/passport");
+const {isAuthenticated} = require("./middlewares/loginmiddlewere");
+const bodyParser = require("body-parser");
+const dotenv = require('dotenv').config();
+const PORT = process.env.PORT || 4000;
+
+
+dbConnect();
+
+// Middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
-app.use('/api/user', authRouter);
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use("/api/user", authRouter);
+
+app.use(cookieSession({
+    name: 'google-auth-session',
+    keys: ['key1', 'key2']
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Google OAuth routes
+app.get('/google', passport.authenticate('google', {scope: ['email', 'profile']}));
+
+app.get('/google/callback',
+    passport.authenticate('google', {
+        successRedirect: "http://localhost:3000/admin_layout/Admin_dashboard",
+        failureRedirect: '"http://localhost:3000/login',
+    })
+);
+
+app.get("/apilogin/user/data", isAuthenticated,getUserData, async (req, res) => {
+        try {
+            const userData = await userdb.findOne({ googleId: req.user.googleId });
+            res.status(200).json(userData);
+        } catch (error) {
+            console.error("Error fetching user data:", error);
+            res.status(500).json({ message: "Internal server error" });
+        }
+    });
 
 // app.use(notFound);
 // app.use(errorHandler);
 
-//Login With Google
-
-app.use(cookieSession({ 
-	name: 'google-auth-session', 
-	keys: ['key1', 'key2'] 
-})); 
-app.use(passport.initialize()); 
-app.use(passport.session()); 
-	
-
-app.get('/', (req, res) => { 
-	res.send("<button><a href='/auth'>Login With Google</a></button>") 
-}); 
-
-// Auth 
-app.get('/auth', passport.authenticate('google', { scope : ['email', 'profile'] }));
-
-
-// Auth Callback 
-app.get( '/auth/google/callback', 
-	passport.authenticate( 'google', { 
-		successRedirect: '/auth/callback/success', 
-		failureRedirect: '/auth/callback/failure'
-})); 
-
-// Success 
-app.get('/auth/callback/success' , (req , res) => { 
-	if(!req.user) 
-		res.redirect('/auth/callback/failure'); 
-	res.send("Welcome " + req.user.email); 
-}); 
-
-// failure 
-app.get('/auth/callback/failure' , (req , res) => { 
-	res.send("Error"); 
-}) 
-
-app.listen(PORT, ()=>{
-    console.log(`Server is runneble in this PORT : ${PORT}`);
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
