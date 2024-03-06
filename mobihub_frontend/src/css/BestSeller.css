@@ -2,7 +2,10 @@
 .best-sellers {
     text-align: center;
   }
-  
+.best-sellers h2
+{
+  font-size: 40px;
+}
   .mobiles {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* Always display three columns */
