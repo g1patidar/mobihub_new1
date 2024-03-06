@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
+
 import Carousel from "./components/Carousel";
 import BestSellers from "./components/BestSellers/BestSellers";
+import Marquee from "./components/Marquee";
+import Services from "./components/Services";
+import MoreProduct from "./components/MoreProduct";
 
 
 const Home = () => {
@@ -16,25 +19,24 @@ const Home = () => {
             {/* new carousal */}
 
 
+            <br/>
 
             <section className="best_seller">
-                <div id="Best_seller_heading">
-                    <p>Our Best Seller Mobiles</p>
-                </div>
                 <>
-
-                {/* adding new best seller */}
                 <BestSellers/>
+                <br/>
                 </>
 
 
 
             </section>
 
+            <br/>
 
-            <section className="Offer_banner">
-                <img src="./images/offers.png" alt="poco" />
-            </section>
+
+            <Marquee/>
+            <br/>
+            <MoreProduct/>
 
 
 
@@ -217,7 +219,12 @@ const Home = () => {
 
                 </div> */}
 
+
+
+
+            <Services/>
             </section>
+
 
 
 
