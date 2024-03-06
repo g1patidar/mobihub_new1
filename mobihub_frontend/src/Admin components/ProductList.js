@@ -1,12 +1,79 @@
 import React from 'react';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import "../css/AdminComponentCss/ProductList.css"
 const ProductList = () => {
-  // Sample product data with image URLs
-  const products = [
-    { id: 1, name: 'Product A', price: '$20.00', imageUrl: 'https://placekitten.com/100/100' },
-    { id: 2, name: 'Product B', price: '$25.00', imageUrl: 'https://placekitten.com/100/100' },
-    { id: 3, name: 'Product C', price: '$30.00', imageUrl: 'https://placekitten.com/100/100' },
-  ];
+  var itemcount = 0;
+  const [allproductsdisplay, setallproductsdisplay] = useState([])
+
+  const mydata = async() => {
+    await axios.post("http://localhost:5000/api/user/DisplayProduct").then((res) => {
+      // console.log(res.data, "hello")
+      setallproductsdisplay(res.data);
+      // console.log(allproductsdisplay);
+      console.log("displayed")
+
+    })
+  }
+  useEffect(() => {
+    mydata()
+  }, [])
+
+
+  // item delete 
+
+  // const handleDelete = async (productId) => {
+  //   try {
+  //     // Make an API call to delete the product
+  //     axios.delete(`http://localhost:5000/api/user/DeleteProduct/${productId}`)
+
+  //     console.log("Product deleted successfully");
+  //     // Update the product list after successful deletion
+  //     mydata();
+  //   } catch (error) {
+  //     console.error("Error deleting product:", error);
+  //   }
+  // };
+
+  const handleDelete = async (productId) => {
+    try {
+      // Make an API call to delete the product
+      await axios.delete(`http://localhost:5000/api/user/DeleteProduct/${productId}`).then(()=>{
+        console.log("yess")
+      });
+  
+      console.log("Product deleted successfully");
+  
+      // Assuming mydata() is an asynchronous function, you can await it as well
+      await mydata();
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  };
+  
+
+  // all item 
+
+  const allitem = allproductsdisplay.map((product) => {
+    itemcount++;
+    return (
+      <>
+        <tr key={product._id}>
+          <td>{itemcount}</td>
+          <td><img src={product.Image_URL} alt={product.name} className="product-image1" /></td>
+          <td>{product.Product_Name}</td>
+          <td>{product.Product_Price}</td>
+          <td>
+            <button className="edit-btn1" >Edit</button>
+            <button className="delete-btn1" onClick={() => handleDelete(product._id)}>Delete</button>
+          </td>
+        </tr>
+      </>
+    )
+  })
+
+
+
 
   return (
     <div className="product-list-container1">
@@ -22,18 +89,7 @@ const ProductList = () => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
-            <tr key={product.id}>
-              <td>{product.id}</td>
-              <td><img src={product.imageUrl} alt={product.name} className="product-image1" /></td>
-              <td>{product.name}</td>
-              <td>{product.price}</td>
-              <td>
-                <button className="edit-btn1">Edit</button>
-                <button className="delete-btn1">Delete</button>
-              </td>
-            </tr>
-          ))}
+          {allitem}
         </tbody>
       </table>
     </div>

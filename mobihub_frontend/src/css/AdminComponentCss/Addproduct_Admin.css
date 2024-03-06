@@ -1,19 +1,19 @@
 /* ... Existing CSS ... */
-.Upload_img_main_div
-{
+.Upload_img_main_div {
   width: 70%;
   height: auto;
   margin-top: 10px;
   margin-left: 20px;
 }
 
-.img_div{
+.img_div {
   border: 1px solid black;
   height: 200px;
   background-color: #D9D9D9;
   border-radius: 10px;
 }
-.img_div div{
+
+.img_div div {
   height: 140px;
   width: 80%;
   background-color: white;
@@ -22,62 +22,65 @@
   border-radius: 20px;
   box-shadow: 3px 3px 3px 3px gray;
 }
-.img_div img{
- width: 60px;
- height: 60px;
- margin-left: 45%;
- margin-top: 5%;
+
+.img_div img {
+  width: 60px;
+  height: 60px;
+  margin-left: 45%;
+  margin-top: 5%;
 }
-.img_div div h3
-{
-text-align: center;
-font-size: 20px;
-margin-top: 5px;
-color: rgba(0, 0, 0, 0.505);
+
+.img_div div h3 {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 5px;
+  color: rgba(0, 0, 0, 0.505);
 }
-.sec_box_img
-{
-height: 260px;
-background-color: #D9D9D9;
-margin-top: 10px;
-width: 100%;
-display: flex;
-justify-content: space-evenly;
+
+.sec_box_img {
+  /* height: 260px; */
+  background-color: #D9D9D9;
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 2%;
 }
 
 .sec_box_img div {
-height: 200px;
-width: 200px;
-margin-top: 20px;
-box-shadow: 3px 3px 3px 3px gray;
-background-color: white;
+  height: 200px;
+  width: 200px;
+  margin-top: 20px;
+  box-shadow: 3px 3px 3px 3px gray;
+  background-color: white;
 
 
 }
-.sec_box_img div img 
-{
-width: 100%;
-height: 100%;
+
+.sec_box_img div img {
+  width: 100%;
+  height: 100%;
 }
-.Input_div_start
-{
-background-color: #D9D9D9;
-height: auto;
-margin-top: 0px;
-padding-bottom: 20px;
+
+.Input_div_start {
+  background-color: #D9D9D9;
+  height: auto;
+  margin-top: 0px;
+  padding-bottom: 20px;
 }
-.Input_div_start h2{
-font-size: 30px;
-font-weight: 700;
-text-align: center;
+
+.Input_div_start h2 {
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
 }
-.Input_div_start_box
-{
-height: auto;
-padding: 20px;
-background-color: white;
-width: 70%;
-margin-left: 120px;
+
+.Input_div_start_box {
+  height: auto;
+  padding: 20px;
+  background-color: white;
+  width: 70%;
+  margin-left: 120px;
 
 }
 
