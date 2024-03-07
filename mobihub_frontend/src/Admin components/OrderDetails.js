@@ -3,7 +3,6 @@ const OrderDetails = () => {
 
     return (
         <>
-            
                 <div className="All_orders_detail_admin">
                     <h1>
                         All Orders

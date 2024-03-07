@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from "react-redux";
 import { addtocart } from "../slice/ProductSlice";
+import {addtoWishlist} from "../slice/WishlistSlice"
 const Shop = () => {
 
   const mydispatch = useDispatch();
@@ -26,17 +27,42 @@ const Shop = () => {
     }))
   }
 
+  const handlewishlist=(
+          productName,
+          productBrand,
+          productPrice,
+          productRAM,
+          productROM,
+          regularPrice,
+          Image_URL,
+          product_ID
+         
+  )=>{
+    
+    mydispatch(addtoWishlist({
+      id: product_ID,
+      Name: productName,
+      Price: productPrice,
+      Image_path: Image_URL,
+      RAM:productRAM,
+      ROM:productROM,
+    }))
+  }
 
   const allproduct = allproductsdisplay.map((key) => {
     return (
       <>
         <ProductCard
-          Image_URL={key.Image_URL[0]}
+          productBrand={key.Product_Brand}
+          productRAM={key.Product_RAM}
+          productROM={key.Product_ROM}
+          Image_URL={key.Image_URL}
           productName={key.Product_Name}
           productPrice={key.Product_Price}
           regularPrice={key.Product_Regular_Price}
           product_ID={key._id}
-          onAddToCart={onAddToCart} />
+          onAddToCart={onAddToCart}
+          handlewishlist={handlewishlist} />
 
       </>
     )

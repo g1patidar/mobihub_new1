@@ -76,13 +76,13 @@ const Addproduct_Admin = () => {
             console.log("send detail of product successful !@!")
             setInput({});
             setCloudinaryPaths([])
+            setUploadFiles([])
 
         } catch (error) {
             console.error("Error uploading image:", error);
         }
     };
     /////////////////////////////////////////////////
-
 
     return (
 
