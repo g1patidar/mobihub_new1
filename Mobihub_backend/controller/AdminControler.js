@@ -1,24 +1,36 @@
 const AdminModel = require("../models/Admin/Productadd");
 
-const ProductAdd =  (req, res) =>
-    {
-         const myproduct = new AdminModel(req.body);
-         console.log(myproduct);
-         myproduct.save();
+const ProductAdd = (req, res) => {
+    const myproduct = new AdminModel(req.body);
+    console.log(myproduct);
+    myproduct.save();
 
-         res.send("data seccufull seva");
-        // console.log(myproduct);
+    res.send("data seccufull seva");
+    // console.log(myproduct);
+}
+
+// API for display all product 
+
+const DisplayProduct = async (req, res) => {
+    try {
+        const products = await AdminModel.find();
+        res.send(products);
+        // console.log(products);
+        console.log("all product send by displayproduct api")
+    } catch (error) {
+        console.error('Error fetching data:', error);
     }
+};
 
-    const DisplayProduct = async (req, res) => {
-        try {
-            const products = await AdminModel.find();
-            res.json(products);
-            console.log(products)
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    };
-    
+// API for delete item from database 
 
-    module.exports = { ProductAdd, DisplayProduct };
+const DeleteProduct = async (req, res) => {
+
+    const delId = req.params.id
+    let respo = await AdminModel.deleteOne({ _id: delId })
+    // console.log(respo)
+    console.log("delete")
+}
+
+
+module.exports = { ProductAdd, DisplayProduct, DeleteProduct };
