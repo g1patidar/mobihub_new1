@@ -1,4 +1,6 @@
 const AdminModel = require("../models/Admin/Productadd");
+const BrandModel= require("../models/Admin/Brand");
+const CouponModel = require("../models/Admin/Coupon");
 
 const ProductAdd = (req, res) => {
     const myproduct = new AdminModel(req.body);
@@ -32,5 +34,14 @@ const DeleteProduct = async (req, res) => {
     console.log("delete")
 }
 
+const BrandController=async(req,res)=>{
+   const brand=await BrandModel.create(req.body)
+   res.status(201).json(brand)
+}
+const CouponControler =async(req,res)=>{
+   const brand=await CouponModel.create(req.body)
+   res.status(201).json(brand)
+}
 
-module.exports = { ProductAdd, DisplayProduct, DeleteProduct };
+
+module.exports = { ProductAdd, DisplayProduct, DeleteProduct,BrandController,CouponControler };

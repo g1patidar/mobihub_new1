@@ -1,4 +1,6 @@
 import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
 import "../css/Registration.css";
@@ -28,12 +30,16 @@ const Registration = () => {
           .then((res)=>{
             console.log(res.data)
             if("already exist"===res.data){
-              alert("user already exist by this email")
+                toast.error(" You are all ready resistred ??", {
+                    position: "top-right",
+                  });
             }else{
-              
-            alert("Happy!! You are successfully Resistered 🥰🎇")
+                toast.success(" You are Succesfully resistred  !", {
+                    position: "top-right",
+                  });
             }
-          }).then(useNavi("/loginpage")).catch(err=>{console.log("error :",err)}).then(useNavi("/loginpage"))
+          })
+          .then(useNavi("/loginpage")).catch(err=>{console.log("error :",err)}).then(useNavi("/loginpage"))
   }
   
 
@@ -66,6 +72,7 @@ const Registration = () => {
                     <label htmlFor="keepLoggedIn">Keep me logged in</label>
                 </div>
                 <button className='btnn' type="button" onClick={Registrationbutton} >Register Now</button>
+                <ToastContainer />
                 <div className="already-customer">
                     <p>Already a customer? <Link to="/loginpage">Please Login in</Link> <FaArrowRight /></p>
                 </div>
