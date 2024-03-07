@@ -2,14 +2,20 @@ const AdminModel = require("../models/Admin/Productadd");
 const BrandModel= require("../models/Admin/Brand");
 const CouponModel = require("../models/Admin/Coupon");
 
-const ProductAdd = (req, res) => {
-    const myproduct = new AdminModel(req.body);
-    console.log(myproduct);
-    myproduct.save();
+const ProductAdd = async (req, res) => {
+    try {
+        const myproduct = new AdminModel(req.body);
+        console.log(myproduct);
+        await myproduct.save();
+        
+        res.send("Data successfully saved");
+        // You can also include additional logic or response here if needed
+    } catch (error) {
+        console.error("Error saving data:", error);
+        res.status(500).send("Internal Server Error");
+    }
+};
 
-    res.send("data seccufull seva");
-    // console.log(myproduct);
-}
 
 // API for display all product 
 
