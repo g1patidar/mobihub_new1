@@ -29,7 +29,7 @@ const AddProduct = () => {
         formdata.append("file", uploadFiles);
         formdata.append("upload_preset", "ofkoxtub");
         formdata.append("cloud_name", "dq1yrqhsl");
-        
+
         // console.log(uploadFiles);
         // console.log(formdata);
         // const response = await axios.post("https://api.cloudinary.com/v1_1/dq1yrqhsl/image/upload/", formdata);
@@ -57,7 +57,7 @@ const AddProduct = () => {
         // // console.log('Product details submitted:', productdetail);
         // // Add your logic for handling the form submission here
         // try {
-        //   const response = await axios.post("http://localhost:5000/api/user/ProdoctAdd", linput); 
+        //   const response = await axios.post("https://mobihub-new1.onrender.com/api/user/ProdoctAdd", linput); 
         //   console.log(response)
         //   console.log("send detail of product successful !@!")
         // } catch (err) {
