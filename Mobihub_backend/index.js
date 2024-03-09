@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 app.use(cors({
-        origin: "http://localhost:3000",
+        origin: "https://mobihub-new1-o7u9.vercel.app",
         methods: "GET, POST, PUT, DELETE",
         credentials: true
 }));  
@@ -40,8 +40,8 @@ app.get('/google', passport.authenticate('google', {scope: ['email', 'profile']}
 
 app.get('/google/callback',
     passport.authenticate('google', {
-        successRedirect: "http://localhost:3000/admin_layout/Admin_dashboard",
-        failureRedirect: '"http://localhost:3000/login',
+        successRedirect: "https://mobihub-new1-o7u9.vercel.app/admin_layout/Admin_dashboard",
+        failureRedirect: '"https://mobihub-new1-o7u9.vercel.app/login',
     })
 );
 
