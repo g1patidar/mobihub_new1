@@ -21,6 +21,7 @@ const Registration = () => {
         SetHandelInpt((values) => ({ ...values, [name]: value }));
     }
 
+
     const Registrationbutton = () => {
         //console.log(HandleInpt);
 
@@ -39,6 +40,7 @@ const Registration = () => {
             })
             .then(useNavi("/loginpage")).catch(err => { console.log("error :", err) }).then(useNavi("/loginpage"))
     }
+
 
 
     return (
