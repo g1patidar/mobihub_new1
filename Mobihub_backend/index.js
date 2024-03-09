@@ -41,7 +41,7 @@ app.get('/google', passport.authenticate('google', {scope: ['email', 'profile']}
 app.get('/google/callback',
     passport.authenticate('google', {
         successRedirect: "https://mobihub-new1-o7u9.vercel.app/admin_layout/Admin_dashboard",
-        failureRedirect: '"https://mobihub-new1-o7u9.vercel.app/login',
+        failureRedirect: 'https://mobihub-new1-o7u9.vercel.app/login',
     })
 );
 
