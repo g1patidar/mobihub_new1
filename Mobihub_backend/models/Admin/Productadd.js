@@ -14,6 +14,10 @@ const AdminMySchema = new mongoose.Schema({
         type:String,
         required:true
      },
+     Product_Brand:{
+        type:String,
+        required:true
+     },
      Product_RAM:{
         type:String,
         required:true
@@ -23,7 +27,7 @@ const AdminMySchema = new mongoose.Schema({
         required:true
      },
      Image_URL:{
-        type:String,
+        type:Array,
         required:true
      }
 });

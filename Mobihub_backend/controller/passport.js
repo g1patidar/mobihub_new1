@@ -1,22 +1,18 @@
-const passport = require('passport'); 
+// const passport = require ("../config/passwordconfig");
+const userdb = require("../models/user/loginwithgogl");
 
-const GoogleStrategy = require('passport-google-oauth2').Strategy; 
+const getUserData = async (req, res) => {
+    try {
+        const userData = await userdb.findOne({ googleId: req.user.googleId });
+        res.status(200).json(userData);
+    } catch (error) {
+        console.error("Error fetching user data:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
 
-passport.serializeUser((user , done) => { 
-	done(null , user); 
-});
+module.exports={
+    getUserData,
+}
 
-passport.deserializeUser(function(user, done) { 
-	done(null, user); 
-}); 
 
-passport.use(new GoogleStrategy({ 
-	clientID:"227090914571-jgcipra0lgrur59h9ivoq1b0vebflbed.apps.googleusercontent.com", // Your Credentials here. 
-	clientSecret:"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", // Your Credentials here.
-	callbackURL:"http://localhost:5000/auth/google/callback",
-	scope : ['email', 'profile']
-}, 
-function(request, accessToken, refreshToken, profile, done) { 
-	return done(null, profile); 
-} 
-));

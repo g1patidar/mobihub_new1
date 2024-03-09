@@ -23,6 +23,7 @@ import OrderDetails from "./Admin components/OrderDetails";
 import AddBrand from "./Admin components/AddBrand";
 import AddCoupon from "./Admin components/AddCoupon";
 import AdminLayout from "./pages/AdminLayout"
+import EditProduct from "./Admin components/EditProduct";
 
 // Css part
 import "./css/Home.css";
@@ -73,6 +74,7 @@ const App = () => {
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/Orderdetail" element={<Orderdetail />} />
             <Route path="/manageaddress" element={<Orderdetail />} />
+            <Route path="/Productdetail" element={<Productdetail />} />
             <Route path="/buynow" element={<Paymentpage />} />
             <Route path="/loginpage" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
@@ -90,6 +92,7 @@ const App = () => {
             <Route path="/admin_layout/add-brand" element={<AddBrand />} />
             <Route path="/admin_layout/add-coupon" element={<AddCoupon />} />
             <Route path="/admin_layout/orderdetails" element={<OrderDetails />} />
+            <Route path="/admin_layout/EditProduct" element={<EditProduct />} />
           </Route>
         </Routes>
       </BrowserRouter>

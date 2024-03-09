@@ -3,13 +3,22 @@
 import React from 'react';
 // import './ProductCard.css';
 
-const ProductCard = ({ Image_URL, productName, productPrice, regularPrice, onAddToCart, product_ID }) => {
+const ProductCard = ({ productBrand,productRAM,productROM,Image_URL, productName, productPrice, regularPrice, onAddToCart, product_ID,handlewishlist }) => {
   return (
     <>
       <div className="product-card">
-        <div className="wishlist-icon">&#x2665;</div>
+        <div onClick={()=>handlewishlist(
+          productName,
+          productBrand,
+          productPrice,
+          productRAM,
+          productROM,
+          regularPrice,
+          Image_URL,
+          product_ID
+          )} className="wishlist-icon">&#x2665;</div>
         <div className="product-image">
-        <img  src={Image_URL} alt={productName} />
+        <img  src={Image_URL[0]} alt={productName} />
         </div>
         <div className="product-info">
           <h3 className="product-name">{productName}</h3>
