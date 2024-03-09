@@ -44,6 +44,8 @@ const Registration = () => {
   
 
     return (
+        <>
+        <div className='forgap'> 
         <div className="container">
             <div className="image">
                 <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=1926&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="abc" />
@@ -78,6 +80,8 @@ const Registration = () => {
                 </div>
             </div>
         </div>
+        </div>
+        </>
     );
 }
 

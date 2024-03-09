@@ -19,12 +19,12 @@ const Header = () => {
             <nav className="navbar1">
                 <Link to="/" style={{ '--i': 0 }}>Home</Link>
                 <Link to="/" style={{ '--i': 1 }}>About</Link>
-                <Link to="/shop" style={{ '--i': 2 }}>Shop</Link>
+                <Link to="/shop" style={{ '--i': 2 }}>Shop </Link>
                 <Link to="/" style={{ '--i': 3 }}>Services</Link>
                 <Link to="/" style={{ '--i': 4 }}>Contact</Link>
 
-                <Link to="/cartpage" style={{ '--i': 5 }}><FaShoppingCart className="cart-icon" /></Link>
-                <Link to="/wishlist" style={{ '--i': 6 }}><GiCentaurHeart className="cart-icon" /></Link>
+                <Link to="/cartpage" style={{ '--i': 5 }}><FaShoppingCart className="cart-icon" />(1)   </Link>
+                <Link to="/wishlist" style={{ '--i': 6 }}><GiCentaurHeart className="cart-icon" />(1)</Link>
                 <Link to="/loginpage" style={{ '--i': 7 }}><button className="login-button">Login</button></Link>
             </nav>
         </header>

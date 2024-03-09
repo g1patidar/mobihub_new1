@@ -28,13 +28,13 @@ h2 {
     margin-bottom: 20px;
 }
 
-.input-group {
+.input-groupp {
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
 }
 
-.input-group input {
+.input-groupp input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -42,7 +42,7 @@ h2 {
     box-sizing: border-box;
 }
 
-.input-group input:hover {
+.input-groupp input:hover {
     border: 1px solid blue;
     box-shadow: 1px 1px 1px 1px red;
 }
@@ -142,4 +142,9 @@ h2 {
 
 .register-now a:hover {
     text-decoration: underline; /* Add underline on hover */
+}
+
+.forgap
+{
+    padding: 5%;
 }
