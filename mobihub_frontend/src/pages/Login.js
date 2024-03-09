@@ -5,6 +5,8 @@ import "../css/Login.css"; // Import external CSS file
 
 const Login = () => {
     return (
+        <>
+        <div className='forgap'>
         <div className="container">
             <div className="image">
                 <img src="https://images.unsplash.com/photo-1598327105740-820e04db502e?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="abc" />
@@ -12,11 +14,11 @@ const Login = () => {
             <div className="form">
                 <h2>Login Form</h2>
 
-                <div className="input-group">
+                <div className="input-groupp">
                     <input type="email"  className='hi' id="email" placeholder="Email" required />
                 </div>
 
-                <div className="input-group">
+                <div className="input-groupp">
                     <input type="password" className='hi' id="password" placeholder="Password" required />
                 </div>
 
@@ -44,6 +46,8 @@ const Login = () => {
                 </div>
             </div>
         </div>
+        </div>
+        </>
     );
 }
 
