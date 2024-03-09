@@ -23,8 +23,8 @@ const Header = () => {
                 <Link to="/" style={{ '--i': 3 }}>Services</Link>
                 <Link to="/" style={{ '--i': 4 }}>Contact</Link>
 
-                <Link to="/cartpage" style={{ '--i': 5 }}><FaShoppingCart className="cart-icon" />(1)   </Link>
-                <Link to="/wishlist" style={{ '--i': 6 }}><GiCentaurHeart className="cart-icon" />(1)</Link>
+                <Link to="/cartpage" style={{ '--i': 5 }}><FaShoppingCart className="cart-icon" />1</Link>
+                <Link to="/wishlist" style={{ '--i': 6 }}><GiCentaurHeart className="cart-icon" />1</Link>
                 <Link to="/loginpage" style={{ '--i': 7 }}><button className="login-button">Login</button></Link>
             </nav>
         </header>

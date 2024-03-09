@@ -1,6 +1,8 @@
 
 import { Outlet } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -9,8 +11,6 @@ import { faTachometerAlt, faBox, faPlus, faListAlt, faTags, faTicketAlt, faSignO
 const AdminLayout = () => {
   const [userData, setUserData] = useState(null);
   const [Username, setUserName] = useState("");
-  // const [Userdata, setUserData]=useState({});
-  // const [UserEmail, setUserEmail] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,16 +34,7 @@ const AdminLayout = () => {
       return null;
     }
   }
-  const handlelogout = () => {
-    setUserName("")
-    setUserData("")
-    // setUserEmail("")
-    localStorage.removeItem("token");
-    alert("You succsefully Logout!!")
-    navigate("/home");
-  };
-
-
+  
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -58,6 +49,18 @@ const AdminLayout = () => {
     fetchUserData();
   }, []);
 
+  const handlelogout =  async () => {
+
+    await axios.post("http://localhost:5000/logout", null, { withCredentials: true });
+    setUserData(null);
+    setUserName("")
+    localStorage.removeItem("token");
+    toast.success(" You are Succesfully resistred  !", {
+      position: "top-right",
+    });
+    navigate("/home");
+  };
+
   return (
     <>
       <div style={{ border: "1px solid black", padding: "2%" }}>Header </div>
@@ -68,7 +71,8 @@ const AdminLayout = () => {
             <FontAwesomeIcon icon={faTachometerAlt} />
             <span className="brand-text">Admin Panel</span>
           </div>
-          <div style={{ height:"20%"}}>
+          <div>
+    
             {userData ? (
               <ul>
 
@@ -78,8 +82,8 @@ const AdminLayout = () => {
                 {/* Add more user data fields as needed */}
               </ul>
               
-            ) : (
-              <p>{Username ? Username : "Admin"}</p>
+            )  :  (
+              <li style={{ textAlign: "center", listStyle: "none", marginTop: "5%", marginLeft:"50%" }}>{Username ? Username : "Admin"}</li>
             )}
         
           </div>
@@ -104,6 +108,7 @@ const AdminLayout = () => {
           <div onClick={handlelogout} className="logout">
             <FontAwesomeIcon icon={faSignOutAlt} /> Logout
           </div>
+          <ToastContainer />
         </div>
         <div className="content">
           {/* Your main content goes here */}

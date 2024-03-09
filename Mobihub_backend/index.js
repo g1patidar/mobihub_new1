@@ -8,6 +8,7 @@ app.use(cors({
         credentials: true
 }));  
 
+
 const dbConnect = require("./config/dbConnect");
 const passport = require("./config/passwordconfig");
 const cookieSession = require('cookie-session'); 
@@ -41,7 +42,7 @@ app.get('/google', passport.authenticate('google', {scope: ['email', 'profile']}
 app.get('/google/callback',
     passport.authenticate('google', {
         successRedirect: "http://localhost:3000/admin_layout/Admin_dashboard",
-        failureRedirect: '"http://localhost:3000/login',
+        failureRedirect: 'http://localhost:3000/login',
     })
 );
 
@@ -54,6 +55,13 @@ app.get("/apilogin/user/data", isAuthenticated,getUserData, async (req, res) => 
             res.status(500).json({ message: "Internal server error" });
         }
     });
+
+    app.post('/logout', (req, res) => {
+        req.logout(); // Invalidate the user's session
+        res.clearCookie('token'); // Clear the authentication token cookie
+        res.sendStatus(200); // Send a success response
+      });
+
 
 // app.use(notFound);
 // app.use(errorHandler);

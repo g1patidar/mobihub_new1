@@ -31,7 +31,7 @@ const Registration = () => {
             console.log(res.data)
             if("already exist"===res.data){
                 toast.error(" You are all ready resistred ??", {
-                    position: "top-right",
+                    position:"top-right",
                   });
             }else{
                 toast.success(" You are Succesfully resistred  !", {
