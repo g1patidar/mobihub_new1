@@ -18,7 +18,7 @@ const Header = () => {
 
             <nav className="navbar1">
                 <Link to="/" style={{ '--i': 0 }}>Home</Link>
-                <Link to="/" style={{ '--i': 1 }}>About</Link>
+                <Link to="/about" style={{ '--i': 1 }}>About</Link>
                 <Link to="/shop" style={{ '--i': 2 }}>Shop </Link>
                 <Link to="/" style={{ '--i': 3 }}>Services</Link>
                 <Link to="/" style={{ '--i': 4 }}>Contact</Link>

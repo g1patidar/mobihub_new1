@@ -16,7 +16,7 @@ const AddBrand = () => {
     // Our All Brands
 
     const myBrands = async () => {
-        await axios.post("http://localhost:5000/api/user/DisplayBrands").then((res) => {
+        await axios.post("https://mobihub-new1.onrender.com/api/user/DisplayBrands").then((res) => {
             // setallproductsdisplay(res.data);
             console.log("displayed")
 
@@ -32,7 +32,7 @@ const AddBrand = () => {
     const handleDelete = async (productId) => {
         try {
             // Make an API call to delete the product
-            axios.delete(`http://localhost:5000/api/user/DeleteBrand/${productId}`).then(() => {
+            axios.delete(`https://mobihub-new1.onrender.com/api/user/DeleteBrand/${productId}`).then(() => {
                 alert("Product deleted successfully");
                 myBrands();
             });

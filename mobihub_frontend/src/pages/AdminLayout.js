@@ -38,7 +38,7 @@ const AdminLayout = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/apilogin/user/data", { withCredentials: true });
+        const response = await axios.get("https://mobihub-new1.onrender.com/apilogin/user/data", { withCredentials: true });
         console.log(response.data);
         setUserData(response.data);
       } catch (error) {
@@ -71,8 +71,9 @@ const AdminLayout = () => {
             <FontAwesomeIcon icon={faTachometerAlt} />
             <span className="brand-text">Admin Panel</span>
           </div>
+
           <div>
-    
+
             {userData ? (
               <ul>
 
@@ -81,11 +82,13 @@ const AdminLayout = () => {
 
                 {/* Add more user data fields as needed */}
               </ul>
+
               
             )  :  (
               <li style={{ textAlign: "center", listStyle: "none", marginTop: "5%", marginLeft:"50%" }}>{Username ? Username : "Admin"}</li>
+
             )}
-        
+
           </div>
           <Link to="/admin_layout/Admin_dashboard">
             <FontAwesomeIcon icon={faTachometerAlt} /> Dashboard
