@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { FiMenu ,FiSearch, FiHeart } from 'react-icons/fi'; // Importing the menu icon
+import React, { useState,useEffect } from 'react';
+import { FiSearch, FiHeart } from 'react-icons/fi'; // Importing the menu icon
 import { FaFilter } from "react-icons/fa";
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import "../css/shop.css"
+import axios from 'axios';
 
 const Shop = () => {
   const [price, setPrice] = useState(0);
@@ -68,6 +69,17 @@ const Shop = () => {
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+// get the item from database
+  const mydata = () => {
+    axios.post("https://mobihub-new1.onrender.com/api/user/DisplayProduct").then((res) => {
+      // console.log(res.data, "hello")
+      // setallproductsdisplay(res.data);
+      console.log(res.data)
+    })
+  }
+  useEffect(() => {
+    mydata()
+  }, [])
 
   return (
     <>

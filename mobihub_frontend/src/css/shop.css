@@ -43,17 +43,22 @@ h3 {
 .filter-container {
   position: fixed;
   top: 100;
-  left: -265px; /* Initially hidden */
+  left: -265px;
+  /* Initially hidden */
   width: 300px;
+  height: 55px;
   /* height: 70vh; */
   background-color: white;
   padding: 20px;
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-  transition: left 0.3s ease; /* Smooth transition for opening/closing */
+  transition: left 0.3s ease;
+  /* Smooth transition for opening/closing */
 }
 
 .filter-container.open {
-  left: 0; /* Show the sidebar */
+  height: 50%;
+  left: 0;
+  /* Show the sidebar */
 }
 
 .sidebar-toggle {
@@ -64,14 +69,16 @@ h3 {
 }
 
 .filter-content {
-  overflow-y: auto; /* Enable scrolling within the sidebar */
+  overflow-y: auto;
+  /* Enable scrolling within the sidebar */
 }
 
 /* Media Query for smaller screens */
 @media (max-width: 768px) {
   .filter-container {
     width: 250px;
-    left: -218px; /* Adjusting width for smaller screens */
+    left: -218px;
+    /* Adjusting width for smaller screens */
   }
 }
 
@@ -79,12 +86,12 @@ h3 {
 @media (max-width: 480px) {
   .filter-container {
     width: 200px;
-    left: -170px; /* Further adjustment for very small screens */
+    left: -170px;
+    /* Further adjustment for very small screens */
   }
 }
 
-.leftt
-{
+.leftt {
   display: flex;
   justify-content: space-evenly;
   background-color: red;
@@ -94,13 +101,15 @@ h3 {
 .righttt {
   flex-grow: 1;
   padding: 20px;
-  margin-left: 20px; 
+  margin-left: 20px;
 }
 
 .product-cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Three columns */
-  grid-gap: 20px; /* Gap between grid items */
+  grid-template-columns: repeat(4, 1fr);
+  /* Three columns */
+  grid-gap: 20px;
+  /* Gap between grid items */
 }
 
 .product-cardx {
@@ -140,27 +149,34 @@ h3 {
 
 /* Add your existing styles for other elements here */
 
-@media(max-width:950px){
+@media(max-width:950px) {
   .product-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); /* Three columns */
-      grid-gap: 20px; /* Gap between grid items */
-    }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Three columns */
+    grid-gap: 20px;
+    /* Gap between grid items */
+  }
 }
 
-@media(max-width:745px){
+@media(max-width:745px) {
   .product-cards {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); /* Three columns */
-      grid-gap: 20px; /* Gap between grid items */
-    }
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Three columns */
+    grid-gap: 20px;
+    /* Gap between grid items */
+  }
 }
-@media(max-width:504px){
+
+@media(max-width:504px) {
   .product-cards {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr); /* Three columns */
-      grid-gap: 20px; /* Gap between grid items */
-    }
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    /* Three columns */
+    grid-gap: 20px;
+    /* Gap between grid items */
+  }
 }
 
 .product-cardx {
@@ -179,12 +195,14 @@ h3 {
 
 .product-cardx .buttons {
   display: flex;
-  justify-content: center; /* Center the buttons horizontally */
+  justify-content: center;
+  /* Center the buttons horizontally */
   margin-top: 10px;
 }
 
 .product-cardx button {
-  margin: 0 5px; /* Add some space between buttons */
+  margin: 0 5px;
+  /* Add some space between buttons */
   padding: 5px 10px;
   border: none;
   background-color: #007bff;
@@ -197,7 +215,8 @@ h3 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center; /* Center content vertically */
+  align-items: center;
+  /* Center content vertically */
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -209,18 +228,20 @@ h3 {
 }
 
 .product-cardx .description {
-  text-align: center; /* Center text horizontally */
+  text-align: center;
+  /* Center text horizontally */
   margin-top: 10px;
 }
 
 .product-cardx .buttons {
   display: flex;
-  justify-content: center; /* Center the buttons horizontally */
+  justify-content: center;
+  /* Center the buttons horizontally */
   margin-top: 10px;
 }
 
 .product-cardx button {
-  margin: 0 5px; 
+  margin: 0 5px;
   padding: 5px 10px;
   border: none;
   background-color: #007bff;
@@ -229,100 +250,112 @@ h3 {
   cursor: pointer;
 }
 
-.buy_nowbutton
-{
+.buy_nowbutton {
   background-color: rgb(205, 73, 25) !important;
   color: black;
 }
 
 /* Filter.css */
 .search-input {
-width: 100%;
-padding: 10px;
-border: 1px solid #ccc;
-border-radius: 5px;
-font-size: 16px;
-outline: none;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
 }
 
 /* Optionally style the search icon */
 .search-icon {
-position: absolute;
-top: 50%;
-right: 10px;
-transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
 }
+
 /* Filter.css */
 .search-container {
-display: flex;
-justify-content: center;
-position: relative; /* Add relative positioning */
+  display: flex;
+  justify-content: center;
+  position: relative;
+  /* Add relative positioning */
 }
 
 .search-input {
-width: 50%; /* Half of the container */
-margin: 0 auto; /* Center the input field */
-padding-right: 30px; /* Space for the icon */
+  width: 50%;
+  /* Half of the container */
+  margin: 0 auto;
+  /* Center the input field */
+  padding-right: 30px;
+  /* Space for the icon */
 }
 
 .search-icon {
-position: absolute;
-top: 50%;
-left: 74%; /* Adjust the position */
-transform: translateY(-50%);
-width: 20px; /* Set the width of the icon */
-height: 20px; /* Set the height of the icon */
+  position: absolute;
+  top: 50%;
+  left: 74%;
+  /* Adjust the position */
+  transform: translateY(-50%);
+  width: 20px;
+  /* Set the width of the icon */
+  height: 20px;
+  /* Set the height of the icon */
 
-background-size: contain; /* Ensure the icon fits within the div */
-background-repeat: no-repeat; /* Prevent icon from repeating */
+  background-size: contain;
+  /* Ensure the icon fits within the div */
+  background-repeat: no-repeat;
+  /* Prevent icon from repeating */
 }
 
-.filter-container
-{
-z-index: 111;
+.filter-container {
+  z-index: 111;
 }
 
 
 /* Filter.css */
 /* Heart Icon Styles */
 .product-cardx {
-position: relative; /* Ensure the heart icon is positioned relative to the product card */
+  position: relative;
+  /* Ensure the heart icon is positioned relative to the product card */
 }
 
 .wishlist-icon {
-position: absolute;
-top: 10px;
-right: 10px;
-cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
 }
 
 /* Heart Icon Color */
 .wishlist-icon svg {
-color: black; /* Default color */
+  color: black;
+  /* Default color */
 }
 
 .wishlist-icon.clicked svg {
-color: red; /* Color when clicked */
-}
-.price-range{
-
-width: 89%;
-}
-.brand-select
-{
-width: 89%;
-}
-.ram-select
-{
-width: 89%;
+  color: red;
+  /* Color when clicked */
 }
 
+.price-range {
 
-.regular_price_item{
-margin-left:5px;
-text-decoration: line-through;
+  width: 89%;
 }
-.checking
-{
+
+.brand-select {
+  width: 89%;
+}
+
+.ram-select {
+  width: 89%;
+}
+
+
+.regular_price_item {
+  margin-left: 5px;
+  text-decoration: line-through;
+}
+
+.checking {
   display: flex;
 }
