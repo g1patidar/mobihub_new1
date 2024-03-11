@@ -29,7 +29,7 @@ const AddProduct = () => {
         formdata.append("file", uploadFiles);
         formdata.append("upload_preset", "ofkoxtub");
         formdata.append("cloud_name", "dq1yrqhsl");
-        
+
         // console.log(uploadFiles);
         // console.log(formdata);
         // const response = await axios.post("https://api.cloudinary.com/v1_1/dq1yrqhsl/image/upload/", formdata);

@@ -2,11 +2,18 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+
+const allowedOrigins = [
+    "https://mobihub-new1-o7u9.vercel.app",
+    "http://localhost:3000" // Example of a local development server
+
+  ];
 app.use(cors({
-        origin: "http://localhost:3000",
+        origin: allowedOrigins,
         methods: "GET, POST, PUT, DELETE",
-        credentials: true
+        credentials:true
 }));  
+
 
 const dbConnect = require("./config/dbConnect");
 const passport = require("./config/passwordconfig");
@@ -40,12 +47,14 @@ app.get('/google', passport.authenticate('google', {scope: ['email', 'profile']}
 
 app.get('/google/callback',
     passport.authenticate('google', {
-        successRedirect: "http://localhost:3000/admin_layout/Admin_dashboard",
-        failureRedirect: '"http://localhost:3000/login',
+
+        successRedirect: "https://mobihub-new1-o7u9.vercel.app/admin_layout/Admin_dashboard",
+        failureRedirect: 'https://mobihub-new1-o7u9.vercel.app/login',
+
     })
 );
 
-app.get("/apilogin/user/data", isAuthenticated,getUserData, async (req, res) => {
+app.get("/apilogin/user/data", isAuthenticated, getUserData, async (req, res) => {
         try {
             const userData = await userdb.findOne({ googleId: req.user.googleId });
             res.status(200).json(userData);
@@ -54,6 +63,13 @@ app.get("/apilogin/user/data", isAuthenticated,getUserData, async (req, res) => 
             res.status(500).json({ message: "Internal server error" });
         }
     });
+
+    app.post('/logout', (req, res) => {
+        req.logout(); // Invalidate the user's session
+        res.clearCookie('token'); // Clear the authentication token cookie
+        res.sendStatus(200); // Send a success response
+      });
+
 
 // app.use(notFound);
 // app.use(errorHandler);

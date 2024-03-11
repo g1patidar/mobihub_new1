@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Addproduct_Admin = () => {
     const [input, setInput] = useState({});
     const [uploadFiles, setUploadFiles] = useState([]);
     const [cloudinaryPaths, setCloudinaryPaths] = useState([]);
+    const [AllBrands, setAllBrands] = useState([])
 
     // handle images
     const handleFileChange = (e) => {
@@ -83,6 +84,24 @@ const Addproduct_Admin = () => {
         }
     };
     /////////////////////////////////////////////////
+    const myBrands = async () => {
+        await axios.post("https://mobihub-new1.onrender.com/api/user/DisplayBrands").then((res) => {
+            setAllBrands(res.data)
+        })
+    }
+    useEffect(() => {
+        myBrands()
+    }, [])
+
+    ///// brands options /////////
+    const ourAllBrands = AllBrands.map((item) => {
+        return (
+            <>
+                <option value={item.Brand_Name}>{item.Brand_Name}</option>
+            </>
+        )
+    })
+
 
     return (
 
@@ -105,7 +124,7 @@ const Addproduct_Admin = () => {
                 <center><button onClick={handleUploadImages}>Upload Images</button></center>
 
                 <div className="sec_box_img">
-                    
+
                     {
                         cloudinaryPaths.map((item) =>
                             <div>
@@ -163,6 +182,7 @@ const Addproduct_Admin = () => {
                                 <option value="">Select RAM</option>
                                 <option value="4GB">4GB</option>
                                 <option value="8GB">8GB</option>
+                                <option value="8GB">12GB</option>
                                 <option value="16GB">16GB</option>
                                 {/* Add more options as needed */}
                             </select>
@@ -194,10 +214,15 @@ const Addproduct_Admin = () => {
                                 onChange={inputHandle}
                             >
                                 <option value="">Select Brand</option>
-                                <option value="Samsung">Samsung</option>
+                                {/* <option value="Samsung">Samsung</option>
                                 <option value="Apple">Apple</option>
                                 <option value="Xiaomi">Xiaomi</option>
                                 <option value="Redmi">Redmi</option>
+                                <option value="Oppo">Oppo</option>
+                                <option value="OnePlus">OnePlus</option>
+                                <option value="Realme">Realme</option>
+                                <option value="Vivo">Vivo</option> */}
+                                {ourAllBrands}
                                 {/* Add more options as needed */}
                             </select>
                         </div>

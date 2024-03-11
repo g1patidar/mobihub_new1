@@ -1,6 +1,8 @@
 
 import { Outlet } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -9,8 +11,6 @@ import { faTachometerAlt, faBox, faPlus, faListAlt, faTags, faTicketAlt, faSignO
 const AdminLayout = () => {
   const [userData, setUserData] = useState(null);
   const [Username, setUserName] = useState("");
-  // const [Userdata, setUserData]=useState({});
-  // const [UserEmail, setUserEmail] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,29 +34,47 @@ const AdminLayout = () => {
       return null;
     }
   }
-  const handlelogout = () => {
-    setUserName("")
-    setUserData("")
-    // setUserEmail("")
-    localStorage.removeItem("token");
-    alert("You succsefully Logout!!")
-    navigate("/home");
-  };
-
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get("https://mobihub-new1.onrender.com/apilogin/user/data", { withCredentials: true });
+
+        const response = await axios.get("https://mobihub-new1.onrender.com/apilogin/user/data",{withCredentials:true});
+
         console.log(response.data);
         setUserData(response.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
+        if (error.response && error.response.status === 401) {
+          // Unauthorized error
+          // Display a message or redirect to the login page
+          // For example:
+          alert("Unauthorized. Please log in.");
+          navigate("/login");
+        } else {
+          // Other errors
+          // Display a generic error message or handle it as appropriate
+        }
       }
     };
 
     fetchUserData();
+
   }, []);
+
+  const handlelogout = async () => {
+
+
+    await axios.post("https://mobihub-new1.onrender.com/logout", null,{withCredentials:true});
+
+    setUserData(null);
+    setUserName("")
+    localStorage.removeItem("token");
+    toast.success(" You are Succesfully resistred  !", {
+      position: "top-right",
+    });
+    navigate("/home");
+  };
 
   return (
     <>
@@ -68,7 +86,9 @@ const AdminLayout = () => {
             <FontAwesomeIcon icon={faTachometerAlt} />
             <span className="brand-text">Admin Panel</span>
           </div>
-          <div style={{ height:"20%"}}>
+
+          <div>
+
             {userData ? (
               <ul>
 
@@ -77,11 +97,13 @@ const AdminLayout = () => {
 
                 {/* Add more user data fields as needed */}
               </ul>
-              
+
+
             ) : (
-              <p>{Username ? Username : "Admin"}</p>
+              <li style={{ textAlign: "center", listStyle: "none", marginTop: "5%", marginLeft: "50%" }}>{Username ? Username : "Admin"}</li>
+
             )}
-        
+
           </div>
           <Link to="/admin_layout/Admin_dashboard">
             <FontAwesomeIcon icon={faTachometerAlt} /> Dashboard
@@ -104,6 +126,7 @@ const AdminLayout = () => {
           <div onClick={handlelogout} className="logout">
             <FontAwesomeIcon icon={faSignOutAlt} /> Logout
           </div>
+          <ToastContainer />
         </div>
         <div className="content">
           {/* Your main content goes here */}
@@ -111,11 +134,9 @@ const AdminLayout = () => {
         </div>
       </div>
 
-
-
-
       <div style={{ border: "1px solid black", padding: "2%" }}>Footer </div>
     </>
   )
 }
+
 export default AdminLayout;

@@ -15,7 +15,9 @@ const WishlistSlice = createSlice({
         alert("this product is already exist !!")
       }
       else {
+        
         state.wishlist.push(action.payload);
+
       }
     },
     delitem: (state, action) => {
@@ -26,8 +28,10 @@ const WishlistSlice = createSlice({
         }
       }
     }
+
   }
 })
+
 
 export const { addtoWishlist, delfromWishlist, delitem } = WishlistSlice.actions;
 export default WishlistSlice.reducer;

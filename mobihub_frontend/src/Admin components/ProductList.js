@@ -54,7 +54,7 @@ const ProductList = () => {
     //  ${Product_RAM} \n 
     //  `)
 
-    <EditProduct 
+    <EditProduct
       Product_Name={Product_Name}
       Product_Brand={Product_Brand}
       Product_Price={Product_Price}
