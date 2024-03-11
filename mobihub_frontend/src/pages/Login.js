@@ -35,10 +35,6 @@ const Login = () => {
         }
       });
 
-
-      // Handle successful login (e.g., redirect to dashboard)
-      // alert("Login successful:");
-      // navi("/Home");
     } catch (error) {
       // Handle login error (e.g., display error message)
 

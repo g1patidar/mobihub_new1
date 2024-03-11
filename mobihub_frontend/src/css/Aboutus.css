@@ -346,7 +346,7 @@ svg {
   background-position: center;
 }
 
-.content {
+.content11 {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -354,11 +354,11 @@ svg {
   text-align: center;
 }
 
-.content h1 {
+.content11 h1 {
   color: rgb(0, 0, 0); /* Text color */
 }
 
-.content button {
+.content11 button {
   background-color: #007bff; /* Button background color */
   color: white; /* Button text color */
   padding: 10px 20px; /* Button padding */

@@ -10,7 +10,7 @@ const Aboutus = () => {
     <div className="All-About-Us">
     <>
 <div className="Heading">
-  <div className="content">
+  <div className="content11">
     <h1>About us</h1>
   </div>
   <img src="https://images.unsplash.com/photo-1516796181074-bf453fbfa3e6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="m" />
@@ -180,7 +180,7 @@ const Aboutus = () => {
       <br/>
       {/* Joining our Company Start */}
       <div className="joinUS">
-  <div className="content">
+  <div className="content11">
     <h1>Interested in working at Mobihub?</h1>
     <button>See job openings</button>
   </div>

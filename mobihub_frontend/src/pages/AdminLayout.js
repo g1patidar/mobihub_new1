@@ -18,9 +18,7 @@ const AdminLayout = () => {
       const token = localStorage.getItem('token');
       const decodetoken = parseJwt(token);
       let name = decodetoken.Name;
-      // let email = decodetoken.Email;
       setUserName(name);
-      // setUserEmail(email);
     }
     catch (error) {
       console.log(error)
@@ -35,26 +33,18 @@ const AdminLayout = () => {
     }
   }
 
+  //login with Google
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
 
         const response = await axios.get("https://mobihub-new1.onrender.com/apilogin/user/data",{withCredentials:true});
-
         console.log(response.data);
         setUserData(response.data);
-      } catch (error) {
+        alert("you are sucssefully Login");
+      } catch(error) {
         console.error("Error fetching user data:", error);
-        if (error.response && error.response.status === 401) {
-          // Unauthorized error
-          // Display a message or redirect to the login page
-          // For example:
-          alert("Unauthorized. Please log in.");
-          navigate("/login");
-        } else {
-          // Other errors
-          // Display a generic error message or handle it as appropriate
-        }
       }
     };
 
@@ -63,16 +53,11 @@ const AdminLayout = () => {
   }, []);
 
   const handlelogout = async () => {
-
-
     await axios.post("https://mobihub-new1.onrender.com/logout", null,{withCredentials:true});
-
     setUserData(null);
     setUserName("")
     localStorage.removeItem("token");
-    toast.success(" You are Succesfully resistred  !", {
-      position: "top-right",
-    });
+    alert("You are seccfull Logout??");
     navigate("/home");
   };
 
