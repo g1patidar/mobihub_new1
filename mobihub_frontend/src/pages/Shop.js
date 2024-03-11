@@ -1,15 +1,21 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FiSearch, FiHeart } from 'react-icons/fi'; // Importing the menu icon
 import { FaFilter } from "react-icons/fa";
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import "../css/shop.css"
 import axios from 'axios';
+import { UseDispatch, useDispatch } from 'react-redux';
+import { addtocart } from '../slice/ProductSlice';
+import { addtoWishlist } from '../slice/WishlistSlice';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Shop = () => {
   const [price, setPrice] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false); // State to control sidebar open/close
+  const [products, setproducts] = useState([])
   const [wishlist, setWishlist] = useState([]);
+  const mydispatch = useDispatch();
 
   const handlePriceChange = (e) => {
     setPrice(e.target.value);
@@ -19,74 +25,80 @@ const Shop = () => {
     setIsOpen(!isOpen);
   };
 
-  // Sample array of products
-  const products = [
-    {
-      id: 1,
-      name: "Product 1",
-      image: "https://i03.appmifile.com/879_item_in/05/12/2023/b479a356cd5d9e0f3dd1057a750cdc66!600x600!85.jpg",
-      description: "Description of Product 1"
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      image: "https://i03.appmifile.com/879_item_in/05/12/2023/b479a356cd5d9e0f3dd1057a750cdc66!600x600!85.jpg",
-      description: "Description of Product 1"
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      image: "https://i03.appmifile.com/879_item_in/05/12/2023/b479a356cd5d9e0f3dd1057a750cdc66!600x600!85.jpg",
-      description: "Description of Product 1"
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      image: "https://i03.appmifile.com/879_item_in/05/12/2023/b479a356cd5d9e0f3dd1057a750cdc66!600x600!85.jpg",
-      description: "Description of Product 1"
-    },
-    // Add more products as needed
-  ];
-
   // Function to handle search term change
   const handleSearchTermChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
   // Function to handle wishlist
-  const handleWishlistClick = (productId) => {
-    // Check if productId is in wishlist
-    if (wishlist.includes(productId)) {
-      // If productId is already in wishlist, remove it
-      setWishlist(wishlist.filter(id => id !== productId));
-    } else {
-      // If productId is not in wishlist, add it
-      setWishlist([...wishlist, productId]);
-    }
-  };
+  // const handleWishlistClick = (productId) => {
+  //   // Check if productId is in wishlist
+  //   if (wishlist.includes(productId)) {
+  //     // If productId is already in wishlist, remove it
+  //     setWishlist(wishlist.filter(id => id !== productId));
+  //   } else {
+  //     // If productId is not in wishlist, add it
+  //     setWishlist([...wishlist, productId]);
+  //   }
+  // };
+
+  const handlewishlist = (
+    productName,
+    productBrand,
+    productPrice,
+    productRAM,
+    productROM,
+    regularPrice,
+    Image_URL,
+    product_ID
+
+  ) => {
+    toast.success("product added in your wishlist")
+    mydispatch(addtoWishlist({
+      id: product_ID,
+      Name: productName,
+      Price: productPrice,
+      Image_path: Image_URL,
+      RAM: productRAM,
+      ROM: productROM,
+    }))
+  }
 
   // Filtered products based on search term
   const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    product.Product_Name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-// get the item from database
-  const mydata = () => {
-    axios.post("https://mobihub-new1.onrender.com/api/user/DisplayProduct").then((res) => {
+
+  // get the item from database
+  const mydata = async () => {
+    const response = await axios.post("https://mobihub-new1.onrender.com/api/user/DisplayProduct").then((res) => {
       // console.log(res.data, "hello")
       // setallproductsdisplay(res.data);
       console.log(res.data)
+      setproducts(res.data);
     })
+
   }
   useEffect(() => {
     mydata()
   }, [])
+
+  // add to cart
+
+  const onAddToCart = (productName, productPrice, regularPrice, Image_URL, product_ID) => {
+    toast.success("product added in your Add to cart")
+    mydispatch(addtocart({
+      id: product_ID,
+      Name: productName, Price: productPrice, Image_path: Image_URL, quantity: 1
+    }))
+  }
 
   return (
     <>
       <div className='leftt'>
         <div className={`filter-container ${isOpen ? 'open' : ''}`}>
           <div className="sidebar-toggle" onClick={toggleSidebar}>
-            <FaFilter  size="25" />
+            <FaFilter size="25" />
           </div>
           <div className="filter-content">
             <h2>Filter</h2>
@@ -124,7 +136,7 @@ const Shop = () => {
         </div>
       </div>
       <div className='righttt'>
-        
+
         <div className="search-section">
           <div className="search-container">
             <input
@@ -139,25 +151,35 @@ const Shop = () => {
             </span>
           </div>
         </div>
-        <br/>
+        <br />
         <div className="product-cards">
           {filteredProducts.length === 0 ? (
-            <p>No products available <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/> <br/> <br/> </p>
-            
+            <p>No products available <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /> <br /> <br /> </p>
+
           ) : (
             filteredProducts.map(product => (
-              <div className="product-cardx" key={product.id}>
-                <Link to={`/product/${product.id}`}>
-                  <img src={product.image} alt={product.name} />
+              <div className="product-cardx" key={product._id}>
+                <Link to={`/product/${product._id}`}>
+                  <img src={product.Image_URL[0]} alt={product.Product_Name} />
                 </Link>
-                <div className={`wishlist-icon ${wishlist.includes(product.id) ? 'clicked' : ''}`} onClick={() => handleWishlistClick(product.id)}>
+                <div className={`wishlist-icon ${wishlist.includes(product.id) ? 'clicked' : ''}`} onClick={() => handlewishlist(
+                  product.Product_Brand,
+                  product.Product_Name,
+                  product.Product_Price,
+                  product.Product_RAM,
+                  product.Product_ROM,
+                  product.Product_Regular_Price,
+                  product.Image_URL,
+                  product._id
+                )}>
                   <FiHeart />
                 </div>
-                <h3>{product.name}</h3>
-                <p>Price:₹1000 <span className='regular_price_item'>2000</span></p>
+                <h3>{product.Product_Name}</h3>
+                <p>Price:₹{product.Product_Price} <span className='regular_price_item'>{product.Product_Regular_Price}</span></p>
                 <div className="buttons">
-                  <button className='buy_nowbutton'>Buy Now</button>
-                  <button className='add_tobutton'>Add to Cart</button>
+                  <button className='buy_nowbutton' >Buy Now</button>
+                  <button className='add_tobutton' onClick={() => onAddToCart(product.Product_Name, product.Product_Price, product.Product_Regular_Price, product.Image_URL, product._id)}>Add to Cart</button>
+                  <ToastContainer />
                 </div>
               </div>
             ))

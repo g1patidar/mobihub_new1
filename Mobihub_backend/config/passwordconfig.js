@@ -5,7 +5,7 @@ const userdb = require("../models/user/loginwithgogl");
 passport.use(new GoogleStrategy({
     clientID: "227090914571-jgcipra0lgrur59h9ivoq1b0vebflbed.apps.googleusercontent.com",
     clientSecret: "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",
-    callbackURL: "https://mobihub-new1.onrender.com/google/callback",
+    callbackURL: "http://localhost:5000/google/callback",
     scope: ['email', 'profile']
 },
     async (accessToken, refreshToken, profile, done) => {

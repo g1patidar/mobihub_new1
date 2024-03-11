@@ -34,7 +34,7 @@ const AdminLayout = () => {
       return null;
     }
   }
-  
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -49,9 +49,9 @@ const AdminLayout = () => {
     fetchUserData();
   }, []);
 
-  const handlelogout =  async () => {
+  const handlelogout = async () => {
 
-    await axios.post("http://localhost:5000/logout", null, { withCredentials: true });
+    await axios.post("https://mobihub-new1.onrender.com/logout", null, { withCredentials: true });
     setUserData(null);
     setUserName("")
     localStorage.removeItem("token");
@@ -83,9 +83,9 @@ const AdminLayout = () => {
                 {/* Add more user data fields as needed */}
               </ul>
 
-              
-            )  :  (
-              <li style={{ textAlign: "center", listStyle: "none", marginTop: "5%", marginLeft:"50%" }}>{Username ? Username : "Admin"}</li>
+
+            ) : (
+              <li style={{ textAlign: "center", listStyle: "none", marginTop: "5%", marginLeft: "50%" }}>{Username ? Username : "Admin"}</li>
 
             )}
 

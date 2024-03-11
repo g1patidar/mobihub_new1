@@ -2,52 +2,64 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 const AddBrand = () => {
     const [input, setInput] = useState({});
-
+    const [AllBrands, setAllBrands] = useState([])
     const inputHandle = (e) => {
         const name = e.target.name;
         const value = e.target.value;
         setInput((values) => ({ ...values, [name]: value }));
     };
 
-    const createbrand = () => {
-        console.log(input);
-    };
+    const createBrand = async () => {
+        try {
+            axios.post("https://mobihub-new1.onrender.com/api/user/AddBrand", input).then(() => {
+                alert("Brand successfully added");
+                myBrands();
+            });
 
+        } catch (err) {
+            console.log(err);
+        }
+    };
     // Our All Brands
 
     const myBrands = async () => {
         await axios.post("https://mobihub-new1.onrender.com/api/user/DisplayBrands").then((res) => {
-            // setallproductsdisplay(res.data);
-            console.log("displayed")
-
+            setAllBrands(res.data)
         })
     }
-
-    // useEffect(() => {
-    //     myBrands()
-    // }, [])
+    useEffect(() => {
+        myBrands()
+    }, [])
 
 
     // delete brand
-    const handleDelete = async (productId) => {
+    const handleDelete = async (brandId) => {
         try {
             // Make an API call to delete the product
-            axios.delete(`https://mobihub-new1.onrender.com/api/user/DeleteBrand/${productId}`).then(() => {
-                alert("Product deleted successfully");
-                myBrands();
-            });
-
-            console.log("Brand deleted successfully");
-            alert("Brand deleted successfully");
-            // Assuming myBrands() is an asynchronous function, you can await it as well
+            axios.delete(`https://mobihub-new1.onrender.com/api/user/DeleteBrand/${brandId}`);
+            alert("brand deleted successfully");
             myBrands();
         } catch (error) {
             console.error("Error deleting product:", error);
         }
     };
-
-
-
+    let sno = 0;
+    const ourAllBrands = AllBrands.map((item) => {
+        sno++;
+        return (
+            <>
+                <div className="sub_tital_1" key={item._id}>
+                    <p>{sno}</p>
+                    <p>{item.Brand_Name}</p>
+                    <p>{item.Parent_Category}</p>
+                    <div className="brand_action_buttons">
+                        <button className="brand_edit_button">Edit</button>
+                        <button className="brand_delete_button" onClick={() => handleDelete(item._id)}>Delete</button>
+                    </div>
+                </div>
+            </>
+        )
+    })
     return (
         <>
             <div className="boxmain">
@@ -77,7 +89,7 @@ const AddBrand = () => {
                         />
 
                         <div className="btn_1">
-                            <button onClick={createbrand}> Save Brand </button>
+                            <button onClick={createBrand}> Save Brand </button>
                         </div>
                     </div>
                     <h2 className="had"> All Brands </h2>
@@ -88,16 +100,9 @@ const AddBrand = () => {
                         <h3>Action</h3>
                     </div>
                     <hr />
-
-                    <div className="sub_tital_1">
-                        <p>1</p>
-                        <p>Redmi</p>
-                        <p>Mobile</p>
-                        <div className="brand_action_buttons">
-                            <button className="brand_edit_button">Edit</button>
-                            <button className="brand_delete_button" onClick={() => handleDelete()}>Delete</button>
-                        </div>
-                    </div>
+                    {
+                        ourAllBrands
+                    }
                 </div>
             </div>
         </>

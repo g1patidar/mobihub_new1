@@ -11,22 +11,17 @@ const Wishlist = () => {
     const myydispatch = useDispatch();
 
     const Deleteitem = (id) => {
-        // alert(id)
-        // myydispatch(delfromWishlist({id:id}))
-
         myydispatch(delitem(id))
     }
 
     //add to cart
 
     const onAddToCart = (productName, productPrice, regularPrice, Image_URL, product_ID) => {
-        alert("hello")
         myydispatch(addtocart({
             id: product_ID,
             Name: productName, Price: productPrice, Image_path: Image_URL, quantity: 1
         }))
     }
-
     // console.log(mywishlist)
     const mywishlistdata = mywishlist.map((item) => {
         return (

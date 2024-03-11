@@ -2,12 +2,19 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+
+const allowedOrigins = [
+    "https://mobihub-new1-o7u9.vercel.app",
+    "http://localhost:3000",
+    // Add more origins as needed
+  ];
 app.use(cors({
-        origin: "https://mobihub-new1-o7u9.vercel.app",
+        origin: allowedOrigins,
         methods: "GET, POST, PUT, DELETE",
         credentials: true
 }));  
 
+app.use(cors());
 
 const dbConnect = require("./config/dbConnect");
 const passport = require("./config/passwordconfig");

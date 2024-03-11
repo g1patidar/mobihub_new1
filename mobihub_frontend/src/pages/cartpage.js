@@ -30,9 +30,8 @@ const Cardpage = () => {
             <>
                 <tr className="item_set_cart">
                     <td>
-
                         <div className="cart-info">
-                            <img src={key.Image_path} className="mobimg" />
+                            <img src={key.Image_path[0]} className="mobimg" />
                             <div>
                                 <p> {key.Name}</p>
                                 <p>Price:<b>₹{key.Price}</b></p>
@@ -153,7 +152,7 @@ const Cardpage = () => {
                     <div className="button1">
                         <center>
 
-                            <button onClick={()=>mynav("/buynow")}>PLACE ORDER </button>
+                            <button onClick={() => mynav("/buynow")}>PLACE ORDER </button>
                         </center>
                     </div>
 
