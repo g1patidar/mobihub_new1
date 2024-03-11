@@ -29,13 +29,12 @@ const Registration = () => {
             .then((res) => {
                 console.log(res.data)
                 if ("already exist" === res.data) {
-                    toast.error(" You are all ready resistred ??", {
-                        position: "top-right",
-                    });
+                   alert("user allready resistred !!")
                 } else {
                     toast.success(" You are Succesfully resistred  !", {
                         position: "top-right",
                     });
+                    alert("succsefull resistred !!")
                 }
             })
             .then(useNavi("/loginpage")).catch(err => { console.log("error :", err) }).then(useNavi("/loginpage"))
@@ -74,7 +73,7 @@ const Registration = () => {
                             <label htmlFor="keepLoggedIn">Keep me logged in</label>
                         </div>
                         <button className='btnn' type="button" onClick={Registrationbutton} >Register Now</button>
-                        <ToastContainer />
+                        <ToastContainer/>
                         <div className="already-customer">
                             <p>Already a customer? <Link to="/loginpage">Please Login in</Link> <FaArrowRight /></p>
                         </div>

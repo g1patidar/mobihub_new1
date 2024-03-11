@@ -2,12 +2,15 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const allowedOrigins = [
+    "https://mobihub-new1-o7u9.vercel.app",
+    "http://localhost:3000" // Example of a local development server
+  ];
 app.use(cors({
-        origin: "https://mobihub-new1-o7u9.vercel.app",
+        origin: allowedOrigins,
         methods: "GET, POST, PUT, DELETE",
-        credentials: true
+        credentials:true
 }));  
-
 
 const dbConnect = require("./config/dbConnect");
 const passport = require("./config/passwordconfig");
@@ -48,7 +51,7 @@ app.get('/google/callback',
     })
 );
 
-app.get("/apilogin/user/data", isAuthenticated,getUserData, async (req, res) => {
+app.get("/apilogin/user/data", isAuthenticated, getUserData, async (req, res) => {
         try {
             const userData = await userdb.findOne({ googleId: req.user.googleId });
             res.status(200).json(userData);
