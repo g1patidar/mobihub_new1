@@ -49,6 +49,7 @@ const Login = () => {
 
   const loginwithgoogle = () => {
     window.open("https://mobihub-new1.onrender.com/google/callback", "_self")
+
   }
 
   return (

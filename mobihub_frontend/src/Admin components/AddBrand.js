@@ -24,7 +24,9 @@ const AddBrand = () => {
 
     const myBrands = async () => {
         await axios.post("https://mobihub-new1.onrender.com/api/user/DisplayBrands").then((res) => {
+
             setAllBrands(res.data)
+
         })
     }
     useEffect(() => {
@@ -36,8 +38,10 @@ const AddBrand = () => {
     const handleDelete = async (brandId) => {
         try {
             // Make an API call to delete the product
+
             axios.delete(`https://mobihub-new1.onrender.com/api/user/DeleteBrand/${brandId}`);
             alert("brand deleted successfully");
+
             myBrands();
         } catch (error) {
             console.error("Error deleting product:", error);

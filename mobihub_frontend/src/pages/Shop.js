@@ -25,6 +25,7 @@ const Shop = () => {
     setIsOpen(!isOpen);
   };
 
+
   // Function to handle search term change
   const handleSearchTermChange = (e) => {
     setSearchTerm(e.target.value);

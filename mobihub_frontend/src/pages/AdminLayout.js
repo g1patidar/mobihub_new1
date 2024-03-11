@@ -38,7 +38,9 @@ const AdminLayout = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
+
         const response = await axios.get("https://mobihub-new1.onrender.com/apilogin/user/data",{withCredentials:true});
+
         console.log(response.data);
         setUserData(response.data);
       } catch (error) {
