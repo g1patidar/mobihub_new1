@@ -34,7 +34,7 @@ const AdminLayout = () => {
       return null;
     }
   }
-  
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -62,7 +62,9 @@ const AdminLayout = () => {
 
   const handlelogout = async () => {
 
+
     await axios.post("https://mobihub-new1.onrender.com/logout", null,{withCredentials:true});
+
     setUserData(null);
     setUserName("")
     localStorage.removeItem("token");

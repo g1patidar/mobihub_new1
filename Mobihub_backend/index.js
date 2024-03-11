@@ -2,15 +2,18 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+
 const allowedOrigins = [
     "https://mobihub-new1-o7u9.vercel.app",
     "http://localhost:3000" // Example of a local development server
+
   ];
 app.use(cors({
         origin: allowedOrigins,
         methods: "GET, POST, PUT, DELETE",
         credentials:true
 }));  
+
 
 const dbConnect = require("./config/dbConnect");
 const passport = require("./config/passwordconfig");
