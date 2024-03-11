@@ -26,7 +26,7 @@ const Registration = () => {
     {
          //console.log(HandleInpt);
          
-          axios.post("http://localhost:5000/api/user/register", HandleInpt)
+          axios.post("https://mobihub-new1.onrender.com/api/user/register", HandleInpt)
           .then((res)=>{
             console.log(res.data)
             if("already exist"===res.data){

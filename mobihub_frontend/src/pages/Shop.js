@@ -33,16 +33,16 @@ const Shop = () => {
       description: "Description of Product 1"
     },
     {
-      id: 2,
-      name: "Product 2",
+      id: 3,
+      name: "Product 3",
       image: "https://i03.appmifile.com/879_item_in/05/12/2023/b479a356cd5d9e0f3dd1057a750cdc66!600x600!85.jpg",
-      description: "Description of Product 1"
+      description: "Description of Product 3"
     },
     {
-      id: 2,
-      name: "Product 2",
+      id: 4,
+      name: "Product 4",
       image: "https://i03.appmifile.com/879_item_in/05/12/2023/b479a356cd5d9e0f3dd1057a750cdc66!600x600!85.jpg",
-      description: "Description of Product 1"
+      description: "Description of Product 4"
     },
     // Add more products as needed
   ];

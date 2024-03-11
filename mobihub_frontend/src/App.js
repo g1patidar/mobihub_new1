@@ -54,6 +54,7 @@ import "./css/AdminComponentCss/OrderDetails.css"
 import "./css/AdminComponentCss/AddBrand.css"
 import "./css/AdminComponentCss/AddCoupon.css"
 import "./css/AdminComponentCss/Addproduct_Admin.css"
+import Aboutus from "./pages/components/About/Aboutus";
 
 
 
@@ -70,6 +71,7 @@ const App = () => {
           <Route path="/" element={<Layout />} >
             <Route index element={<Home />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/aboutus" element={<Aboutus/>} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/cartpage" element={<Cartpage />} />
             <Route path="/wishlist" element={<Wishlist />} />
