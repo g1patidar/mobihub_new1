@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 const Registration = () => {
 
     const [HandleInpt, SetHandelInpt] = useState({});
-    const useNavi = useNavigate();
+    const navigate = useNavigate();
 
     const HandleAllInput = (e) => {
         const name = e.target.name;
@@ -22,22 +22,22 @@ const Registration = () => {
     }
 
 
-    const Registrationbutton = () => {
+    const Registrationbutton = async() => {
         //console.log(HandleInpt);
-
-        axios.post("https://mobihub-new1.onrender.com/api/user/register", HandleInpt)
-            .then((res) => {
-                console.log(res.data)
-                if ("already exist" === res.data) {
-                   alert("user allready resistred !!")
-                } else {
-                    toast.success(" You are Succesfully resistred  !", {
-                        position: "top-right",
-                    });
-                    alert("succsefull resistred !!")
-                }
-            })
-            .then(useNavi("/loginpage")).catch(err => { console.log("error :", err) }).then(useNavi("/loginpage"))
+        try {
+            const response = await axios.post("https://mobihub-new1.onrender.com/api/user/register", HandleInpt);
+            if ("already exist" === response.data) {
+                alert("User already registered!!");
+                navigate("/loginpage");
+            } else {
+                console.log("Registration successful");
+                navigate("/loginpage");
+            }
+        } catch (error) {
+            console.error("Error registering user:", error);
+            alert("Failed to register user. Please try again later.");
+        }
+        
     }
 
 
