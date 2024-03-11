@@ -38,20 +38,33 @@ const AdminLayout = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get("https://mobihub-new1.onrender.com/apilogin/user/data", { withCredentials: true });
+        const response = await axios.get("https://mobihub-new1.onrender.com/apilogin/user/data",{withCredentials:true});
         console.log(response.data);
         setUserData(response.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
+        if (error.response && error.response.status === 401) {
+          // Unauthorized error
+          // Display a message or redirect to the login page
+          // For example:
+          alert("Unauthorized. Please log in.");
+          navigate("/login");
+        } else {
+          // Other errors
+          // Display a generic error message or handle it as appropriate
+        }
       }
     };
 
     fetchUserData();
+
   }, []);
 
   const handlelogout = async () => {
 
-    await axios.post("https://mobihub-new1.onrender.com/logout", null, { withCredentials: true });
+
+    await axios.post("https://mobihub-new1.onrender.com/logout", null,{withCredentials:true});
+
     setUserData(null);
     setUserName("")
     localStorage.removeItem("token");
@@ -119,11 +132,9 @@ const AdminLayout = () => {
         </div>
       </div>
 
-
-
-
       <div style={{ border: "1px solid black", padding: "2%" }}>Footer </div>
     </>
   )
 }
+
 export default AdminLayout;

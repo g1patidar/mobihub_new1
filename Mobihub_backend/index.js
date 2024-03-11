@@ -5,16 +5,15 @@ const cors = require("cors");
 
 const allowedOrigins = [
     "https://mobihub-new1-o7u9.vercel.app",
-    "http://localhost:3000",
-    // Add more origins as needed
+    "http://localhost:3000" // Example of a local development server
+
   ];
 app.use(cors({
         origin: allowedOrigins,
         methods: "GET, POST, PUT, DELETE",
-        credentials: true
+        credentials:true
 }));  
 
-app.use(cors());
 
 const dbConnect = require("./config/dbConnect");
 const passport = require("./config/passwordconfig");
@@ -55,7 +54,7 @@ app.get('/google/callback',
     })
 );
 
-app.get("/apilogin/user/data", isAuthenticated,getUserData, async (req, res) => {
+app.get("/apilogin/user/data", isAuthenticated, getUserData, async (req, res) => {
         try {
             const userData = await userdb.findOne({ googleId: req.user.googleId });
             res.status(200).json(userData);

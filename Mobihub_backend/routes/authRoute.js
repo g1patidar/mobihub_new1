@@ -11,7 +11,6 @@ router.get('/all_users', getalluser);
 router.get('/:id', getauser);
 router.delete('/:id', getauserdelete);
 router.put('/:id', getauserupdated);
-
 router.post('/ProdoctAdd', ProductAdd);
 router.post('/DisplayProduct', DisplayProduct);
 router.delete('/DeleteProduct/:id', DeleteProduct);
