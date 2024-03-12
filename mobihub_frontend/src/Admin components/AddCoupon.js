@@ -1,8 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { MdDeleteForever } from "react-icons/md";
+import { isEditableInput } from "@testing-library/user-event/dist/utils";
 
 const AddCoupon = () => {
 
-  const [input, setInput] = useState({});
+  const [input, setInput] = useState({
+    Coupon_Name: "",
+    Created_Date: '',
+    Discount: "",
+    Expiry_Date: ""
+  });
+
+  const [allCoupon, setAllCoupon] = useState([])
 
   const inputHandle = (e) => {
     const name = e.target.name;
@@ -10,9 +20,98 @@ const AddCoupon = () => {
     setInput((values) => ({ ...values, [name]: value }));
   };
 
-  const createcoupon = () => {
-    console.log(input)
+  // const createcoupon = async () => {
+
+  //   const time = new Date();
+  //   let year = time.getFullYear();
+  //   let month = time.getMonth();
+  //   let day = time.getDate();
+  //   let total = `${year}-${month + 1}-${day}`;
+
+  //   await setInput((values) => ({ ...values, ['Created_Date']: total }))
+  //   console.log(total)
+  //   console.log(input)
+  //   // try {
+  //   //   axios.post("http://localhost:5000/api/user/AddCoupon", input).then(() => {
+  //   //     alert("Coupon successfully added");
+  //   //     // toast.success("Coupon Successfully Added!")
+  //   //     Mycoupon();
+  //   //   });
+
+  //   // } catch (err) {
+  //   //   console.log(err);
+  //   // }
+  // }
+
+  const createcoupon = async () => {
+  const time = new Date();
+  let year = time.getFullYear();
+  let month = time.getMonth();
+  let day = time.getDate();
+  let total = `${year}-${month + 1}-${day}`;
+
+  await setInput((values) => ({ ...values, ['Created_Date']: total }));
+  console.log(input); // Log the state after the update is completed
+
+  try {
+    await axios.post("http://localhost:5000/api/user/AddCoupon", input);
+    alert("Coupon successfully added");
+    Mycoupon();
+  } catch (err) {
+    console.log(err);
   }
+};
+
+
+
+  // Our All Coupons
+
+  const Mycoupon = async () => {
+    await axios.post("http://localhost:5000/api/user/DisplayCoupons").then((res) => {
+      setAllCoupon(res.data)
+      // console.log(res.data)
+    })
+  }
+  useEffect(() => {
+    Mycoupon()
+  }, [])
+
+  let sno = 0;
+  const ourallcoupons = allCoupon.map((item) => {
+    sno++;
+    return (
+      <>
+        <div className="sub_tital">
+          <p>{sno}</p>
+          <p>{item.Coupon_Name}</p>
+          <p>{item.Discount}OFF</p>
+          <p>{item.Created_Date}</p>
+          <p>{item.Expiry_Date}</p>
+
+          {/* <div className="del_img">
+            <img src="./Admin_images/delete.png" alt="" />
+          </div> */}
+          <MdDeleteForever onClick={() => handleDelete(item._id)} className="del_img" style={{ cursor: "pointer" }} />
+
+        </div>
+      </>
+    )
+  })
+
+  // delete brand
+  const handleDelete = async (couponid) => {
+    try {
+      // Make an API call to delete the product
+
+      axios.delete(`http://localhost:5000/api/user/DeleteCoupon/${couponid}`);
+      alert("Coupon deleted successfully");
+
+      Mycoupon();
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  };
+
 
   return (
     <>
@@ -30,18 +129,7 @@ const AddCoupon = () => {
           <h4>Action</h4>
         </div>
         <hr />
-        <div className="sub_tital">
-          <p>1</p>
-          <p>30 OFF</p>
-          <p>30% OFF</p>
-          <p>2023-01-12</p>
-          <p>2023-01-12</p>
-
-          <div className="del_img">
-            <img src="./Admin_images/delete.png" alt="" />
-          </div>
-
-        </div>
+        {ourallcoupons}
 
         <div className="input_box">
           <h3 className="Heading1">Creat Coupon</h3>
@@ -58,7 +146,9 @@ const AddCoupon = () => {
             name="Expiry_Date" value={input.Expiry_Date} onChange={inputHandle} />
           <div className="btn">
             <button onClick={createcoupon}>Save Coupon </button>
+
           </div>
+
         </div>
 
       </div>

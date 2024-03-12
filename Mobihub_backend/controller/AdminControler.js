@@ -30,7 +30,7 @@ const DisplayProduct = async (req, res) => {
     }
 };
 
-// API for delete item from database 
+// API for delete product from database 
 
 const DeleteProduct = async (req, res) => {
 
@@ -56,32 +56,28 @@ const DisplayBrands = async (req, res) => {
     }
 };
 const DeleteBrand = async (req, res) => {
-
     const brandId = req.params.itemId;
     let respo = await BrandModel.deleteOne({ _id: brandId })
-    
-    //   try {
-    //     // Use Mongoose to find and remove the item by ID
-    //     const deletedItem = await ItemModel.findByIdAndRemove(brandId);
-
-    //     if (!deletedItem) {
-    //       return res.status(404).json({ message: 'Item not found' });
-    //     }
-
-    //     // Optionally, you can send a success message or other relevant information
-    //     res.json({ message: 'Item successfully deleted' });
-    //   } catch (error) {
-    //     console.error('Error deleting item:', error.message);
-    //     res.status(500).json({ message: 'Internal Server Error' });
-    //   }
-
 }
 
 //////// Coupon////////////////
 const AddCoupon = async (req, res) => {
-    const brand = await CouponModel.create(req.body)
-    res.status(201).json(brand)
+    const Coupon = await CouponModel.create(req.body)
+    res.status(201).json(Coupon)
+}
+const DisplayCoupons= async(req,res)=>{
+    try {
+        const Coupons = await CouponModel.find();
+        res.send(Coupons);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+
+}
+const DeleteCoupon = async (req, res) => {
+    
+    const couponid = req.params.itemId;
+    let respo = await CouponModel.deleteOne({ _id: couponid })
 }
 
-
-module.exports = { ProductAdd, DisplayProduct, DeleteProduct, AddBrand, AddCoupon, DisplayBrands, DeleteBrand };
+module.exports = { ProductAdd, DisplayProduct, DeleteProduct, AddBrand, AddCoupon, DisplayBrands, DeleteBrand, AddCoupon,DisplayCoupons,DeleteCoupon };

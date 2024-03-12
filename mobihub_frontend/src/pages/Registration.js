@@ -22,10 +22,10 @@ const Registration = () => {
     }
 
 
-    const Registrationbutton = async() => {
+    const Registrationbutton = async () => {
         //console.log(HandleInpt);
         try {
-            const response = await axios.post("https://mobihub-new1.onrender.com/api/user/register", HandleInpt);
+            const response = await axios.post("http://localhost:5000/api/user/register", HandleInpt);
             if ("already exist" === response.data) {
                 alert("User already registered!!");
                 navigate("/loginpage");
@@ -37,7 +37,7 @@ const Registration = () => {
             console.error("Error registering user:", error);
             alert("Failed to register user. Please try again later.");
         }
-        
+
     }
 
 
@@ -72,7 +72,7 @@ const Registration = () => {
                             <label htmlFor="keepLoggedIn">Keep me logged in</label>
                         </div>
                         <button className='btnn' type="button" onClick={Registrationbutton} >Register Now</button>
-                        <ToastContainer/>
+                        <ToastContainer />
                         <div className="already-customer">
                             <p>Already a customer? <Link to="/loginpage">Please Login in</Link> <FaArrowRight /></p>
                         </div>
