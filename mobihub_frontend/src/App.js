@@ -11,6 +11,7 @@ import Registration from "./pages/Registration";
 import Wishlist from "./pages/Wishlist";
 import ManageAddress from "./pages/ManageAddress";
 import Shop from "./pages/Shop";
+import Contact from "./pages/Contact";
 
 import ProductCard from "./pages/components/ProductCard";
 
@@ -47,6 +48,7 @@ import "./css/COD.css"
 import "./css/CreditCard.css"
 import "./css/Upi.css"
 import "./css/AdminLayout.css"
+import "./css/Contact.css";
 
 import "./css/AdminComponentCss/Dashboard_Admin.css"
 // import "./css/AdminComponentCss/ProductList.css"
@@ -83,6 +85,8 @@ const App = () => {
             <Route path="/loginpage" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
             <Route path="/addressform" element={<AddressForm/>} />
+            <Route path="/Contact" element={<Contact/>} />
+            
           </Route>
 
 
