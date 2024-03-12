@@ -152,7 +152,7 @@ const Cardpage = () => {
                     <div className="button1">
                         <center>
 
-                            <button onClick={() => mynav("/buynow")}>PLACE ORDER </button>
+                            <button onClick={() => mynav("/addressform")}>PLACE ORDER </button>
                         </center>
                     </div>
 

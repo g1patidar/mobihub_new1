@@ -55,6 +55,7 @@ import "./css/AdminComponentCss/AddBrand.css"
 import "./css/AdminComponentCss/AddCoupon.css"
 import "./css/AdminComponentCss/Addproduct_Admin.css"
 import Aboutus from "./pages/components/About/Aboutus";
+import AddressForm from "./pages/components/AddressFormPage/AddressForm";
 
 
 
@@ -81,6 +82,7 @@ const App = () => {
             <Route path="/buynow" element={<Paymentpage />} />
             <Route path="/loginpage" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
+            <Route path="/addressform" element={<AddressForm/>} />
           </Route>
 
 
@@ -96,6 +98,7 @@ const App = () => {
             <Route path="/admin_layout/add-coupon" element={<AddCoupon />} />
             <Route path="/admin_layout/orderdetails" element={<OrderDetails />} />
             <Route path="/admin_layout/EditProduct" element={<EditProduct />} />
+            
           </Route>
         </Routes>
       </BrowserRouter>
