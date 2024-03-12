@@ -39,11 +39,11 @@ const AdminLayout = () => {
     const fetchUserData = async () => {
       try {
 
-        const response = await axios.get("https://mobihub-new1.onrender.com/apilogin/user/data",{withCredentials:true});
+        const response = await axios.get("http://localhost:5000/apilogin/user/data", { withCredentials: true });
         console.log(response.data);
         setUserData(response.data);
         alert("you are sucssefully Login");
-      } catch(error) {
+      } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
@@ -53,7 +53,7 @@ const AdminLayout = () => {
   }, []);
 
   const handlelogout = async () => {
-    await axios.post("https://mobihub-new1.onrender.com/logout", null,{withCredentials:true});
+    await axios.post("http://localhost:5000/logout", null, { withCredentials: true });
     setUserData(null);
     setUserName("")
     localStorage.removeItem("token");

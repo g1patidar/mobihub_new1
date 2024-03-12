@@ -6,41 +6,63 @@ import Services from "./components/Services";
 import MoreProduct from "./components/MoreProduct";
 import MoreItemsList from "./components/MoreItems/MoreItemsList";
 import Onetwo from "./components/Onetwo/Onetwo";
-
+import { useDispatch } from "react-redux";
+import setAllProducts from "../slice/AllProductSlice"
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Home = () => {
+    const [productss, setproducts] = useState([])
+    const dispatch = useDispatch();
+
+
+    const mydata = async () => {
+        const response = await axios.post("http://localhost:5000/api/user/DisplayProduct").then((res) => {
+            // console.log(res.data, "hello")
+            // setallproductsdisplay(res.data);
+            setproducts(res.data);
+        })
+
+    }
+    useEffect(() => {
+        mydata()
+    }, [])
+
+
+
+
 
     return (
         <>
-            <Carousel/>
-            <br/>
+            <Carousel />
+            <br />
 
             <section className="best_seller">
                 <>
-                <BestSellers/>
-                <br/>
+                    <BestSellers />
+                    <br />
                 </>
             </section>
-            <br/>
+            <br />
 
-            <Marquee/>
-            <br/>
+            <Marquee />
+            <br />
 
-            <MoreProduct/>
+            <MoreProduct />
 
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            
-            <MoreItemsList/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <Onetwo/>
-            
-            <Services/>
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <MoreItemsList />
+            <br />
+            <br />
+            <br />
+            <br />
+            <Onetwo />
+
+            <Services />
         </>
     )
 }
