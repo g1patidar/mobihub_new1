@@ -25,11 +25,11 @@ const Registration = () => {
     const Registrationbutton = () => {
         //console.log(HandleInpt);
 
-        axios.post("https://mobihub-new1.onrender.com/api/user/register", HandleInpt)
+        axios.post("http://localhost:5000/api/user/register", HandleInpt)
             .then((res) => {
                 console.log(res.data)
                 if ("already exist" === res.data) {
-                   alert("user allready resistred !!")
+                    alert("user allready resistred !!")
                 } else {
                     toast.success(" You are Succesfully resistred  !", {
                         position: "top-right",
@@ -73,7 +73,7 @@ const Registration = () => {
                             <label htmlFor="keepLoggedIn">Keep me logged in</label>
                         </div>
                         <button className='btnn' type="button" onClick={Registrationbutton} >Register Now</button>
-                        <ToastContainer/>
+                        <ToastContainer />
                         <div className="already-customer">
                             <p>Already a customer? <Link to="/loginpage">Please Login in</Link> <FaArrowRight /></p>
                         </div>
