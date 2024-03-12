@@ -22,7 +22,7 @@ const Header = ( { count }) => {
                 <Link to="/aboutus" style={{ '--i': 1 }}>About</Link>
                 <Link to="/shop" style={{ '--i': 2 }}>Shop </Link>
                 <Link to="/" style={{ '--i': 3 }}>Services</Link>
-                <Link to="/" style={{ '--i': 4 }}>Contact</Link>
+                <Link to="/Contact" style={{ '--i': 4 }}>Contact</Link>
 
 
                 <Link to="/cartpage" style={{ '--i': 5 }}><FaShoppingCart className="cart-icon" />1</Link>
