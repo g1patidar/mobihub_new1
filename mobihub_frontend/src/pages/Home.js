@@ -6,10 +6,12 @@ import Services from "./components/Services";
 import MoreProduct from "./components/MoreProduct";
 import MoreItemsList from "./components/MoreItems/MoreItemsList";
 import Onetwo from "./components/Onetwo/Onetwo";
+
 import { useDispatch } from "react-redux";
 import setAllProducts from "../slice/AllProductSlice"
 import { useEffect, useState } from "react";
 import axios from "axios";
+
 
 const Home = () => {
     const [productss, setproducts] = useState([])
