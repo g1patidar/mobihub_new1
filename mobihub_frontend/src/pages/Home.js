@@ -7,7 +7,7 @@ import MoreProduct from "./components/MoreProduct";
 import MoreItemsList from "./components/MoreItems/MoreItemsList";
 import Onetwo from "./components/Onetwo/Onetwo";
 
-
+// pankesh
 const Home = () => {
 
     return (
