@@ -72,7 +72,7 @@ const Addproduct_Admin = () => {
             // Send productDetails to your backend API for further processing
             console.log("Product details:", productDetails);
 
-            const responseapi = await axios.post("http://localhost:5000/api/user/ProdoctAdd", productDetails);
+            const responseapi = await axios.post("https://mobihub-new1.onrender.com/api/user/ProdoctAdd", productDetails);
             console.log(responseapi);
             console.log("send detail of product successful !@!")
             setInput({});
@@ -85,7 +85,7 @@ const Addproduct_Admin = () => {
     };
     /////////////////////////////////////////////////
     const myBrands = async () => {
-        await axios.post("http://localhost:5000/api/user/DisplayBrands").then((res) => {
+        await axios.post("https://mobihub-new1.onrender.com/api/user/DisplayBrands").then((res) => {
             setAllBrands(res.data)
         })
     }
