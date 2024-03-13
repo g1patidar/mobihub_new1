@@ -20,8 +20,8 @@ const passport = require("./config/passwordconfig");
 const cookieSession = require('cookie-session');
 const authRouter = require('./routes/authRoute');
 const userdb = require("./models/user/loginwithgogl");
-// const { getUserData } = require("./controller/passport");
-// const { isAuthenticated } = require("./middlewares/loginmiddlewere");
+const { getUserData } = require("./controller/passport");
+const { isAuthenticated } = require("./middlewares/loginmiddlewere");
 const bodyParser = require("body-parser");
 const dotenv = require('dotenv').config();
 const PORT = process.env.PORT || 4000;
@@ -56,7 +56,7 @@ app.get('/google/callback',
 
 app.use(express.json());
 
-app.get('/getlogin', async (req, res) => {
+app.get('/getlogin',isAuthenticated,getUserData, async (req, res) => {
     try {
         
         const userData = await userdb.findOne({ googleId: req.user.googleId });
