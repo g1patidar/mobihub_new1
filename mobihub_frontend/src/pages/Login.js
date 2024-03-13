@@ -44,7 +44,7 @@ const Login = () => {
 
 
   const loginwithgoogle = () => {
-    window.open("https://mobihub-new1.onrender.com/google/callback", "_self")
+    window.open("http://localhost:5000/google/callback", "_self")
 
   }
 
