@@ -54,7 +54,14 @@ app.get('/google/callback',
 app.get("/login/success", async (req, res)=>{
     //  console.log("rewerwerfdsf", req.user);
      if(req.user){
-        res.status(200).json({message:"user login", user:req.user}); 
+        // res.status(200).json({message:"user login", user:req.user});
+           const userData = {
+            id: req.user.id,
+            displayName: req.user.displayName,
+            email: req.user.email,
+            image: req.user.image,
+        };
+        res.json(userData); 
      }else{
         res.status(400).json({message:"Not auutorized"}); 
     }
