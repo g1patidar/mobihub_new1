@@ -60,7 +60,7 @@ app.get('/getlogin', async (req, res) => {
     try {
         
         const userData = await userdb.findOne({ googleId: req.user.googleId });
-        console.log(userData.data,userData)
+        console.log(userData.data,userData, "pankesh")
 
         res.status(200).json(userData);
         res.send(userData);
