@@ -40,7 +40,7 @@ const AdminLayout = () => {
     const fetchUserData = async () => {
       try {
 
-        const  response = await axios.get("https://mobihub-new1.onrender.com/getlogin", { withCredentials: true });
+        const  response = await axios.get("https://mobihub-new1.onrender.com/getlogin");
           console.log(response.data);
           setUserData(response.data);
           alert("you are sucssefully Login");
