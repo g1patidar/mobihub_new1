@@ -5,7 +5,7 @@ const cors = require("cors");
 
 const allowedOrigins = [
     "https://mobihub-new1-o7u9.vercel.app",
-    // "http://localhost:3000" // Example of a local development server
+    "http://localhost:3000" // Example of a local development server
 
 ];
 app.use(cors({
