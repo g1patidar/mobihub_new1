@@ -35,12 +35,11 @@ const AdminLayout = () => {
 
   //login with Google
 
-
   useEffect(() => {
     const fetchUserData = async () => {
       try {
 
-        const  response = await axios.get("https://mobihub-new1.onrender.com/getlogin");
+        const  response = await axios.get("https://mobihub-new1.onrender.com/getlogin",{ withCredentials: true });
           console.log(response.data);
           setUserData(response.data);
           alert("you are sucssefully Login");
