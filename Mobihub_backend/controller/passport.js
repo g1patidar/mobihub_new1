@@ -1,4 +1,5 @@
-const passport = require ("../config/passwordconfig");
+// const passport = require ("../config/passwordconfig");
+
 const userdb = require("../models/user/loginwithgogl");
 
 const getUserData = async (req, res) => {
