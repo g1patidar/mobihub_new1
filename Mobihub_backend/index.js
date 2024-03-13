@@ -19,7 +19,7 @@ const dbConnect = require("./config/dbConnect");
 const passport = require("./config/passwordconfig");
 const cookieSession = require('cookie-session');
 const authRouter = require('./routes/authRoute');
-// const userdb = require("./models/user/loginwithgogl");
+ const userdb = require("./models/user/loginwithgogl");
 const { getUserData } = require("./controller/passport");
 const { isAuthenticated } = require("./middlewares/loginmiddlewere");
 const bodyParser = require("body-parser");
@@ -56,10 +56,10 @@ app.get('/google/callback',
 
 app.use(express.json());
 
-app.get('/getlogin',isAuthenticated,getUserData, async (req, res) => {
+app.get('/getlogin', async (req, res) => {
     try {
-        console.log(userData, "pankesh rrrrrrrrrrrrrrrrrrrrrrrrrr")
-        const userData = await userdb.findOne({ googleId: req.user.googleId });
+        console.log(getUserData, "pankesh rrrrrrrrrrrrrrrrrrrrrrrrrr")
+        const userData = await userdb.findOne({ googleId: getUserData.googleId });
         console.log(userData.data,userData, "pankesh")
         res.send(userData);
     } catch (error) {
