@@ -58,7 +58,7 @@ app.use(express.json());
 
 app.get('/getlogin',isAuthenticated,getUserData, async (req, res) => {
     try {
-        
+        console.log(userData, "pankesh rrrrrrrrrrrrrrrrrrrrrrrrrr")
         const userData = await userdb.findOne({ googleId: req.user.googleId });
         console.log(userData.data,userData, "pankesh")
         res.send(userData);
