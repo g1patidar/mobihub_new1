@@ -19,8 +19,8 @@ const dbConnect = require("./config/dbConnect");
 const passport = require("./config/passwordconfig");
 const cookieSession = require('cookie-session');
 const authRouter = require('./routes/authRoute');
- //const userdb = require("./models/user/loginwithgogl");
-const { getUserData } = require("./controller/passport");
+const userdb = require("./models/user/loginwithgogl");
+//const { getUserData } = require("./controller/passport");
 // const { isAuthenticated } = require("./middlewares/loginmiddlewere");
 const bodyParser = require("body-parser");
 const dotenv = require('dotenv').config();
@@ -56,17 +56,18 @@ app.get('/google/callback',
 
 app.use(express.json());
 
-app.get('/getlogin', getUserData);
-//     try {
-//         console.log( "pankesh rrrrrrrrrrrrrrrrrrrrrrrrrr",req.user.googleId )
-//         const userData = await userdb.findOne({ googleId:req.user.googleId });
-//         console.log(userData, "pankesh")
-//         res.send(userData);
-//     } catch (error) {
-//         console.error("Error fetching user data:", error);
-//         res.status(500).json({ message: "Internal server error" });
-//     }
-// });
+app.get('/getlogin'  async (req, res) => {
+    
+    try {
+        const userData = await userdb.findOne({googleId: req.user.googleId});
+        console.log(userData);
+        res.status(200).json(userData);
+    } catch (error) {
+        console.error("Error fetching user data:", error);
+        res.status(500).json({ message: "Internal server error" });
+
+    }
+});
 
 app.post('/logout', (req, res) => {
     req.logout(); // Invalidate the user's session
