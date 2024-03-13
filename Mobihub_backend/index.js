@@ -1,6 +1,18 @@
 
 const express = require("express");
 const app = express();
+const cors = require("cors");
+
+const allowedOrigins = [
+    "https://mobihub-new1-o7u9.vercel.app",
+    //"http://localhost:3000" // Example of a local development server
+
+];
+app.use(cors({
+    origin: allowedOrigins,
+    methods: "GET, POST, PUT, DELETE",
+    credentials: true
+}));
 const passport = require("./config/passwordconfig");
 const dbConnect = require("./config/dbConnect");
 const session = require('express-session');
@@ -15,19 +27,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/api/user", authRouter);
-const cors = require("cors");
-
-const allowedOrigins = [
-    "https://mobihub-new1-o7u9.vercel.app",
-    "http://localhost:3000" // Example of a local development server
-
-];
-app.use(cors({
-    origin: allowedOrigins,
-    methods: "GET, POST, PUT, DELETE",
-    credentials: true
-}));
-
 app.use(express.json());
 
 app.use(session({
