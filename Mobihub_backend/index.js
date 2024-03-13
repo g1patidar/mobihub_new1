@@ -56,10 +56,10 @@ app.get('/google/callback',
 
 app.use(express.json());
 
-app.get('/getlogin', async (req, res) => {
+app.get('/getlogin',getUserData, async (req, res) => {
     try {
-        console.log(getUserData, "pankesh rrrrrrrrrrrrrrrrrrrrrrrrrr")
-        const userData = await userdb.findOne({ googleId: getUserData.googleId });
+        console.log( "pankesh rrrrrrrrrrrrrrrrrrrrrrrrrr",req.user.googleId )
+        const userData = await userdb.findOne({ googleId:req.user.googleId });
         console.log(userData.data,userData, "pankesh")
         res.send(userData);
     } catch (error) {
