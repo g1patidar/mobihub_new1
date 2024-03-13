@@ -3,9 +3,12 @@ const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const userdb = require("../models/user/loginwithgogl");
 require('dotenv').config();
 
+
 const client_ID = process.env.CLIENT_ID;
 const client_Secret = process.env.CLIENT_SECRET;
 const call_back_URL = process.env.CALLBACK_URL;
+
+
 
 passport.use(new GoogleStrategy({
 
@@ -15,9 +18,9 @@ passport.use(new GoogleStrategy({
 
     scope: ['email', 'profile']
 },
-    async (accessToken, refreshToken, profile, done, res) => {
+    async (accessToken, refreshToken, profile, done) => {
         try {
-            let user = await userdb.findOne({ googleId: profile.id });
+            let user = await userdb.findOne({ googleId:profile.id });
             if (!user) {
                 user = new userdb({
                     googleId: profile.id,
@@ -42,3 +45,4 @@ passport.deserializeUser((user, done) => {
 });
 
 module.exports = passport;
+
