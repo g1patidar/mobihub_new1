@@ -13,8 +13,8 @@ const myCouponSchema = new mongoose.Schema({
                 required: true
         },
         Created_Date: {
-                type: String,
-                required: true
+                type: Date,
+                default: Date.now
         }
 })
 module.exports = mongoose.model("coupon", myCouponSchema)  //

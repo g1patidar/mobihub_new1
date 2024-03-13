@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { MdDeleteForever } from "react-icons/md";
 import { isEditableInput } from "@testing-library/user-event/dist/utils";
+import { toast } from "react-toastify";
 
 const AddCoupon = () => {
 
@@ -32,7 +33,7 @@ const AddCoupon = () => {
   //   console.log(total)
   //   console.log(input)
   //   // try {
-  //   //   axios.post("https://mobihub-new1.onrender.com/api/user/AddCoupon", input).then(() => {
+  //   //   axios.post("http://localhost:5000/api/user/AddCoupon", input).then(() => {
   //   //     alert("Coupon successfully added");
   //   //     // toast.success("Coupon Successfully Added!")
   //   //     Mycoupon();
@@ -44,19 +45,25 @@ const AddCoupon = () => {
   // }
 
   const createcoupon = async () => {
-    const time = new Date();
-    let year = time.getFullYear();
-    let month = time.getMonth();
-    let day = time.getDate();
-    let total = `${year}-${month + 1}-${day}`;
+    // const time = new Date();
+    // let year = time.getFullYear();
+    // let month = time.getMonth();
+    // let day = time.getDate();
+    // let total = `${year}-${month + 1}-${day}`;
 
-    await setInput((values) => ({ ...values, ['Created_Date']: total }));
+    // await setInput((values) => ({ ...values, ['Created_Date']: total }));
     console.log(input); // Log the state after the update is completed
 
     try {
-      await axios.post("https://mobihub-new1.onrender.com/api/user/AddCoupon", input);
-      alert("Coupon successfully added");
+      await axios.post("http://localhost:5000/api/user/AddCoupon", input);
+      toast.success("Coupon Successfully Added!");
       Mycoupon();
+      setInput({
+        Coupon_Name: "",
+        Created_Date: '',
+        Discount: "",
+        Expiry_Date: ""
+      })
     } catch (err) {
       console.log(err);
     }
@@ -67,7 +74,7 @@ const AddCoupon = () => {
   // Our All Coupons
 
   const Mycoupon = async () => {
-    await axios.post("https://mobihub-new1.onrender.com/api/user/DisplayCoupons").then((res) => {
+    await axios.post("http://localhost:5000/api/user/DisplayCoupons").then((res) => {
       setAllCoupon(res.data)
       // console.log(res.data)
     })
@@ -103,8 +110,8 @@ const AddCoupon = () => {
     try {
       // Make an API call to delete the product
 
-      axios.delete(`https://mobihub-new1.onrender.com/api/user/DeleteCoupon/${couponid}`);
-      alert("Coupon deleted successfully");
+      axios.delete(`http://localhost:5000/api/user/DeleteCoupon/${couponid}`);
+      toast.success("Coupon deleted successfully");
 
       Mycoupon();
     } catch (error) {
