@@ -61,8 +61,6 @@ app.get('/getlogin', async (req, res) => {
         
         const userData = await userdb.findOne({ googleId: req.user.googleId });
         console.log(userData.data,userData, "pankesh")
-
-        res.status(200).json(userData);
         res.send(userData);
     } catch (error) {
         console.error("Error fetching user data:", error);
