@@ -56,7 +56,7 @@ app.get('/google/callback',
 
 app.use(express.json());
 
-app.get('/getlogin'  async (req, res) => {
+app.get('/getlogin',  async (req, res) => {
     
     try {
         const userData = await userdb.findOne({googleId: req.user.googleId});
