@@ -15,7 +15,7 @@ passport.use(new GoogleStrategy({
 
     scope: ['email', 'profile']
 },
-    async (accessToken, refreshToken, profile, done) => {
+    async (accessToken, refreshToken, profile, done, res) => {
         try {
             let user = await userdb.findOne({ googleId: profile.id });
             if (!user) {
@@ -26,6 +26,7 @@ passport.use(new GoogleStrategy({
                     image: profile.photos[0].value
                 });
                 await user.save();
+                await res.send(user);
             }
             return done(null, user);
         } catch (error) {
