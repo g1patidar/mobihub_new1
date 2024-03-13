@@ -58,7 +58,10 @@ app.use(express.json());
 
 app.get('/getlogin', async (req, res) => {
     try {
+        
         const userData = await userdb.findOne({ googleId: req.user.googleId });
+        console.log(userData.data,userData)
+
         res.status(200).json(userData);
         res.send(userData);
     } catch (error) {
