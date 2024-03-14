@@ -8,6 +8,7 @@ import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 
 const Cardpage = () => {
+
   const [couponcode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const mynav = useNavigate();
@@ -100,6 +101,7 @@ const Cardpage = () => {
             setDiscount(res.data.Discount);
           }
         });
+
     }
   };
 
