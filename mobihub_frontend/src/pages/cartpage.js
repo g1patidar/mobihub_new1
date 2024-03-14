@@ -35,7 +35,7 @@ const Cardpage = () => {
                             <div>
                                 <p> {key.Name}</p>
                                 <p>Price:<b>₹{key.Price}</b></p>
-                                {/* <a href="">Remove</a>  */}
+                                
                             </div>
                         </div>
 
@@ -73,7 +73,7 @@ const Cardpage = () => {
             <div className="card-page">
 
                 <div id="sec_div">
-
+                    <div className="Table-Round">
                     <table>
                         <tr className="item_set_cart">
                             <th>Product</th>
@@ -84,6 +84,9 @@ const Cardpage = () => {
                     </table>
 
                     <hr size="2" color="gray" />
+                    </div>
+
+
 
 
 
@@ -93,7 +96,7 @@ const Cardpage = () => {
                             <div className="coupon">
                                 <div>
                                     <h5>COUPON</h5>
-                                    <p>Enter your copon code if you Have one.</p>
+                                    <p>Enter your coupon code if you Have one.</p>
                                     <input type="text" placeholder="Coupon Code" />
                                     <button>Apply Coupon</button>
                                 </div>
