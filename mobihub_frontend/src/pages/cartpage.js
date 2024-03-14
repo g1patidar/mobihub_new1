@@ -12,8 +12,6 @@ const Cardpage = () => {
     var totalPrice = 0;
     const mydispatch = useDispatch();
     const cartdata = useSelector((state) => state.cartslice.cart)
-    //const mydispatch = useDispatch();
-
 
     const productqtyinc = (id) => {
         // alert(id)
@@ -70,13 +68,16 @@ const Cardpage = () => {
         else {
             await axios.post(`https://mobihub-new1.onrender.com/api/user/applycoupon/${couponcode}`).then((res) => {
                 if (res.data.length === 0) {
-                    alert("Invalid Coupon Code");
+                    // alert("Invalid Coupon Code");
+                    toast.success('Invalid coupon')
                 }
                 else if ("Coupon has expired" == res.data) {
-                    alert("Coupon has expired")
+
+                    toast.warning("Coupon has expired",)
                 }
                 else if ("notexist" == res.data) {
-                    alert("Coupon does not exist")
+
+                    toast.warning("Coupon does not exist")
                 }
                 else {
                     // console.log(res.data.Discount)

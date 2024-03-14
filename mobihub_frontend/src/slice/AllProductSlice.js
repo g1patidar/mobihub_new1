@@ -10,7 +10,9 @@ const AllProductSlice = createSlice({
   reducers: {
     setAllProducts: (state, action) => {
       // allproducts=action.payload;
-      console.log(action.payload[0]._id)
+      // state.allproducts = action.payload;
+      // console.log(action.payload)
+
     },
   }
 })

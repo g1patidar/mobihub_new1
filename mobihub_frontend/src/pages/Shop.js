@@ -31,18 +31,6 @@ const Shop = () => {
     setSearchTerm(e.target.value);
   };
 
-  // Function to handle wishlist
-  // const handleWishlistClick = (productId) => {
-  //   // Check if productId is in wishlist
-  //   if (wishlist.includes(productId)) {
-  //     // If productId is already in wishlist, remove it
-  //     setWishlist(wishlist.filter(id => id !== productId));
-  //   } else {
-  //     // If productId is not in wishlist, add it
-  //     setWishlist([...wishlist, productId]);
-  //   }
-  // };
-
   const handlewishlist = (
     productName,
     productBrand,
@@ -54,8 +42,8 @@ const Shop = () => {
     product_ID
 
   ) => {
-    toast.success("product added in your wishlist",{
-      autoClose:1000
+    toast.success("product added in your wishlist", {
+      autoClose: 1000
     })
     mydispatch(addtoWishlist({
       id: product_ID,
