@@ -35,10 +35,9 @@ const AdminLayout = () => {
 
   //login with Google
 
-  useEffect(() => {
+
     const fetchUserData = async () => {
       try {
-
 
         const response = await axios.get("http://localhost:5000/getlogin", { withCredentials: true });
 
@@ -46,18 +45,20 @@ const AdminLayout = () => {
         setUserData(response.data);
         toast.success("Logged in Successfully!");
         // alert("you are sucssefully Login");
+
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
-
+  
+  useEffect(() => {
     fetchUserData();
 
   }, []);
 
   const handlelogout = async () => {
 
-    await axios.post("http://localhost:5000/logout", null, { withCredentials: true });
+    await axios.post("https://mobihub-new1.onrender.com/logout", null, { withCredentials: true });
 
     setUserData(null);
     setUserName("")

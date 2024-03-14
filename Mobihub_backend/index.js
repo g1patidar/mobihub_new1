@@ -5,7 +5,7 @@ const cors = require("cors");
 
 const allowedOrigins = [
     "https://mobihub-new1-o7u9.vercel.app",
-    "http://localhost:3000" // Example of a local development server
+    //"http://localhost:3000" // Example of a local development server
 
 ];
 app.use(cors({
@@ -13,20 +13,14 @@ app.use(cors({
     methods: "GET, POST, PUT, DELETE",
     credentials: true
 }));
-
-
-const dbConnect = require("./config/dbConnect");
 const passport = require("./config/passwordconfig");
-const cookieSession = require('cookie-session');
+const dbConnect = require("./config/dbConnect");
+const session = require('express-session');
 const authRouter = require('./routes/authRoute');
-const userdb = require("./models/user/loginwithgogl");
-const { getUserData } = require("./controller/passport");
-// const { isAuthenticated } = require("./middlewares/loginmiddlewere");
+
 const bodyParser = require("body-parser");
 const dotenv = require('dotenv').config();
 const PORT = process.env.PORT || 4000;
-
-
 dbConnect();
 
 // Middleware
@@ -34,18 +28,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/api/user", authRouter);
+app.use(express.json());
 
-app.use(cookieSession({
-    name: 'google-auth-session',
-    keys: ['key1', 'key2']
+app.use(session({
+    secret:"jkfasi9hewnbbdvenoiew",
+    resave:false,
+    saveUninitialized:true
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 
-// Google OAuth routes
-app.get('/google', passport.authenticate('google', { scope: ['email', 'profile'] }));
+app.get('/google', passport.authenticate('google', {scope: ['email', 'profile'] }));
+
 
 app.get('/google/callback',
     passport.authenticate('google', {
@@ -55,7 +51,7 @@ app.get('/google/callback',
     })
 );
 
-app.use(express.json());
+
 
 app.get('/getlogin', async (req, res) => {
     try {
@@ -66,6 +62,7 @@ app.get('/getlogin', async (req, res) => {
     } catch (error) {
         console.error("Error fetching user data:", error);
         res.status(500).json({ message: "Internal server error" });
+
     }
 });
 
@@ -76,8 +73,7 @@ app.post('/logout', (req, res) => {
 });
 
 
-// app.use(notFound);
-// app.use(errorHandler);
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
