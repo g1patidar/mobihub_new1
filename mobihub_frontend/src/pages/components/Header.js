@@ -5,10 +5,16 @@ import { GiCentaurHeart } from "react-icons/gi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { CiShoppingCart } from "react-icons/ci";
 import { CiHeart } from "react-icons/ci";
+import { useSelector } from "react-redux";
 import "../../css/Header.css";
 
 
 const Header = ({ count }) => {
+
+  const cartdata = useSelector((state) => state.cartslice.cart);
+  const wishlistdata = useSelector((state) => state.WishlistSlice.wishlist);
+  // console.log("length",cartdata.length)
+
   return (
     <header className="header">
       <Link to="/" className="logo">
@@ -36,18 +42,18 @@ const Header = ({ count }) => {
         <Link to="/" style={{ "--i": 3 }}>
           Services
         </Link>
-        <Link to="/" style={{ "--i": 4 }}>
+        <Link to="/Contact" style={{ "--i": 4 }}>
           Contact
         </Link>
 
         <span className="icon-container">
           <Link to="/cartpage" style={{ "--i": 5 }} className="icon-link">
             <CiShoppingCart className="cart-icon" />
-            <span className="badge">1</span>
+            <span className="badge">{cartdata.length}</span>
           </Link>
           <Link to="/wishlist" style={{ "--i": 6 }} className="icon-link">
             <CiHeart className="heart-icon" />
-            <span className="badge">1</span>
+            <span className="badge">{wishlistdata.length}</span>
           </Link>
         </span>
 

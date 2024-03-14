@@ -11,7 +11,7 @@ const createUser = asyncHandler(
         if (!findUser) {
             const newuser = await User.create(req.body);
             res.json(newuser);
-            console.log(newuser)
+            // console.log(newuser);
         }
         else {
             // throw new Error("User Alraddy exixst");
