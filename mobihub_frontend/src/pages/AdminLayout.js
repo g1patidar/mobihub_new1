@@ -1,4 +1,3 @@
-
 import { Outlet } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -17,7 +16,7 @@ const AdminLayout = () => {
     try {
       const token = localStorage.getItem('token');
       const decodetoken = parseJwt(token);
-      let name = decodetoken?.Name;
+      let name = decodetoken.Name;
       setUserName(name);
     }
     catch (error) {
@@ -39,29 +38,23 @@ const AdminLayout = () => {
     const fetchUserData = async () => {
       try {
 
-
-        const response = await axios.get("http://localhost:5000/getlogin", { withCredentials: true });
-
-        console.log(response.data);
-        setUserData(response.data);
+        const  response = await axios.get("https://mobihub-new1.onrender.com/login/success", { withCredentials: true });
+          console.log("reponse", response);
+          setUserData(response.data.user);
         toast.success("Logged in Successfully!");
-        // alert("you are sucssefully Login");
-
+          // alert("you are sucssefully Login");
+    
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
-  
+
   useEffect(() => {
     fetchUserData();
-
-  }, []);
+   }, []);
 
   const handlelogout = async () => {
-
-
     await axios.post("https://mobihub-new1.onrender.com/logout", null, { withCredentials: true });
-
     setUserData(null);
     setUserName("")
     localStorage.removeItem("token");
