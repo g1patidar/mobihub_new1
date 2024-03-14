@@ -75,7 +75,7 @@ const Shop = () => {
   // get the item from database
   const mydata = async () => {
 
-    const response = await axios.post("http://localhost:5000/api/user/DisplayProduct").then((res) => {
+    const response = await axios.post("https://mobihub-new1.onrender.com/api/user/DisplayProduct").then((res) => {
 
       // console.log(res.data, "hello")
       // setallproductsdisplay(res.data);

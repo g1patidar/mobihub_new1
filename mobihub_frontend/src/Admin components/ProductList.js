@@ -11,7 +11,7 @@ const ProductList = () => {
   const navigate = useNavigate();
   const mydata = async () => {
 
-    await axios.post("http://localhost:5000/api/user/DisplayProduct").then((res) => {
+    await axios.post("https://mobihub-new1.onrender.com/api/user/DisplayProduct").then((res) => {
 
       // console.log(res.data, "hello")
       setallproductsdisplay(res.data);
@@ -31,7 +31,7 @@ const ProductList = () => {
     try {
       // Make an API call to delete the product
 
-      axios.delete(`http://localhost:5000/api/user/DeleteProduct/${productId}`).then(() => {
+      axios.delete(`https://mobihub-new1.onrender.com/api/user/DeleteProduct/${productId}`).then(() => {
 
         alert("Product deleted successfully");
         mydata();
