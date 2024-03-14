@@ -5,7 +5,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 /* Cart Items */
 
 .card-page {
@@ -19,6 +18,7 @@
 #sec_div {
     width: 67%;
     border: 1px solid gray;
+    font-size: 0.7rem;
 }
 
 #sec_div table {
@@ -28,12 +28,23 @@
 
 .item_set_cart {
     display: grid;
-    grid-template-columns: 70% 20% 10%;
+    grid-template-columns: 60% 20% 20%;
 }
 
 .cart-info {
     display: flex;
     flex-wrap: wrap;
+}
+.cart-info img{
+    width: 9em;
+    height: 13em;
+    margin-left: 5%;
+}
+.Pro_Name_Cart{
+    font-size: 1.6em;
+    margin: auto 0;
+    margin-left: 5%;
+    
 }
 
 .mobimg {
@@ -53,7 +64,6 @@
 }
 .Table-Round table
 {
-    color: red;
     border-radius: 15px;
 }
 
@@ -80,8 +90,12 @@
 }
 
 .delete {
+    background-color: black;
     width: 40px;
     padding: 8px 0 10px;
+}
+.remove_btn_cart{
+    margin: auto 0;
 }
 
 
@@ -108,14 +122,11 @@
     border: 1px solid gray;
 }
 
-.total-price table {
+/* .total-price table {
     max-width: 3700px;
-}
-
-/* .cart_tr {
-    display: flex;
-    justify-content: space-around;
 } */
+
+
 
 
 .item_set_cart td:last-child,
@@ -180,6 +191,8 @@
 /* Coupon Cart */
 
 #cart-bottom {
+    width: 70%;
+    margin: auto;
     padding-top: 10px;
 }
 
@@ -267,6 +280,11 @@
     .card-page {
         margin: 2px;
     }
-
-
+}
+.dd
+{
+    display: flex;
+    justify-content: space-between;
+    margin:0 4%;
+    padding: 4px;
 }

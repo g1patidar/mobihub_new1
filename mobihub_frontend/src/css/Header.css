@@ -152,7 +152,7 @@
     }
 
     #check:checked ~ .navbar1 {
-        height: 28rem;
+        height: 31rem;
     }
 
     .navbar1 a {
