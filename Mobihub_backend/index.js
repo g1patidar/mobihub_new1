@@ -5,7 +5,7 @@ const cors = require("cors");
 
 const allowedOrigins = [
     "https://mobihub-new1-o7u9.vercel.app",
-    //"http://localhost:3000" // Example of a local development server
+    "http://localhost:3000" // Example of a local development server
 
 ];
 app.use(cors({
@@ -65,7 +65,6 @@ app.post('/logout', (req, res) => {
 
 
 
-
 app.listen(PORT, () => {
-    console.log(Server is running on port ${PORT});
+    console.log(`Server is running on port ${PORT}`);
 });

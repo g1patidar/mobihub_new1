@@ -39,7 +39,7 @@ const Cardpage = () => {
                             <div>
                                 <p> {key.Name}</p>
                                 <p>Price:<b>₹{key.Price}</b></p>
-                                
+
                             </div>
                         </div>
 
@@ -68,7 +68,7 @@ const Cardpage = () => {
             toast.warning("please enter coupon code")
         }
         else {
-            await axios.post(`http://localhost:5000/api/user/applycoupon/${couponcode}`).then((res) => {
+            await axios.post(`https://mobihub-new1.onrender.com/api/user/applycoupon/${couponcode}`).then((res) => {
                 if (res.data.length === 0) {
                     alert("Invalid Coupon Code");
                 }
@@ -107,16 +107,16 @@ const Cardpage = () => {
 
                 <div id="sec_div">
                     <div className="Table-Round">
-                    <table>
-                        <tr className="item_set_cart">
-                            <th>Product</th>
-                            <th>Quantity</th>
-                            <th>Remove</th>
-                        </tr>
-                        {ans}
-                    </table>
+                        <table>
+                            <tr className="item_set_cart">
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Remove</th>
+                            </tr>
+                            {ans}
+                        </table>
 
-                    <hr size="2" color="gray" />
+                        <hr size="2" color="gray" />
                     </div>
 
 
@@ -133,7 +133,7 @@ const Cardpage = () => {
                                     <p>Enter your coupon code if you Have one.</p>
                                     <input type="text" placeholder="Coupon Code" value={couponcode} onChange={(e) => setCouponCode(e.target.value)} />
                                     <button onClick={ApplyCoupon}>Apply Coupon</button>
-                                    
+
 
                                 </div>
                             </div>
