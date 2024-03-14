@@ -4,16 +4,16 @@ const initialState = {
   allproducts: [],
 }
 
-const AllProductSlice= createSlice({
+const AllProductSlice = createSlice({
   name: "allProducts",
   initialState,
-  reducers:{
-    setAllProducts:(state, action) =>{
+  reducers: {
+    setAllProducts: (state, action) => {
       // allproducts=action.payload;
-      console.log("hello")
+      console.log(action.payload[0]._id)
     },
   }
 })
 
-export default  AllProductSlice.reducer;
-export const {setAllProducts}= AllProductSlice.actions;
+export default AllProductSlice.reducer;
+export const { setAllProducts } = AllProductSlice.actions;

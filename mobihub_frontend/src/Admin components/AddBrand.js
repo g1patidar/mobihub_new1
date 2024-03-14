@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 const AddBrand = () => {
     const [input, setInput] = useState({});
     const [AllBrands, setAllBrands] = useState([])
@@ -12,8 +13,9 @@ const AddBrand = () => {
     const createBrand = async () => {
         // console.log(input)
         try {
-            axios.post("https://mobihub-new1.onrender.com/api/user/AddBrand", input).then(() => {
-                alert("Brand successfully added");
+            axios.post("http://localhost:5000/api/user/AddBrand", input).then(() => {
+                
+                toast.success('Brand Successfully Added!', { position: "top-right" });
                 setInput({
                     Brand_Name: "",
                     Parent_Category: ""
@@ -28,7 +30,7 @@ const AddBrand = () => {
     // Our All Brands
 
     const myBrands = async () => {
-        await axios.post("https://mobihub-new1.onrender.com/api/user/DisplayBrands").then((res) => {
+        await axios.post("http://localhost:5000/api/user/DisplayBrands").then((res) => {
             setAllBrands(res.data)
         })
     }
@@ -42,8 +44,8 @@ const AddBrand = () => {
         try {
             // Make an API call to delete the product
 
-            axios.delete(`https://mobihub-new1.onrender.com/api/user/DeleteBrand/${brandId}`);
-            alert("brand deleted successfully");
+            axios.delete(`http://localhost:5000/api/user/DeleteBrand/${brandId}`);
+            toast.success("brand deleted successfully")
 
             myBrands();
         } catch (error) {

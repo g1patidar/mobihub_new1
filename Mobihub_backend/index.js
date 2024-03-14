@@ -17,6 +17,7 @@ const passport = require("./config/passwordconfig");
 const dbConnect = require("./config/dbConnect");
 const session = require('express-session');
 const authRouter = require('./routes/authRoute');
+
 const bodyParser = require("body-parser");
 const dotenv = require('dotenv').config();
 const PORT = process.env.PORT || 4000;
@@ -38,7 +39,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 app.get('/google', passport.authenticate('google', {scope: ['email', 'profile'] }));
+
 
 app.get('/google/callback',
     passport.authenticate('google', {
@@ -50,19 +53,16 @@ app.get('/google/callback',
 
 
 
-app.get("/login/success", async (req, res)=>{
-    console.log("rewerwerfdsf", req.user);
-     if(req.user){
-        // res.status(200).json({message:"user login", user:req.user});
-           const userData = {
-            id: req.user.id,
-            displayName: req.user.displayName,
-            email: req.user.email,
-            image: req.user.image,
-        };
-        res.json(userData); 
-     }else{
-        res.status(400).json({message:"Not auutorized"}); 
+app.get('/getlogin', async (req, res) => {
+    try {
+
+        const userData = await userdb.findOne({ googleId: getUserData.googleId });
+        res.status(200).json(userData);
+        res.send(userData);
+    } catch (error) {
+        console.error("Error fetching user data:", error);
+        res.status(500).json({ message: "Internal server error" });
+
     }
 });
 

@@ -62,10 +62,19 @@ const DeleteBrand = async (req, res) => {
 
 //////// Coupon////////////////
 const AddCoupon = async (req, res) => {
-    const Coupon = await CouponModel.create(req.body)
-    res.status(201).json(Coupon)
+    const { Coupon_Name, Discount, Expiry_Date } = req.body;
+    // console.log(Coupon_Name, Discount, Expiry_Date)
+    const mydata = new CouponModel({
+        Coupon_Name,
+        Discount,
+        Expiry_Date,
+        Created_Date: new Date()
+    });
+    mydata.save();
+    res.status(201).json(mydata)
 }
-const DisplayCoupons= async(req,res)=>{
+
+const DisplayCoupons = async (req, res) => {
     try {
         const Coupons = await CouponModel.find();
         res.send(Coupons);
@@ -75,9 +84,34 @@ const DisplayCoupons= async(req,res)=>{
 
 }
 const DeleteCoupon = async (req, res) => {
-    
+
     const couponid = req.params.itemId;
     let respo = await CouponModel.deleteOne({ _id: couponid })
 }
 
-module.exports = { ProductAdd, DisplayProduct, DeleteProduct, AddBrand, AddCoupon, DisplayBrands, DeleteBrand, AddCoupon,DisplayCoupons,DeleteCoupon };
+const Applycoupon = async (req, res) => {
+    try {
+        const couponCode = req.params.couponcode;
+        const coupon = await CouponModel.findOne({ Coupon_Name: couponCode });
+
+        if (!coupon) {
+            return res.json("notexist");
+        }
+        // Check if the current date is before the expiry date
+        const currentDate = new Date();
+        const expiryDate = new Date(coupon.Expiry_Date);
+
+        if (currentDate > expiryDate) {
+            return res.json('Coupon has expired');
+        }
+
+        // If the coupon is valid, return it in the response
+        res.json(coupon);
+
+    } catch (error) {
+        console.error('Error finding coupon:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+module.exports = { ProductAdd, DisplayProduct, DeleteProduct, AddBrand, AddCoupon, DisplayBrands, DeleteBrand, AddCoupon, DisplayCoupons, DeleteCoupon, Applycoupon };
