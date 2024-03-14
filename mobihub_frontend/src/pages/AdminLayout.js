@@ -35,22 +35,23 @@ const AdminLayout = () => {
 
   //login with Google
 
-  useEffect(() => {
+
     const fetchUserData = async () => {
       try {
 
-        const response = await axios.get("https://mobihub-new1.onrender.com/getlogin", { withCredentials: true });
-        console.log(response.data);
-        setUserData(response.data);
-        alert("you are sucssefully Login");
+        const  response = await axios.get("https://mobihub-new1.onrender.com/login/success", { withCredentials: true });
+          console.log("reponse", response);
+          setUserData(response.data.user);
+          alert("you are sucssefully Login");
+    
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
 
+  useEffect(() => {
     fetchUserData();
-
-  }, []);
+   }, []);
 
   const handlelogout = async () => {
     await axios.post("https://mobihub-new1.onrender.com/logout", null, { withCredentials: true });

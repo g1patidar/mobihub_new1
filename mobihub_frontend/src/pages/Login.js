@@ -42,10 +42,9 @@ const Login = () => {
     }
   };
 
-
   const loginwithgoogle = () => {
-    window.open("https://mobihub-new1.onrender.com/google/callback", "_self")
-
+   const res =  window.open("https://mobihub-new1.onrender.com/google/callback", "_self");
+   console.log(res.data);
   }
 
   return (
