@@ -4,7 +4,7 @@ const Orderdetails = () => {
             <div className="first_Box">
                 <div className="first_Box_first">
                     <div className="first_box1">
-                        <h1 id="first_h1">Filters</h1>
+                        <h1 id="first_h1">RAMs</h1>
                         <div className="Filter_box">
                             <h5>___</h5>
                             <h2>ORDER STATUS</h2>

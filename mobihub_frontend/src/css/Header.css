@@ -160,6 +160,7 @@
         transition: .2s ease;
     }
 
+
     #check:checked~.navbar1 {
         height: 31rem;
     }
