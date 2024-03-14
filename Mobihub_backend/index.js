@@ -42,13 +42,11 @@ app.get('/google', passport.authenticate('google', {scope: ['email', 'profile'] 
 
 app.get('/google/callback',
     passport.authenticate('google', {
-        successRedirect: "https://mobihub-new1-o7u9.vercel.app/admin_layout/Admin_dashboard",
-        failureRedirect: 'https://mobihub-new1-o7u9.vercel.app/login',
+        successRedirect: "http://localhost:3000/admin_layout/Admin_dashboard",
+        failureRedirect: 'http://localhost:3000/login',
 
     })
 );
-
-
 
 app.get("/login/success", async (req, res)=>{
     //  console.log("rewerwerfdsf", req.user);

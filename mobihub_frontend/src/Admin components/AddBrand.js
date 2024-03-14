@@ -11,7 +11,7 @@ const AddBrand = () => {
 
     const createBrand = async () => {
         try {
-            axios.post("https://mobihub-new1.onrender.com/api/user/AddBrand", input).then(() => {
+            axios.post("http://localhost:5000/api/user/AddBrand", input).then(() => {
                 alert("Brand successfully added");
                 myBrands();
             });
@@ -23,7 +23,7 @@ const AddBrand = () => {
     // Our All Brands
 
     const myBrands = async () => {
-        await axios.post("https://mobihub-new1.onrender.com/api/user/DisplayBrands").then((res) => {
+        await axios.post("http://localhost:5000/api/user/DisplayBrands").then((res) => {
 
             setAllBrands(res.data)
 
@@ -39,7 +39,7 @@ const AddBrand = () => {
         try {
             // Make an API call to delete the product
 
-            axios.delete(`https://mobihub-new1.onrender.com/api/user/DeleteBrand/${brandId}`);
+            axios.delete(`http://localhost:5000/api/user/DeleteBrand/${brandId}`);
             alert("brand deleted successfully");
 
             myBrands();
