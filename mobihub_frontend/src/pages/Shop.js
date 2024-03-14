@@ -4,7 +4,7 @@ import { FaFilter } from "react-icons/fa";
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import "../css/shop.css"
 import axios from 'axios';
-import { UseDispatch, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addtocart } from '../slice/ProductSlice';
 import { addtoWishlist } from '../slice/WishlistSlice';
 import { ToastContainer, toast } from 'react-toastify';
@@ -54,7 +54,9 @@ const Shop = () => {
     product_ID
 
   ) => {
-    toast.success("product added in your wishlist")
+    toast.success("product added in your wishlist",{
+      autoClose:1000
+    })
     mydispatch(addtoWishlist({
       id: product_ID,
       Name: productName,
@@ -72,10 +74,11 @@ const Shop = () => {
 
   // get the item from database
   const mydata = async () => {
-    const response = await axios.post("https://localhost:5000/api/user/DisplayProduct").then((res) => {
+
+    const response = await axios.post("http://localhost:5000/api/user/DisplayProduct").then((res) => {
+
       // console.log(res.data, "hello")
       // setallproductsdisplay(res.data);
-      console.log(res.data)
       setproducts(res.data);
     })
 

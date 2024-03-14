@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Addproduct_Admin = () => {
     const [input, setInput] = useState({});
@@ -14,7 +15,8 @@ const Addproduct_Admin = () => {
 
         if (imagesArray.length !== 4) {
             // Display an alert if the number of selected files is not exactly 4
-            alert('Please select exactly 4 photos.');
+            
+            toast.warning("Please select exactly 4 photos.")
             // Clear the file input to reset the selection
             e.target.value = null;
         } else {
@@ -46,7 +48,7 @@ const Addproduct_Admin = () => {
                         "https://api.cloudinary.com/v1_1/dq1yrqhsl/image/upload/",
                         formData
                     );
-
+                    toast.success("Images succefully Uploaded")
                     return response.data.secure_url;
                 })
             );
@@ -72,20 +74,22 @@ const Addproduct_Admin = () => {
             // Send productDetails to your backend API for further processing
             console.log("Product details:", productDetails);
 
-            const responseapi = await axios.post("https://localhost:5000/api/user/ProdoctAdd", productDetails);
+            const responseapi = await axios.post("http://localhost:5000/api/user/ProdoctAdd", productDetails);
+
             console.log(responseapi);
             console.log("send detail of product successful !@!")
             setInput({});
             setCloudinaryPaths([])
             setUploadFiles([])
-
+            toast.success("Successfuly added a new Product!");
         } catch (error) {
             console.error("Error uploading image:", error);
         }
     };
     /////////////////////////////////////////////////
     const myBrands = async () => {
-        await axios.post("https://localhost:5000/api/user/DisplayBrands").then((res) => {
+        await axios.post("http://localhost:5000/api/user/DisplayBrands").then((res) => {
+
             setAllBrands(res.data)
         })
     }

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const initialState = {
   wishlist: [],
@@ -12,7 +13,9 @@ const WishlistSlice = createSlice({
       var myitem = state.wishlist.filter((key) => key.id == action.payload.id)
 
       if (myitem.length >= 1) {
-        alert("this product is already exist !!")
+        // alert("this product is already exist !!")
+        toast.warning("This product is already in your wishlist");
+
       }
       else {
         

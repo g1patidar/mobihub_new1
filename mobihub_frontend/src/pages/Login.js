@@ -23,7 +23,9 @@ const Login = () => {
     e.preventDefault();
     try {
       // Make a POST request to your backend API endpoint
-      await axios.post("https://localhost:5000/api/user/login", formData).then((res) => {
+
+      await axios.post("http://localhost:5000/api/user/login", formData).then((res) => {
+
         const { Email } = res.data;
         if (formData.Email === Email) {
           const token = res.data.token;
@@ -44,7 +46,8 @@ const Login = () => {
 
 
   const loginwithgoogle = () => {
-    window.open("https://localhost:5000/google/callback", "_self")
+
+    window.open("http://localhost:5000/google/callback", "_self")
 
   }
 

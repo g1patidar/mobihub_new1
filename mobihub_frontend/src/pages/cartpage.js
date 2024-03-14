@@ -1,9 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
 import { qtyIncrease, qtydecrease, delfromcart } from "../slice/ProductSlice";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Cardpage = () => {
-
+    const [couponcode, setCouponCode] = useState("");
+    const [discount, setDiscount] = useState(0)
     const mynav = useNavigate();
     var totalPrice = 0;
     const mydispatch = useDispatch();
@@ -54,6 +58,35 @@ const Cardpage = () => {
             </>
         )
     });
+    ///////   apply coupon ////////////
+
+    const ApplyCoupon = async () => {
+        // console.log(couponcode)
+        setCouponCode("");
+        if (couponcode === "") {
+            // alert("Please enter the code")
+            toast.warning("please enter coupon code")
+        }
+        else {
+            await axios.post(`http://localhost:5000/api/user/applycoupon/${couponcode}`).then((res) => {
+                if (res.data.length === 0) {
+                    alert("Invalid Coupon Code");
+                }
+                else if ("Coupon has expired" == res.data) {
+                    alert("Coupon has expired")
+                }
+                else if ("notexist" == res.data) {
+                    alert("Coupon does not exist")
+                }
+                else {
+                    // console.log(res.data.Discount)
+                    setDiscount(res.data.Discount)
+                }
+            })
+        }
+    }
+
+
 
     const items = cartdata.map((key) => {
         return (
@@ -96,9 +129,12 @@ const Cardpage = () => {
                             <div className="coupon">
                                 <div>
                                     <h5>COUPON</h5>
+
                                     <p>Enter your coupon code if you Have one.</p>
-                                    <input type="text" placeholder="Coupon Code" />
-                                    <button>Apply Coupon</button>
+                                    <input type="text" placeholder="Coupon Code" value={couponcode} onChange={(e) => setCouponCode(e.target.value)} />
+                                    <button onClick={ApplyCoupon}>Apply Coupon</button>
+                                    
+
                                 </div>
                             </div>
                         </div>
@@ -123,7 +159,7 @@ const Cardpage = () => {
                         <table>
                             <tr className="cart_tr">
                                 <td><b>Subtotal</b></td>
-                                <td><b>₹{totalPrice}</b></td>
+                                <td><b>₹{totalPrice - (totalPrice * discount / 100)}</b></td>
                             </tr>
                         </table>
                         <hr size="1" color="gray" />

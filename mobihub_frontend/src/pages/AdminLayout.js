@@ -17,7 +17,7 @@ const AdminLayout = () => {
     try {
       const token = localStorage.getItem('token');
       const decodetoken = parseJwt(token);
-      let name = decodetoken.Name;
+      let name = decodetoken?.Name;
       setUserName(name);
     }
     catch (error) {
@@ -35,29 +35,38 @@ const AdminLayout = () => {
 
   //login with Google
 
-  useEffect(() => {
+
     const fetchUserData = async () => {
       try {
 
-        const response = await axios.get("https://localhost:5000/getlogin", { withCredentials: true });
+
+        const response = await axios.get("http://localhost:5000/getlogin", { withCredentials: true });
+
         console.log(response.data);
         setUserData(response.data);
-        alert("you are sucssefully Login");
+        toast.success("Logged in Successfully!");
+        // alert("you are sucssefully Login");
+
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
-
+  
+  useEffect(() => {
     fetchUserData();
 
   }, []);
 
   const handlelogout = async () => {
-    await axios.post("https://localhost:5000/logout", null, { withCredentials: true });
+
+
+    await axios.post("https://mobihub-new1.onrender.com/logout", null, { withCredentials: true });
+
     setUserData(null);
     setUserName("")
     localStorage.removeItem("token");
-    alert("You are seccfull Logout??");
+    // alert("You are seccfull Logout??");
+    toast.success("Logged out Successfully!")
     navigate("/home");
   };
 

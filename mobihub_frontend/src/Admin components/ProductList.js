@@ -10,7 +10,9 @@ const ProductList = () => {
 
   const navigate = useNavigate();
   const mydata = async () => {
-    await axios.post("https://localhost:5000/api/user/DisplayProduct").then((res) => {
+
+    await axios.post("http://localhost:5000/api/user/DisplayProduct").then((res) => {
+
       // console.log(res.data, "hello")
       setallproductsdisplay(res.data);
       // console.log(allproductsdisplay);
@@ -28,7 +30,9 @@ const ProductList = () => {
   const handleDelete = async (productId) => {
     try {
       // Make an API call to delete the product
-      axios.delete(`https://localhost:5000/api/user/DeleteProduct/${productId}`).then(() => {
+
+      axios.delete(`http://localhost:5000/api/user/DeleteProduct/${productId}`).then(() => {
+
         alert("Product deleted successfully");
         mydata();
       });

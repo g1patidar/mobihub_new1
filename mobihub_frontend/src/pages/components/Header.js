@@ -7,6 +7,7 @@ import { CiShoppingCart } from "react-icons/ci";
 import { CiHeart } from "react-icons/ci";
 import "../../css/Header.css";
 
+
 const Header = ({ count }) => {
   return (
     <header className="header">

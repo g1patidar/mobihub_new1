@@ -57,7 +57,9 @@ const AddProduct = () => {
         // // console.log('Product details submitted:', productdetail);
         // // Add your logic for handling the form submission here
         // try {
-        //   const response = await axios.post("https://localhost:5000/api/user/ProdoctAdd", linput); 
+
+        //   const response = await axios.post("http://localhost:5000/api/user/ProdoctAdd", linput); 
+
         //   console.log(response)
         //   console.log("send detail of product successful !@!")
         // } catch (err) {
