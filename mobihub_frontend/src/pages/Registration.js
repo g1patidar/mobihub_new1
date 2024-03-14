@@ -25,7 +25,9 @@ const Registration = () => {
     const Registrationbutton = async () => {
         //console.log(HandleInpt);
         try {
+
             const response = await axios.post("http://localhost:5000/api/user/register", HandleInpt);
+
             if ("already exist" === response.data) {
                 alert("User already registered!!");
                 navigate("/loginpage");

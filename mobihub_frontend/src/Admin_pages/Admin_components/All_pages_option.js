@@ -44,7 +44,9 @@ const All_pages_option = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
+
                 const response = await axios.get("http://localhost:5000/apilogin/user/data", { withCredentials: true });
+
                 console.log(response.data);
                 setUserData(response.data);
             } catch (error) {

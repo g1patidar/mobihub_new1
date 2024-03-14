@@ -13,6 +13,7 @@ const AddBrand = () => {
     const createBrand = async () => {
         // console.log(input)
         try {
+
             axios.post("http://localhost:5000/api/user/AddBrand", input).then(() => {
                 
                 toast.success('Brand Successfully Added!', { position: "top-right" });
@@ -30,7 +31,9 @@ const AddBrand = () => {
     // Our All Brands
 
     const myBrands = async () => {
+
         await axios.post("http://localhost:5000/api/user/DisplayBrands").then((res) => {
+
             setAllBrands(res.data)
         })
     }
@@ -43,6 +46,7 @@ const AddBrand = () => {
     const handleDelete = async (brandId) => {
         try {
             // Make an API call to delete the product
+
 
             axios.delete(`http://localhost:5000/api/user/DeleteBrand/${brandId}`);
             toast.success("brand deleted successfully")

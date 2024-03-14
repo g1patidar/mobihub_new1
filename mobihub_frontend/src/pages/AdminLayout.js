@@ -39,6 +39,7 @@ const AdminLayout = () => {
     const fetchUserData = async () => {
       try {
 
+
         const response = await axios.get("http://localhost:5000/getlogin", { withCredentials: true });
 
         console.log(response.data);
@@ -57,6 +58,7 @@ const AdminLayout = () => {
   }, []);
 
   const handlelogout = async () => {
+
 
     await axios.post("https://mobihub-new1.onrender.com/logout", null, { withCredentials: true });
 

@@ -16,7 +16,7 @@ const Aboutus = () => {
   <img src="https://images.unsplash.com/photo-1516796181074-bf453fbfa3e6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="m" />
 </div>
 
-
+<div className="All-About-Us-1"> 
       {/* top Part start */}
       <div className="firstlayer">
         <div className="leftlayer">
@@ -24,10 +24,10 @@ const Aboutus = () => {
           <h1>
             Shopify powers millions of  businesses worldwide
           </h1>
-          <h2>
+          <p>
             The all-in-one commerce platform to start, run, and  grow a
             business.
-          </h2>
+          </p>
           <button className="leftlayer-button">Get Started</button>
         </div>
 
@@ -38,6 +38,8 @@ const Aboutus = () => {
           />
         </div>
       </div>
+      <br/>
+      <br/>
 
       <div className="secondlayer">
         <div className="secondlayer-left">
@@ -63,6 +65,8 @@ const Aboutus = () => {
         </div>
       </div>
       {/* top part end*/}
+      <br/>
+      <br/>
 
       {/* Mission start  */}
       <div className="our-mission">
@@ -78,6 +82,8 @@ const Aboutus = () => {
       </div>
 
       {/* Mission End */}
+      <br/>
+      <br/>
 
       {/* Team Part start */}
       <div className="OurTeam">
@@ -100,6 +106,8 @@ const Aboutus = () => {
         </div>
       </div>
       {/* Team Part End */}
+      <br/>
+      <br/>
 
       {/* Our Commitment Start  */}
       <div className="Our-Commitment">
@@ -125,6 +133,8 @@ const Aboutus = () => {
         </div>
       </div>
       {/* Our Commitment Start  */}
+      <br/>
+      <br/>
 
       {/* Learn More About us  */}
       <div className="Mobi-Middle">
@@ -185,7 +195,7 @@ const Aboutus = () => {
     <button>See job openings</button>
   </div>
 </div>
-
+</div>
 
 
       {/* Joining our Company End */}

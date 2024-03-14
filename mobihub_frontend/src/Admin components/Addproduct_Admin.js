@@ -75,6 +75,7 @@ const Addproduct_Admin = () => {
             console.log("Product details:", productDetails);
 
             const responseapi = await axios.post("http://localhost:5000/api/user/ProdoctAdd", productDetails);
+
             console.log(responseapi);
             console.log("send detail of product successful !@!")
             setInput({});
@@ -88,6 +89,7 @@ const Addproduct_Admin = () => {
     /////////////////////////////////////////////////
     const myBrands = async () => {
         await axios.post("http://localhost:5000/api/user/DisplayBrands").then((res) => {
+
             setAllBrands(res.data)
         })
     }
