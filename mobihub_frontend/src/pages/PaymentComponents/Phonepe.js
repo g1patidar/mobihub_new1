@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-// import './Phonepe.css'; // Import the CSS file for styling
+import { useNavigate } from 'react-router-dom';
 
 const Phonepe = () => {
   const [upiId, setUpiId] = useState('');
   const [amount, setAmount] = useState('');
+  const makePayment = useNavigate();
 
   const handlePayment = () => {
     // Implement UPI payment processing logic here (simulated for educational purposes).
     console.log(`Processing UPI payment of ${amount} to ${upiId}`);
+    makePayment('/ordercomplete')
   };
 
   return (

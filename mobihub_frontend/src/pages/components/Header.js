@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaTimes, FaShoppingCart } from "react-icons/fa";
-import { GiCentaurHeart } from "react-icons/gi";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { FaBars, FaTimes } from "react-icons/fa";
+
 import { CiShoppingCart } from "react-icons/ci";
 import { CiHeart } from "react-icons/ci";
 import "../../css/Header.css";
@@ -33,10 +32,10 @@ const Header = ({ count }) => {
         <Link to="/shop" style={{ "--i": 2 }}>
           Shop{" "}
         </Link>
-        <Link to="/" style={{ "--i": 3 }}>
+        {/* <Link to="/" style={{ "--i": 3 }}>
           Services
-        </Link>
-        <Link to="/" style={{ "--i": 4 }}>
+        </Link> */}
+        <Link to="/Contact" style={{ "--i": 4 }}>
           Contact
         </Link>
 

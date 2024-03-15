@@ -48,6 +48,7 @@ const Login = () => {
 
   return (
     <>
+    <form>
       <div className='forgap'>
         <div className="container">
           <div className="image">
@@ -93,6 +94,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      </form>
     </>
   );
 }

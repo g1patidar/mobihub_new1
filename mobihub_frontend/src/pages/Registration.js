@@ -45,6 +45,7 @@ const Registration = () => {
 
     return (
         <>
+        <form>
             <div className='forgap'>
                 <div className="container">
                     <div className="image">
@@ -81,6 +82,7 @@ const Registration = () => {
                     </div>
                 </div>
             </div>
+            </form>
         </>
     );
 }

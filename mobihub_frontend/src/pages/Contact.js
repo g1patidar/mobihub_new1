@@ -27,22 +27,22 @@ const Contact = () => {
            <div className='row50'>
             <div className='input_Box'>
               <span>First Name </span>
-              <input type='text' placeholder='Bhushan'/>
+              <input type='text' placeholder='first name'/>
             </div>
             <div className='input_Box'>
               <span>Last Name </span>
-              <input type='text' placeholder='Pandagre'/>
+              <input type='text' placeholder='last name'/>
             </div>
            </div>
 
            <div className='row50'>
             <div className='input_Box'>
               <span>Email  </span>
-              <input type='text' placeholder='Bhushan@gmail.com'/>
+              <input type='text' placeholder='enter email'/>
             </div>
             <div className='input_Box'>
               <span>Mobile No </span>
-              <input type='text' placeholder='+91 883 909 3270'/>
+              <input type='text' placeholder='enter your number'/>
             </div>
            </div>
            <div className='row100'>
@@ -77,7 +77,7 @@ const Contact = () => {
 
           <div>
             <span><MdEmail /></span>
-            <a href='mailto:pandagrebhushan3@gmail.com'>bhushan@gmail.com</a>
+            <a href='mailto:mobihub@gmail.com'>MobiHub@gmail.com</a>
           </div>
 
           <div>

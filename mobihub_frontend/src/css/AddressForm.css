@@ -1,5 +1,5 @@
 .address-form {
-    width: 50%;
+    width: 100%;
     margin: 0 auto; /* This will center the form horizontally */
     display: flex;
     flex-direction: column;
