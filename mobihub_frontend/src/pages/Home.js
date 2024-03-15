@@ -34,35 +34,40 @@ const Home = () => {
     }, [])
 
 
+    
     return (
-
         <>
-          <BestSellers />
-          <br />
+            <Carousel />
+            <br />
+
+            <section className="best_seller">
+                <>
+                    <BestSellers />
+                    <br />
+                </>
+            </section>
+            <br />
+
+            <Marquee />
+            <br />
+
+            <MoreProduct />
+
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <MoreItemsList />
+            <br />
+            <br />
+            <br />
+            <br />
+            <Onetwo />
+
+            <Services />
         </>
-      </section>
-      <br />
-
-      <Marquee />
-      <br />
-
-      <MoreProduct />
-
-      <br />
-      <br />
-      <br />
-      <br />
-
-      <MoreItemsList />
-      <br />
-      <br />
-      <br />
-      <br />
-      <Onetwo />
-
-      <Services />
-    </>
-  );
-};
+    )
+}
 
 export default Home;
