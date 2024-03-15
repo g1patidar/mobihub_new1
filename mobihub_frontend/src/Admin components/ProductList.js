@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import "../css/AdminComponentCss/ProductList.css"
 import EditProduct from './EditProduct';
+import { toast } from 'react-toastify';
 const ProductList = () => {
   var itemcount = 0;
   const [allproductsdisplay, setallproductsdisplay] = useState([])
@@ -33,12 +34,14 @@ const ProductList = () => {
 
       axios.delete(`https://mobihub-new1.onrender.com/api/user/DeleteProduct/${productId}`).then(() => {
 
-        alert("Product deleted successfully");
+        toast.success("Product deleted successfully")
+
         mydata();
       });
 
       console.log("Product deleted successfully");
-      alert("Product deleted successfully");
+
+      toast.success("Product deleted successfully");
       // Assuming mydata() is an asynchronous function, you can await it as well
       mydata();
     } catch (error) {

@@ -15,25 +15,27 @@ passport.use(new GoogleStrategy({
     clientID:client_ID,
     clientSecret:client_Secret,
     callbackURL:call_back_URL,
-
+    proxy: true,
     scope: ['email', 'profile']
 },
     async (accessToken, refreshToken, profile, done) => {
-        try {
-            let user = await userdb.findOne({ googleId:profile.id });
-            if (!user) {
-                user = new userdb({
-                    googleId: profile.id,
-                    displayName: profile.displayName,
-                    email: profile.emails[0].value,
-                    image: profile.photos[0].value
-                });
-                await user.save();
-            }
-            return done(null, user);
-        } catch (error) {
-            return done(error, null);
-        }
+        done(null, profile);
+        // try {
+        //     let user = await userdb.findOne({ googleId:profile.id });
+        //     if (!user) {
+        //         user = new userdb({
+        //             googleId: profile.id,
+        //             displayName: profile.displayName,
+        //             email: profile.emails[0].value,
+        //             image: profile.photos[0].value
+        //         });
+        //         await user.save();
+        //     }
+        //     return done(null, user);
+        // } catch (error) {
+        //     return done(error, null);
+        // }
+    
     }));
 
 passport.serializeUser((user, done) => {

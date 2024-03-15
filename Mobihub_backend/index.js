@@ -11,7 +11,8 @@ const allowedOrigins = [
 app.use(cors({
     origin: allowedOrigins,
     methods: "GET, POST, PUT, DELETE",
-    credentials: true
+    credentials: true,
+    proxy: true
 }));
 const passport = require("./config/passwordconfig");
 const dbConnect = require("./config/dbConnect");
@@ -48,14 +49,31 @@ app.get('/google/callback',
     })
 );
 
-app.get("/login/success", async (req, res)=>{
-    //  console.log("rewerwerfdsf", req.user);
-     if(req.user){
-        res.status(200).json({message:"user login", user:req.user}); 
-     }else{
-        res.status(400).json({message:"Not auutorized"}); 
+app.get("/login/success", (req, res) => {
+    // This is where the req.user SHOULD be returned after logging in, but it doesn't find a req.user so it fails
+    if (req.user) {
+        res.status(200).json({
+            success: true,
+            message: "SUCCESS!",
+            user: req.user,
+        });
+    } else {
+        res.send(JSON.stringify({
+            success: false,
+            message: "REQUEST FAILED!",
+            user: [],
+        }));
     }
 });
+
+// app.get("/login/success", async (req, res)=>{
+//     //  console.log("rewerwerfdsf", req.user);
+//      if(req.user){
+//         res.status(200).json({message:"user login", user:req.user}); 
+//      }else{
+//         res.status(400).json({message:"Not auutorized"}); 
+//     }
+// });
 
 app.post('/logout', (req, res) => {
     req.logout(); // Invalidate the user's session

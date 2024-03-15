@@ -6,35 +6,36 @@ import MoreProduct from "./components/MoreProduct";
 import MoreItemsList from "./components/MoreItems/MoreItemsList";
 import Onetwo from "./components/Onetwo/Onetwo";
 
-import { useDispatch } from "react-redux";
-import setAllProducts from "../slice/AllProductSlice";
+
+import { useSelector, useDispatch } from "react-redux";
+import setAllProducts from "../slice/AllProductSlice"
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Home = () => {
-  const [productss, setproducts] = useState([]);
-  const dispatch = useDispatch();
 
-  const mydata = async () => {
-    const response = await axios
-      .post("https://mobihub-new1.onrender.com/api/user/DisplayProduct")
-      .then((res) => {
-        // console.log(res.data, "hello")
-        // setallproductsdisplay(res.data);
-        setproducts(res.data);
-        console.log("all product", productss);
-      });
-  };
-  useEffect(() => {
-    mydata();
-  }, []);
+    const [productss, setproducts] = useState()
+    const dispatch = useDispatch();
+    const mydaata = useSelector((state) => state.allProducts.allProducts);
+    console.log(mydaata);
 
-  return (
-    <>
-      <Carousel />
-      <br />
+    const mydata = async () => {
+        const response = await axios.post("https://mobihub-new1.onrender.com/api/user/DisplayProduct").then((res) => {
+            // console.log(res.data, "hello")
+            // setallproductsdisplay(res.data);
+            setproducts(res.data);
+            dispatch(setAllProducts(productss));
+            // console.log("all product", productss)
+        })
 
-      <section className="best_seller">
+    }
+    useEffect(() => {
+        mydata()
+    }, [])
+
+
+    return (
+
         <>
           <BestSellers />
           <br />
