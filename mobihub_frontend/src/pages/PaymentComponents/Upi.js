@@ -1,16 +1,16 @@
-// Upi.js
-
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-// import "./Upi.css"; // Assuming you have a separate CSS file
+import { useNavigate } from "react-router-dom";
 
 const Upi = () => {
   const [upiId, setUpiId] = useState('');
   const [amount, setAmount] = useState('');
+  const makePayment = useNavigate();
 
   const handlePayment = () => {
     // Implement UPI payment processing logic here (simulated for educational purposes).
     console.log('UPI payment processing...');
+    makePayment('/ordercomplete')
+    
   };
 
   return (

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { MdDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 import { toast } from "react-toastify";
 
@@ -37,7 +38,7 @@ const Cardpage = () => {
         <tr className="item_set_cart">
           <td>
             <div className="cart-info">
-              <img src={key.Image_path[0]} className="mobimg" />
+              <img src={key.Image_path[0]} className="mobimg" alt="fdd" />
               <div className="Pro_Name_Cart">
                 <p> {key.Name}</p>
                 <p>
@@ -65,12 +66,10 @@ const Cardpage = () => {
               </td>
             </div>
           </td>
-          <td style={{ border: "1px solid black" }}>
+          <td style={{marginTop:"60px"}}>
             <div className="remove_btn_cart">
-              <MdDelete onClick={() => Deleteitem(key.id)} />
+              <Link className="deliconA"><MdDelete onClick={() => Deleteitem(key.id)} /> </Link>
             </div>
-            {/* <img src="./images/delete.jpeg" className="delete"
-                        /> */}
           </td>
         </tr>
       </>
@@ -92,9 +91,9 @@ const Cardpage = () => {
         .then((res) => {
           if (res.data.length === 0) {
             alert("Invalid Coupon Code");
-          } else if ("Coupon has expired" == res.data) {
+          } else if ("Coupon has expired" === res.data) {
             alert("Coupon has expired");
-          } else if ("notexist" == res.data) {
+          } else if ("notexist" === res.data) {
             alert("Coupon does not exist");
           } else {
             // console.log(res.data.Discount)

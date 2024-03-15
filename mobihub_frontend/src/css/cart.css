@@ -85,7 +85,7 @@
 }
 
 .item_set_cart td a {
-    color: red;
+    
     font-size: 12px;
 }
 
@@ -96,6 +96,11 @@
 }
 .remove_btn_cart{
     margin: auto 0;
+    
+}
+.deliconA
+{
+    color: black;
 }
 
 
@@ -135,10 +140,12 @@
 }
 
 .second_div {
-    box-shadow: 1px 1px 1px 1px;
-    margin: 20px auto;
+
     flex-wrap: wrap;
     width: 30%;
+    border-radius: 10px;
+    border: 1px solid black;
+
 }
 
 /* Order Details */
@@ -163,7 +170,24 @@
     cursor: pointer;
     background-color: rgb(98, 92, 174);
 }
+.button1 {
+  text-align: center;
+}
 
+.button1 button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.button1 button:hover {
+  background-color: #45a049;
+}
 /* Increment/Decrement Buttons */
 
 .minus,
@@ -216,15 +240,14 @@
 
 #cart-bottom .coupon p,
 #cart-bottom .coupon input {
-    
-    background-color: #fff;
+
     padding: 20px;
 }
 
 #cart-bottom .coupon input {
     height: 40px;
     margin: 5px 5px 20px 12px;
-    color: #fff;
+
     border-radius: 10px;
 }
 
@@ -239,16 +262,6 @@
 
 /* Hover for Coupon Cart */
 
-#cart-bottom .coupon button:hover {
-    cursor: pointer;
-    color: #000;
-    background-color: #fff;
-}
-
-#cart-bottom .coupon input:hover {
-    cursor: pointer;
-    background-color: #000;
-}
 
 
 /* //------------------------------------media query--------------------------------// */

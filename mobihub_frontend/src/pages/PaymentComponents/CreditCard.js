@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-// import './CreditCard.css'; // Import the CSS file for styling
+import { useNavigate } from "react-router-dom";
 
 const CreditCard = () => {
   const [cardNumber, setCardNumber] = useState('');
   const [cardHolder, setCardHolder] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvc, setCvc] = useState('');
+  const makePayment = useNavigate();
 
   const handlePayment = () => {
     // Implement payment processing logic here (e.g., through a secure payment gateway).
     // For security reasons, do not handle real payments or store sensitive information on the client side.
     console.log('Payment processing...');
+    makePayment('/ordercomplete')
   };
 
   return (

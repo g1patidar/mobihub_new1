@@ -61,6 +61,7 @@ import AddressForm from "./pages/components/AddressFormPage/AddressForm";
 
 
 import { ToastContainer, toast } from 'react-toastify';
+import OrderComplete from "./pages/components/Thankyoupage/OrderComplete";
 
 
 
@@ -87,6 +88,7 @@ const App = () => {
             <Route path="/registration" element={<Registration />} />
             <Route path="/addressform" element={<AddressForm />} />
             <Route path="/Contact" element={<Contact />} />
+            <Route path="/ordercomplete" element={<OrderComplete/>} />
 
           </Route>
 

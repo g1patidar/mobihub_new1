@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-// import '../css/COD.css'; // Assuming you have a separate CSS file
-
+import { useNavigate } from 'react-router-dom';
 const COD = () => {
   const [fullName, setFullName] = useState('');
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const makePayment = useNavigate();
 
   const handlePayment = () => {
     // Implement Cash on Delivery processing logic here (simulated for educational purposes).
@@ -13,6 +12,7 @@ const COD = () => {
     console.log('Full Name:', fullName);
     console.log('Address:', address);
     console.log('Phone Number:', phoneNumber);
+    makePayment('/ordercomplete')
   };
 
   return (
