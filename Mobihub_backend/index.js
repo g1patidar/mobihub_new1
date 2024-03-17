@@ -1,7 +1,17 @@
-
 const express = require("express");
-const app = express();
 const cors = require("cors");
+const session = require('express-session');
+const bodyParser = require("body-parser");
+const passport = require("./config/passwordconfig");
+const dbConnect = require("./config/dbConnect");
+const authRouter = require('./routes/authRoute');
+const dotenv = require('dotenv').config();
+
+const app = express();
+const PORT = process.env.PORT || 4000;
+
+// Database connection
+dbConnect();
 
 const allowedOrigins = [
     "https://mobihub-new1-o7u9.vercel.app",
@@ -13,34 +23,25 @@ app.use(cors({
     methods: "GET, POST, PUT, DELETE",
     credentials: true
 }));
-const passport = require("./config/passwordconfig");
-const dbConnect = require("./config/dbConnect");
-const session = require('express-session');
-const authRouter = require('./routes/authRoute');
-const bodyParser = require("body-parser");
-const dotenv = require('dotenv').config();
-const PORT = process.env.PORT || 4000;
-dbConnect();
 
-// Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use("/api/user", authRouter);
-app.use(express.json());
-
 app.use(session({
-    secret:"jkfasi9hewnbbdvenoiew",
-    resave:false,
-    saveUninitialized:true
+    secret:"fasohfe09t4e9r0efb",
+    resave: false,
+    saveUninitialized: true
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Routes
+app.use("/api/user", authRouter);
 
 app.get('/google', passport.authenticate('google', {scope: ['email', 'profile'] }));
 
 app.get('/google/callback',
+    
     passport.authenticate('google', {
         successRedirect: "https://mobihub-new1-o7u9.vercel.app/admin_layout/Admin_dashboard",
         failureRedirect: 'https://mobihub-new1-o7u9.vercel.app/login',
@@ -49,22 +50,22 @@ app.get('/google/callback',
 );
 
 app.get("/login/success", async (req, res)=>{
-    //  console.log("rewerwerfdsf", req.user);
-     if(req.user){
-        res.status(200).json({message:"user login", user:req.user}); 
-     }else{
-        res.status(400).json({message:"Not auutorized"}); 
-    }
-});
+    console.log("rewerwerfdsf", req.user);
+    
+       if(req.user){
+          res.status(200).json({message:"user login", user:req.user}); 
+       }else{
+          res.status(400).json({message:"Not auutorized"}); 
+      }
+  });
+  
+  app.post('/logout', (req, res) => {
+      req.logout(); // Invalidate the user's session
+      res.clearCookie('token'); // Clear the authentication token cookie
+      res.sendStatus(200); // Send a success response
+  });
 
-app.post('/logout', (req, res) => {
-    req.logout(); // Invalidate the user's session
-    res.clearCookie('token'); // Clear the authentication token cookie
-    res.sendStatus(200); // Send a success response
-});
-
-
-
+// Start server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

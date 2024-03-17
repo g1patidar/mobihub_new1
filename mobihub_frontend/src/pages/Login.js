@@ -36,8 +36,6 @@ const Login = () => {
       });
 
     } catch (error) {
-      // Handle login error (e.g., display error message)
-
       alert("Login failed:");
     }
   };

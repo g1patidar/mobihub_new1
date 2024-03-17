@@ -3,7 +3,6 @@ const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const userdb = require("../models/user/loginwithgogl");
 require('dotenv').config();
 
-
 const client_ID = process.env.CLIENT_ID;
 const client_Secret = process.env.CLIENT_SECRET;
 const call_back_URL = process.env.CALLBACK_URL;

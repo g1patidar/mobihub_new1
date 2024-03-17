@@ -39,7 +39,7 @@ const AdminLayout = () => {
       try {
 
         const  response = await axios.get("https://mobihub-new1.onrender.com/login/success", { withCredentials: true });
-          console.log("reponse", response);
+          console.log("reponse", response.data.user);
           setUserData(response.data.user);
         toast.success("Logged in Successfully!");
           // alert("you are sucssefully Login");

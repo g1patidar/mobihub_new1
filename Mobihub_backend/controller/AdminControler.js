@@ -24,7 +24,7 @@ const DisplayProduct = async (req, res) => {
         const products = await AdminModel.find();
         res.send(products);
         // console.log(products);
-        console.log("all product send by displayproduct api")
+        // console.log("all product send by displayproduct api")
     } catch (error) {
         console.error('Error fetching data:', error);
     }
