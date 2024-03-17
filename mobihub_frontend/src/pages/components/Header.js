@@ -38,7 +38,7 @@ const Header = ({ count }) => {
         <Link to="/shop" style={{ "--i": 2 }}>
           Shop{" "}
         </Link>
-        {<Link to="/" style={{ "--i": 3 }}>
+        <Link to="/" style={{ "--i": 3 }}>
           Services
 
         </Link>

@@ -63,7 +63,7 @@ const Shop = () => {
   // get the item from database
   const mydata = async () => {
 
-    const response = await axios.post("https://mobihub-new1.onrender.com/api/user/DisplayProduct").then((res) => {
+    const response = await axios.post("https://localhost:5000/api/user/DisplayProduct").then((res) => {
 
       // console.log(res.data, "hello")
       // setallproductsdisplay(res.data);
@@ -84,6 +84,14 @@ const Shop = () => {
       Name: productName, Price: productPrice, Image_path: Image_URL, quantity: 1
     }))
   }
+
+  //   buynow
+
+  const buynow = async (productName, productPrice, regularPrice, Image_URL, product_ID) => {
+
+    console.log(Image_URL, "imageurl");
+  }
+
 
   return (
     <>
@@ -169,7 +177,8 @@ const Shop = () => {
                 <h3>{product.Product_Name}</h3>
                 <p>Price:₹{product.Product_Price} <span className='regular_price_item'>{product.Product_Regular_Price}</span></p>
                 <div className="buttons">
-                  <button className='buy_nowbutton' >Buy Now</button>
+                  <button className='buy_nowbutton' onClick={() => buynow(
+                    product.Product_Name, product.Product_Price, product.Product_Regular_Price, product.Image_URL, product._id)} >Buy Now</button>
                   <button className='add_tobutton' onClick={() => onAddToCart(product.Product_Name, product.Product_Price, product.Product_Regular_Price, product.Image_URL, product._id)}>Add to Cart</button>
                   <ToastContainer />
                 </div>

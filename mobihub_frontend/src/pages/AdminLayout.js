@@ -38,7 +38,7 @@ const AdminLayout = () => {
   const fetchUserData = async () => {
     try {
 
-      const response = await axios.get("https://mobihub-new1.onrender.com/login/success", { withCredentials: true });
+      const response = await axios.get("https://localhost:5000/login/success", { withCredentials: true });
       console.log("reponse", response);
       setUserData(response.data.user);
       toast.success("Logged in Successfully!");
@@ -54,7 +54,7 @@ const AdminLayout = () => {
   }, []);
 
   const handlelogout = async () => {
-    await axios.post("https://mobihub-new1.onrender.com/logout", null, { withCredentials: true });
+    await axios.post("https://localhost:5000/logout", null, { withCredentials: true });
     setUserData(null);
     setUserName("")
     localStorage.removeItem("token");

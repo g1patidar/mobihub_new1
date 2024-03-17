@@ -20,7 +20,7 @@ const Home = () => {
     console.log(mydaata);
 
     const mydata = async () => {
-        const response = await axios.post("https://mobihub-new1.onrender.com/api/user/DisplayProduct").then((res) => {
+        const response = await axios.post("https://localhost:5000/api/user/DisplayProduct").then((res) => {
             // console.log(res.data, "hello")
             // setallproductsdisplay(res.data);
             setproducts(res.data);
@@ -34,35 +34,40 @@ const Home = () => {
     }, [])
 
 
+
     return (
-
         <>
-          <BestSellers />
-          <br />
+            <Carousel />
+            <br />
+
+            <section className="best_seller">
+                <>
+                    <BestSellers />
+                    <br />
+                </>
+            </section>
+            <br />
+
+            <Marquee />
+            <br />
+
+            <MoreProduct />
+
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <MoreItemsList />
+            <br />
+            <br />
+            <br />
+            <br />
+            <Onetwo />
+
+            <Services />
         </>
-      </section>
-      <br />
-
-      <Marquee />
-      <br />
-
-      <MoreProduct />
-
-      <br />
-      <br />
-      <br />
-      <br />
-
-      <MoreItemsList />
-      <br />
-      <br />
-      <br />
-      <br />
-      <Onetwo />
-
-      <Services />
-    </>
-  );
-};
+    )
+}
 
 export default Home;
