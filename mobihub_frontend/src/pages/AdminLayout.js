@@ -2,11 +2,13 @@ import { Outlet } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// import {logo} from "../../public/images/main_logo.png"
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTachometerAlt, faBox, faPlus, faListAlt, faTags, faTicketAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+
 const AdminLayout = () => {
   const [userData, setUserData] = useState(null);
   const [Username, setUserName] = useState("");
@@ -38,7 +40,7 @@ const AdminLayout = () => {
   const fetchUserData = async () => {
     try {
 
-      const response = await axios.get("https://mobihub-new1.onrender.com/login/success", { withCredentials: true });
+      const response = await axios.get("http://localhost:5000/login/success", { withCredentials: true });
       console.log("reponse", response);
       setUserData(response.data.user);
       toast.success("Logged in Successfully!");
@@ -54,9 +56,10 @@ const AdminLayout = () => {
   }, []);
 
   const handlelogout = async () => {
-    await axios.post("https://mobihub-new1.onrender.com/logout", null, { withCredentials: true });
+    await axios.post("http://localhost:5000/logout", null, { withCredentials: true });
     setUserData(null);
     setUserName("")
+    localStorage.removeItem("name")
     localStorage.removeItem("token");
     // alert("You are seccfull Logout??");
     toast.success("Logged out Successfully!")
@@ -65,7 +68,14 @@ const AdminLayout = () => {
 
   return (
     <>
-      <div style={{ border: "1px solid black", padding: "2%" }}>Header </div>
+      {/* <div style={{ border: "1px solid black", padding: "2%" }}>Header </div> */}
+      <div className="navbar11">
+      <div className="logo1">
+        <img src="../../public/images/main_logo.png" alt="Logo" />
+      </div>
+      <button onClick={handlelogout}  className="logout-btn1">Logout</button>
+    </div>
+
 
       <div className="app">
         <div className="navbar">
@@ -121,7 +131,7 @@ const AdminLayout = () => {
         </div>
       </div>
 
-      <div style={{ border: "1px solid black", padding: "2%" }}>Footer </div>
+      {/* <div style={{ border: "1px solid black", padding: "2%" }}>Footer </div> */}
     </>
   )
 }

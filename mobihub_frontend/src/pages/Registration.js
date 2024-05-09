@@ -26,7 +26,7 @@ const Registration = () => {
         //console.log(HandleInpt);
         try {
 
-            const response = await axios.post("https://mobihub-new1.onrender.com/api/user/register", HandleInpt);
+            const response = await axios.post("http://localhost:5000/api/user/register", HandleInpt);
 
             if ("already exist" === response.data) {
                 alert("User already registered!!");
@@ -45,43 +45,43 @@ const Registration = () => {
 
     return (
         <>
-        <form>
-            <div className='forgap'>
-                <div className="container">
-                    <div className="image">
-                        <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=1926&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="abc" />
-                    </div>
-                    <div className="form">
-                        <h2>Registration Form</h2>
-                        <div className="input-group">
-                            <input type="text" id="name" placeholder="Name" required
-                                name="Name" value={HandleInpt.Name} onChange={HandleAllInput} />
-                            <input type="text" id="lastname" placeholder="Last Name" required
-                                name="LastName" value={HandleInpt.LastName} onChange={HandleAllInput} />
+            <form>
+                <div className='forgap'>
+                    <div className="container">
+                        <div className="image">
+                            <img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=1926&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="abc" />
                         </div>
-                        <div className="input-group">
-                            <input type="email" id="email" placeholder="Email" required
-                                name="Email" value={HandleInpt.Email} onChange={HandleAllInput} />
-                            <input type="password" id="password" placeholder="Password" required
-                                name="Password" value={HandleInpt.Password} onChange={HandleAllInput} />
-                        </div>
-                        <div className="input-group">
-                            <input type="text" id="address" placeholder="Address" required
-                                name="Address" value={HandleInpt.Address} onChange={HandleAllInput} />
-                        </div>
+                        <div className="form">
+                            <h2>Registration Form</h2>
+                            <div className="input-group">
+                                <input type="text" id="name" placeholder="Name" required
+                                    name="Name" value={HandleInpt.Name} onChange={HandleAllInput} />
+                                <input type="text" id="lastname" placeholder="Last Name" required
+                                    name="LastName" value={HandleInpt.LastName} onChange={HandleAllInput} />
+                            </div>
+                            <div className="input-group">
+                                <input type="email" id="email" placeholder="Email" required
+                                    name="Email" value={HandleInpt.Email} onChange={HandleAllInput} />
+                                <input type="password" id="password" placeholder="Password" required
+                                    name="Password" value={HandleInpt.Password} onChange={HandleAllInput} />
+                            </div>
+                            <div className="input-group">
+                                <input type="text" id="address" placeholder="Address" required
+                                    name="Address" value={HandleInpt.Address} onChange={HandleAllInput} />
+                            </div>
 
-                        <div className="checkbox">
-                            <input type="checkbox" id="keepLoggedIn" />
-                            <label htmlFor="keepLoggedIn">Keep me logged in</label>
-                        </div>
-                        <button className='btnn' type="button" onClick={Registrationbutton} >Register Now</button>
-                        <ToastContainer />
-                        <div className="already-customer">
-                            <p>Already a customer? <Link to="/loginpage">Please Login in</Link> <FaArrowRight /></p>
+                            <div className="checkbox">
+                                <input type="checkbox" id="keepLoggedIn" />
+                                <label htmlFor="keepLoggedIn">Keep me logged in</label>
+                            </div>
+                            <button className='btnn' type="button" onClick={Registrationbutton} >Register Now</button>
+                            <ToastContainer />
+                            <div className="already-customer">
+                                <p>Already a customer? <Link to="/loginpage">Please Login in</Link> <FaArrowRight /></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </form>
         </>
     );

@@ -5,6 +5,10 @@ const userlogSchema= new mongoose.Schema({
     displayName:String,
     email:String,
     image:String,
+    role:{
+        type:String,
+        default:"user"
+    }
 }, {timestamps:true});
 
 const userdb= new mongoose.model("loginuser", userlogSchema);

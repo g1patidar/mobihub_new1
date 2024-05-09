@@ -6,7 +6,6 @@
     font-family: "Poppins", sans-serif;
 }
 
-
 .header {
     position: sticky;
     top: 0;
@@ -17,8 +16,7 @@
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-    background-color: rgba(0, 0, 0, 0.7);
-    /* Transparent black background */
+    background-color: rgba(0, 0, 0, 0.7); /* Transparent black background */
 }
 
 .header::before {
@@ -28,8 +26,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0);
-    /* Transparent background */
+    background-color: rgba(255, 255, 255, 0); /* Transparent background */
     backdrop-filter: blur(50px);
     z-index: -1;
 }
@@ -41,11 +38,8 @@
     left: -100%;
     width: 100%;
     height: 100%;
-
     transition: .5s;
 }
-
-
 
 .logo {
     font-size: 3rem;
@@ -75,16 +69,7 @@
     display: none;
 }
 
-.cart-icon {
-    font-size: 2rem;
-    margin-right: 5px;
-}
-
-.cart-icon {
-    width: 30px;
-    height: 30px;
-}
-
+.cart-icon,
 .heart-icon {
     width: 30px;
     height: 30px;
@@ -112,8 +97,7 @@
     /* Adjust as needed */
     right: -5px;
     /* Adjust as needed */
-    background-color: red;
-    /* Or any color you want */
+    background-color: red; /* Or any color you want */
     color: white;
     border-radius: 50%;
     width: 20px;
@@ -123,19 +107,22 @@
     align-items: center;
     font-size: 12px;
 }
+.user_name{
+    color: white;
+    
+}
 
 @media (max-width: 992px) {
     .header {
         padding: 0rem 5%;
     }
 }
-
 @media (max-width: 768px) {
     .icons {
         display: inline-flex;
     }
 
-    #check:checked~.icons #menu-icon {
+    #check:checked ~ .icons #menu-icon {
         display: none;
     }
 
@@ -143,8 +130,12 @@
         display: none;
     }
 
-    #check:checked~.icons #close-icon {
+    #check:checked ~ .icons #close-icon {
         display: block;
+    }
+    .user_name{
+        margin-left: 43%;
+        
     }
 
     .navbar1 {
@@ -152,72 +143,32 @@
         top: 100%;
         left: 0;
         width: 100%;
-        height: 0;
         background: rgba(0, 0, 0, .1);
         backdrop-filter: blur(50px);
         box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
         overflow: hidden;
-        transition: .2s ease;
+        display: none; /* Initially hidden */
     }
 
-
-    #check:checked~.navbar1 {
-        height: 31rem;
+    #check:checked ~ .navbar1 {
+        display: block; /* Display as block when checked */
     }
 
     .navbar1 a {
-        display: block;
+        display: block; /* Display each link as block */
         font-size: 1.1rem;
         margin: 1.5rem 0;
         text-align: center;
-        transform: translateY(-50px);
-        opacity: 0;
+        opacity: 1;
         transition: .3s ease;
     }
 
-    #check:checked~.navbar1 a {
-        transform: translateY(0);
-        opacity: 1;
-        transition-delay: calc(.15s * var(--i));
-    }
-
-    /* new Cart icon css start */
-    .icon-container {
-        position: relative;
-    }
-
-    .icon-link {
-        position: relative;
-        display: inline-block;
-    }
-
-    .cart-icon,
-    .heart-icon {
-        width: 30px;
-        height: 30px;
-        position: relative;
-    }
-
+    /* Adjust badge position */
     .badge {
-        position: absolute;
         top: 0px;
-        /* Adjust as needed */
-        left: 180px;
-        /* Adjust as needed */
-        background-color: red;
-        /* Or any color you want */
-        color: white;
-        border-radius: 50%;
-        width: 20px;
-        height: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 12px;
+        left: auto;
+        right: 50%; /* Adjust as needed */
     }
-
-    /* new Cart icon css end */
-
 }
 
 /* Navbar.css */
@@ -225,8 +176,6 @@
     display: flex;
     align-items: center;
 }
-
-
 
 .login-button {
     background-color: transparent;
@@ -256,8 +205,6 @@
     /* Change color on hover */
 }
 
-
-
 .login-button {
     background-color: #ff5722;
     /* Button background color */
@@ -273,44 +220,6 @@
 .login-button:hover {
     background-color: #e64a19;
     /* Change button background color on hover */
-}
-
-/* Navbar.css */
-.navbar1 a {
-    font-size: 1rem;
-    text-decoration: none;
-    color: white;
-    margin-left: 20px;
-    padding: 1px 15px;
-    /* Increased padding for better touch targets */
-    border-radius: 5px;
-    /* Rounded corners for buttons */
-    transition: all 0.3s ease;
-    /* Smooth transitions for all properties */
-    position: relative;
-}
-
-.navbar1 a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    /* Semi-transparent background on hover */
-    color: #ff5722;
-    /* Change text color on hover */
-}
-
-
-.login-button {
-    background-color: #ff5722;
-    border: none;
-    color: white;
-    font-size: 0.9rem;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.login-button:hover {
-    background-color: #e64a19;
 }
 
 /* Additional styles for icons or decorative elements */

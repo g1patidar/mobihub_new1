@@ -66,7 +66,7 @@ const Cardpage = () => {
               </td>
             </div>
           </td>
-          <td style={{marginTop:"60px"}}>
+          <td style={{ marginTop: "60px" }}>
             <div className="remove_btn_cart">
               <Link className="deliconA"><MdDelete onClick={() => Deleteitem(key.id)} /> </Link>
             </div>
@@ -86,7 +86,7 @@ const Cardpage = () => {
     } else {
       await axios
         .post(
-          `https://mobihub-new1.onrender.com/api/user/applycoupon/${couponcode}`
+          `http://localhost:5000/api/user/applycoupon/${couponcode}`
         )
         .then((res) => {
           if (res.data.length === 0) {
@@ -107,15 +107,15 @@ const Cardpage = () => {
   const items = cartdata.map((key) => {
     return (
       <>
-        
+
         <div className="dd">
-              <div>
-                <b>{key.Name} &nbsp; Q - {key.quantity}</b>
-              </div>
-              <div>
-                <b>₹{key.quantity * key.Price}</b>
-              </div>
-            </div>
+          <div>
+            <b>{key.Name} &nbsp; Q - {key.quantity}</b>
+          </div>
+          <div>
+            <b>₹{key.quantity * key.Price}</b>
+          </div>
+        </div>
       </>
     );
   });
