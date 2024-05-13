@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 4000;
 dbConnect();
 
 const allowedOrigins = [
-    "https://mobihub-new1-o7u9.vercel.app",
+    // "https://mobihub-new1-o7u9.vercel.app",
     "http://localhost:3000" // Example of a local development server
 
 ];

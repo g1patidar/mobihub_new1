@@ -23,7 +23,7 @@ const Login = () => {
     e.preventDefault();
     try {
       // Make a POST request to your backend API endpoint
-      await axios.post("https://mobihub-new1.onrender.com/api/user/login", formData).then((res) => {
+      await axios.post("https://mobihub-new1.onrender.com/login", formData).then((res) => {
         const { Email } = res.data;
         if (formData.Email === Email) {
           const token = res.data.token;
@@ -51,7 +51,7 @@ const Login = () => {
   };
 
   const loginwithgoogle = () => {
-    window.open("https://mobihub-new1.onrender.com/google/callback", "_self");
+    window.open("http://localhost:5000/google/callback", "_self");
   }
 
   return (

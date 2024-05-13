@@ -14,7 +14,9 @@ const OrderComplete = () => {
     const AllOrderdetail = useSelector((state) => state.OrderdetailSlice.orderdetail);
     console.log(AllOrderdetail);
     useEffect(() => {
+
         axios.post("https://mobihub-new1.onrender.com/api/user/Createorder", AllOrderdetail)
+
         console.log("api call");
     }, [])
 

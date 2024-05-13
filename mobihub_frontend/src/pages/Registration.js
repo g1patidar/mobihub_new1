@@ -26,7 +26,7 @@ const Registration = () => {
         //console.log(HandleInpt);
         try {
 
-            const response = await axios.post("https://mobihub-new1.onrender.com/api/user/register", HandleInpt);
+            const response = await axios.post("https://mobihub-new1.onrender.com/register", HandleInpt);
 
             if ("already exist" === response.data) {
                 alert("User already registered!!");
