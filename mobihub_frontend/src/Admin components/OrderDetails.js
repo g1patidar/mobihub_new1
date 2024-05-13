@@ -6,7 +6,7 @@ const OrderDetails = () => {
     const [orderstatus , setorderstatus]= useState("Order Processing")
     useEffect(async()=>{
         try{
-            await axios.post("http://localhost:5000/api/user/getOrderData").then((res)=>{
+            await axios.post("https://mobihub-new1.onrender.com/api/user/getOrderData").then((res)=>{
                 setorderdata(res.data);
                 console.log(res.data)
             })
@@ -19,7 +19,7 @@ const OrderDetails = () => {
     const Changeorderstatus=async(e)=>{
         setorderstatus(e.target.value)
         try{
-            await axios.post("http://localhost:5000/api/user/orderStatuschange", {OrderStatus:orderstatus}).then((res)=>{
+            await axios.post("https://mobihub-new1.onrender.com/api/user/orderStatuschange", {OrderStatus:orderstatus}).then((res)=>{
                 alert(res.data);
             })
         }

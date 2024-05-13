@@ -14,7 +14,7 @@ const AddBrand = () => {
         // console.log(input)
         try {
 
-            axios.post("http://localhost:5000/api/user/AddBrand", input).then(() => {
+            axios.post("https://mobihub-new1.onrender.com/api/user/AddBrand", input).then(() => {
 
                 toast.success('Brand Successfully Added!', { position: "top-right" });
                 setInput({
@@ -32,7 +32,7 @@ const AddBrand = () => {
 
     const myBrands = async () => {
 
-        await axios.post("http://localhost:5000/api/user/DisplayBrands").then((res) => {
+        await axios.post("https://mobihub-new1.onrender.com/api/user/DisplayBrands").then((res) => {
 
             setAllBrands(res.data)
         })
@@ -48,7 +48,7 @@ const AddBrand = () => {
             // Make an API call to delete the product
 
 
-            axios.delete(`http://localhost:5000/api/user/DeleteBrand/${brandId}`);
+            axios.delete(`https://mobihub-new1.onrender.com/api/user/DeleteBrand/${brandId}`);
             toast.success("brand deleted successfully")
 
             myBrands();

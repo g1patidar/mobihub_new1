@@ -40,7 +40,7 @@ const AdminLayout = () => {
   const fetchUserData = async () => {
     try {
 
-      const response = await axios.get("http://localhost:5000/login/success", { withCredentials: true });
+      const response = await axios.get("https://mobihub-new1.onrender.com/login/success", { withCredentials: true });
       console.log("reponse", response);
       setUserData(response.data.user);
       toast.success("Logged in Successfully!");
@@ -56,7 +56,7 @@ const AdminLayout = () => {
   }, []);
 
   const handlelogout = async () => {
-    await axios.post("http://localhost:5000/logout", null, { withCredentials: true });
+    await axios.post("https://mobihub-new1.onrender.com/logout", null, { withCredentials: true });
     setUserData(null);
     setUserName("")
     localStorage.removeItem("name")
@@ -70,11 +70,11 @@ const AdminLayout = () => {
     <>
       {/* <div style={{ border: "1px solid black", padding: "2%" }}>Header </div> */}
       <div className="navbar11">
-      <div className="logo1">
-        <img src="../../public/images/main_logo.png" alt="Logo" />
+        <div className="logo1">
+          <img src="../../public/images/main_logo.png" alt="Logo" />
+        </div>
+        <button onClick={handlelogout} className="logout-btn1">Logout</button>
       </div>
-      <button onClick={handlelogout}  className="logout-btn1">Logout</button>
-    </div>
 
 
       <div className="app">

@@ -87,7 +87,7 @@ const Cardpage = () => {
     } else {
       await axios
         .post(
-          `http://localhost:5000/api/user/applycoupon/${couponcode}`
+          `https://mobihub-new1.onrender.com/api/user/applycoupon/${couponcode}`
         )
         .then((res) => {
           if (res.data.length === 0) {
