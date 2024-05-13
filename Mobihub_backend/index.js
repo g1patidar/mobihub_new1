@@ -51,7 +51,7 @@ app.get('/google/callback',
 );
 
 app.get("/login/success", async (req, res)=>{
-    console.log("rewerwerfdsf", req.user);
+    // console.log("rewerwerfdsf", req.user);
     
        if(req.user){
           res.status(200).json({message:"user login", user:req.user}); 

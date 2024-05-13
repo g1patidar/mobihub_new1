@@ -33,7 +33,7 @@ const AddCoupon = () => {
   //   console.log(total)
   //   console.log(input)
   //   // try {
-  //   //   axios.post("http://localhost:5000/api/user/AddCoupon", input).then(() => {
+  //   //   axios.post("https://mobihub-new1.onrender.com/AddCoupon", input).then(() => {
   //   //     alert("Coupon successfully added");
   //   //     // toast.success("Coupon Successfully Added!")
   //   //     Mycoupon();
@@ -55,7 +55,7 @@ const AddCoupon = () => {
     console.log(input); // Log the state after the update is completed
 
     try {
-      await axios.post("http://localhost:5000/api/user/AddCoupon", input);
+      await axios.post("https://mobihub-new1.onrender.com/AddCoupon", input);
       toast.success("Coupon Successfully Added!");
       Mycoupon();
       setInput({
@@ -74,7 +74,7 @@ const AddCoupon = () => {
   // Our All Coupons
 
   const Mycoupon = async () => {
-    await axios.post("http://localhost:5000/api/user/DisplayCoupons").then((res) => {
+    await axios.post("https://mobihub-new1.onrender.com/DisplayCoupons").then((res) => {
       setAllCoupon(res.data)
       // console.log(res.data)
     })
@@ -110,7 +110,7 @@ const AddCoupon = () => {
     try {
       // Make an API call to delete the product
 
-      axios.delete(`http://localhost:5000/api/user/DeleteCoupon/${couponid}`);
+      axios.delete(`https://mobihub-new1.onrender.com/DeleteCoupon/${couponid}`);
       toast.success("Coupon deleted successfully");
 
       Mycoupon();

@@ -23,16 +23,18 @@ const Login = () => {
     e.preventDefault();
     try {
       // Make a POST request to your backend API endpoint
-      await axios.post("http://localhost:5000/api/user/login", formData).then((res) => {
+      await axios.post("https://mobihub-new1.onrender.com/login", formData).then((res) => {
         const { Email } = res.data;
         if (formData.Email === Email) {
           const token = res.data.token;
           localStorage.setItem('token', token);
-          localStorage.setItem('name',res.data.Name)
-          if(res.data.Role=="admin"){
+          localStorage.setItem('name', res.data.Name)
+          localStorage.setItem('email', res.data.Email)
+
+          if (res.data.Role == "admin") {
             navi("/admin_layout/Admin_dashboard");
           }
-          else{
+          else {
             navi("/home");
           }
         }

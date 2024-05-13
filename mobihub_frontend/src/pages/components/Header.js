@@ -27,6 +27,7 @@ const Header = ({ count }) => {
     // setUserData(null);
     localStorage.removeItem("name")
     localStorage.removeItem("token");
+    localStorage.removeItem("email");
     // alert("You are seccfull Logout??");
     toast.success("Logged out Successfully!")
     navigate("/home");

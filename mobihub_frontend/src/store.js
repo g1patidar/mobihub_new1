@@ -8,7 +8,7 @@ const store = configureStore({
     cartslice:cartreducer,
     WishlistSlice:wishlistreducer,
     allProducts:allProductsreducer,
-    Orderdetail:AllOrderDetailreducer
+    OrderdetailSlice:AllOrderDetailreducer
 
   }
 });

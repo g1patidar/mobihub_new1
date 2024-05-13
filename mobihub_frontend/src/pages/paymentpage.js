@@ -4,12 +4,14 @@ import Phonepe from "./PaymentComponents/Phonepe";
 import COD from "./PaymentComponents/COD";
 import Upi from "./PaymentComponents/Upi";
 import CreditCard from "./PaymentComponents/CreditCard";
+import { useSelector } from "react-redux";
 
 const Paymentpage = () => {
   let phonepeauth = false;
   let CODauth = false;
   let Creditcardauth = false;
   let Upiauth = false;
+  const payamount = useSelector((state) => state.OrderdetailSlice.orderdetail);
 
   var mymethod = "";
   const [payment, setPayment] = useState("");
@@ -160,8 +162,8 @@ const Paymentpage = () => {
             <br />
             <div className="all-payment-detail">
               <div className="main-product-price">
-                Price (2 items)
-                <span> ₹33,998</span>
+                Price
+                <span> ₹{payamount.Amount}</span>
               </div>
 
               <hr />
@@ -179,7 +181,7 @@ const Paymentpage = () => {
 
               <div className="amount-payable">
                 <h3>Amount Payable</h3>
-                <h4>₹34,058</h4>
+                <h4>₹{payamount.Amount+60}</h4>
               </div>
             </div>
           </div>

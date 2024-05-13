@@ -6,6 +6,8 @@ const { createUser, loginUserCtrl, getalluser, getauser, getauserdelete, getause
 
 const { ProductAdd, DisplayProduct, DeleteProduct, AddBrand, AddCoupon, DisplayBrands, DeleteBrand, DisplayCoupons, DeleteCoupon,Applycoupon } = require("../controller/AdminControler");
 
+const {OrderStatuschange, CreateOrder,GetOrderData} = require("../controller/OrderController")
+
 router.post('/register', createUser);
 router.post('/login', loginUserCtrl);
 router.get('/all_users', getalluser);
@@ -28,6 +30,15 @@ router.post("/AddCoupon", AddCoupon);
 router.post("/DisplayCoupons", DisplayCoupons);
 router.delete("/DeleteCoupon/:itemId", DeleteCoupon) ;
 router.post("/applycoupon/:couponcode", Applycoupon) ;
+
+////// Order detail///////
+
+router.post("/Createorder", CreateOrder);
+
+router.post("/getOrderData", GetOrderData);
+
+router.post("/orderStatuschange", OrderStatuschange)
+
 
 
 module.exports = router;
