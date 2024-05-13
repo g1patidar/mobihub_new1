@@ -3,7 +3,10 @@ const express = require("express");
 const router = express.Router();
 
 const { createUser, loginUserCtrl, getalluser, getauser, getauserdelete, getauserupdated, ManageAddress } = require("../controller/userCtrl");
+
 const { ProductAdd, DisplayProduct, DeleteProduct, AddBrand, AddCoupon, DisplayBrands, DeleteBrand, DisplayCoupons, DeleteCoupon,Applycoupon } = require("../controller/AdminControler");
+
+const {OrderStatuschange, CreateOrder,GetOrderData} = require("../controller/OrderController")
 
 router.post('/register', createUser);
 router.post('/login', loginUserCtrl);
@@ -27,5 +30,16 @@ router.post("/AddCoupon", AddCoupon);
 router.post("/DisplayCoupons", DisplayCoupons);
 router.delete("/DeleteCoupon/:itemId", DeleteCoupon) ;
 router.post("/applycoupon/:couponcode", Applycoupon) ;
+
+////// Order detail///////
+
+router.post("/Createorder", CreateOrder);
+
+router.post("/getOrderData", GetOrderData);
+
+router.post("/orderStatuschange", OrderStatuschange)
+
+
+
 module.exports = router;
 

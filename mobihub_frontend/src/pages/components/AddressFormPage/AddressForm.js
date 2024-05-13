@@ -1,26 +1,48 @@
 import React, { useState } from "react";
 import "../../../css/AddressForm.css";
+import { setAddressDetail } from "../../../slice/OrderDetail"
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 const AddressForm = () => {
-  const [fullName, setFullName] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
-  const [pincode, setPincode] = useState("");
-  const [addressLine1, setAddressLine1] = useState("");
-  const [addressLine2, setAddressLine2] = useState("");
-  const [landmark, setLandmark] = useState("");
-  const [townCity, setTownCity] = useState("");
-  const [state, setState] = useState("");
-  const [isDefault, setIsDefault] = useState(false);
+  const mydispatch = useDispatch();
 
-  const navigate= useNavigate();
+  const [formData, setFormData] = useState({
+    fullName: "",
+    mobileNumber: "",
+    pincode: "",
+    addressLine1: "",
+    addressLine2: "",
+    landmark: "",
+    townCity: "",
+    state: "",
+    isDefault: false
+  });
 
-  const handleFormSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
+    // Form data is available in formData object
+    // console.log(formData);
+    // console.log(formData)
+
+    await mydispatch(setAddressDetail(formData));
+
     // Logic to submit the form data
 
     // Redirect to the buynow page after form submission
     navigate('/buynow');
   };
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: type === "checkbox" ? checked : value
+    }));
+  };
+
   return (
     <div className="address-form">
       <h2>Add a New Address</h2>
@@ -36,34 +58,32 @@ const AddressForm = () => {
           <input
             type="text"
             id="full-name"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            required/>
+            name="fullName"
+            value={formData.fullName}
+            onChange={handleChange}
+            required />
         </div>
         <div className="address-form-group-mobile">
           <label htmlFor="mobile-number">Mobile Number:</label>
           <input
             type="number"
             id="mobile-number"
-            value={mobileNumber}
-            onChange={(e) => setMobileNumber(e.target.value)}
-            required/>
+            name="mobileNumber"
+            value={formData.mobileNumber}
+            onChange={handleChange}
+            required />
         </div>
         <div className="address-form-group-pincode">
           <label htmlFor="pincode">Pincode:</label>
           <input
             type="number"
             id="pincode"
-            value={pincode}
+            name="pincode"
+            value={formData.pincode}
             min="0"
             max="999999"
-            onChange={(e) => {
-              const input = e.target.value;
-              if (input.length <= 6) {
-                setPincode(input);
-              }
-            }}
-            required/>
+            onChange={handleChange}
+            required />
         </div>
         <div className="address-form-group-address1">
           <label htmlFor="address-line1">
@@ -72,27 +92,30 @@ const AddressForm = () => {
           <input
             type="text"
             id="address-line1"
-            value={addressLine1}
-            onChange={(e) => setAddressLine1(e.target.value)}
-            required/>
+            name="addressLine1"
+            value={formData.addressLine1}
+            onChange={handleChange}
+            required />
         </div>
         <div className="address-form-group-address2">
           <label htmlFor="address-line2">Area, Street, Sector, Village:</label>
           <input
             type="text"
             id="address-line2"
-            value={addressLine2}
-            onChange={(e) => setAddressLine2(e.target.value)}
-            required/>
+            name="addressLine2"
+            value={formData.addressLine2}
+            onChange={handleChange}
+            required />
         </div>
         <div className="address-form-group-landmark">
           <label htmlFor="landmark">Landmark:</label>
           <input
             type="text"
             id="landmark"
-            value={landmark}
-            onChange={(e) => setLandmark(e.target.value)}
-            required/>
+            name="landmark"
+            value={formData.landmark}
+            onChange={handleChange}
+            required />
         </div>
         <div className="address-form-group-towncity">
           <div className="address-form-town-city">
@@ -100,21 +123,24 @@ const AddressForm = () => {
             <input
               type="text"
               id="town-city"
-              value={townCity}
-              onChange={(e) => setTownCity(e.target.value)}
-              required/>
+              name="townCity"
+              value={formData.townCity}
+              onChange={handleChange}
+              required />
           </div>
           <div className="address-form-state">
             <label htmlFor="state">State:</label>
             <select
               id="state"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
+              name="state"
+              value={formData.state}
+              onChange={handleChange}
             >
-              <option value="">Madhya Pradesh</option>
-              <option value="">Karnataka</option>
-              <option value="">Goa</option>
-              <option value="">Arunachal Pradesh</option>
+              <option value="">Choose</option>
+              <option value="Madhya Pradesh">Madhya Pradesh</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Goa">Goa</option>
+              <option value="Arunachal Pradesh">Arunachal Pradesh</option>
               {/* Include options for states */}
             </select>
           </div>
@@ -123,13 +149,14 @@ const AddressForm = () => {
           <label>
             <input
               type="checkbox"
-              checked={isDefault}
-              onChange={() => setIsDefault(!isDefault)}
-              required/>
+              name="isDefault"
+              checked={formData.isDefault}
+              onChange={handleChange}
+              required />
             Make this my default address
           </label>
         </div>
-        <button type="submit" onSubmit={handleFormSubmit}>Submit Address</button>
+        <button type="submit">Submit Address</button>
       </form>
     </div>
   );

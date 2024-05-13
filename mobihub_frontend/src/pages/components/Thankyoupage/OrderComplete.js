@@ -6,8 +6,18 @@ import { LuContact } from "react-icons/lu";
 import { FaChevronRight } from "react-icons/fa";
 import "../../../css/OrderComplete.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import axios from "axios";
 
 const OrderComplete = () => {
+    const AllOrderdetail = useSelector((state)=>state.OrderdetailSlice.orderdetail);
+    console.log(AllOrderdetail);
+    useEffect(()=>{
+       axios.post("http://localhost:5000/api/user/Createorder",AllOrderdetail)
+        console.log("api call");
+    },[])
+
   return (
     <>
       <div className="Order-Complete">
@@ -22,7 +32,7 @@ const OrderComplete = () => {
             <div className="Order-Details">
                 <div>
                     <p>Order Detail</p>
-                    <h3>#2059666</h3>
+                    <h3>#{AllOrderdetail.OrderID}</h3>
                 </div>
                 <div>
                     <p>Pay with PayPal</p>
@@ -40,8 +50,7 @@ const OrderComplete = () => {
             </div>
             <hr/>
             <div>
-                <p>Vvip Addresses, Raj Nagar Extension Road <br/>
-                    Raj Nagar Extension Ghaziabad  </p>
+                <p>{AllOrderdetail.Address.addressLine1+ " " +AllOrderdetail.Address.addressLine2} </p>
             </div>
             <hr/>
             <div>
@@ -49,8 +58,7 @@ const OrderComplete = () => {
             </div>
             <hr/>
             <div>
-                <p>Vvip Addresses, Raj Nagar Extension Road <br/>
-                    Raj Nagar Extension Ghaziabad  </p>
+                <p>{AllOrderdetail.Address.addressLine1+ " " +AllOrderdetail.Address.addressLine2} </p>
             </div>
             <hr/>
             <div>
@@ -59,8 +67,7 @@ const OrderComplete = () => {
             <hr/>
             <div>
                 <p>email@company.com</p>
-                <p><Link to="">+91-987 000 0000</Link></p>
-                <p><Link to="">+91-987 000 0000</Link></p>
+                <p><Link to="">{AllOrderdetail.Address.mobileNumber}</Link></p>
             </div>
             <hr/>
             <div className="Order-Summary">
@@ -73,7 +80,7 @@ const OrderComplete = () => {
                     <p>Sub Total</p>
                 </div>
                 <div>
-                    <p>₹15.00</p>
+                    <p>₹{AllOrderdetail.Amount}</p>
                 </div>
             </div>
             <hr/>
@@ -82,7 +89,7 @@ const OrderComplete = () => {
                     <p>Sub Total</p>
                 </div>
                 <div>
-                    <p>₹16.00</p>
+                    <p>₹{AllOrderdetail.Amount}</p>
                 </div>
             </div>
             <hr/>
@@ -91,7 +98,7 @@ const OrderComplete = () => {
                     <p>Total</p>
                 </div>
                 <div>
-                <p>₹31.00</p>
+                <p>₹{AllOrderdetail.Amount}</p>
                 </div>
             </div>
 
