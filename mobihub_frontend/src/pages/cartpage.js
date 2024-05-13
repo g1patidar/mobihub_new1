@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { qtyIncrease, qtydecrease, delfromcart } from "../slice/ProductSlice";
+import { setOrderDetail } from "../slice/OrderDetail"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -66,7 +67,7 @@ const Cardpage = () => {
               </td>
             </div>
           </td>
-          <td style={{marginTop:"60px"}}>
+          <td style={{ marginTop: "60px" }}>
             <div className="remove_btn_cart">
               <Link className="deliconA"><MdDelete onClick={() => Deleteitem(key.id)} /> </Link>
             </div>
@@ -86,7 +87,7 @@ const Cardpage = () => {
     } else {
       await axios
         .post(
-          `https://mobihub-new1.onrender.com/api/user/applycoupon/${couponcode}`
+          `https://mobihub-new1.onrender.com/applycoupon/${couponcode}`
         )
         .then((res) => {
           if (res.data.length === 0) {
@@ -104,18 +105,37 @@ const Cardpage = () => {
     }
   };
 
+  ///////// place order
+
+  const PlaceOrder = async () => {
+
+    await mydispatch(setOrderDetail(cartdata));
+
+    if (!localStorage.getItem("email")) {
+      alert("Please login to place order")
+      mynav("/loginpage")
+    }
+    else if (cartdata.length <= 0) {
+      alert("Cart is empty")
+    }
+    else if (cartdata.length > 0 && localStorage.getItem("email")) {
+      mynav("/addressform")
+    }
+
+  }
+
   const items = cartdata.map((key) => {
     return (
       <>
-        
+
         <div className="dd">
-              <div>
-                <b>{key.Name} &nbsp; Q - {key.quantity}</b>
-              </div>
-              <div>
-                <b>₹{key.quantity * key.Price}</b>
-              </div>
-            </div>
+          <div>
+            <b>{key.Name} &nbsp; Q - {key.quantity}</b>
+          </div>
+          <div>
+            <b>₹{key.quantity * key.Price}</b>
+          </div>
+        </div>
       </>
     );
   });
@@ -203,7 +223,7 @@ const Cardpage = () => {
                 <b>Total</b>
               </div>
               <div>
-                <b>₹0</b>
+                <b>₹{totalPrice - (totalPrice * discount) / 100}</b>
               </div>
             </div>
             <hr size="1" color="gray" />
@@ -211,7 +231,7 @@ const Cardpage = () => {
 
           <div className="button1">
             <center>
-              <button onClick={() => mynav("/addressform")}>
+              <button onClick={() => PlaceOrder()}>
                 PLACE ORDER{" "}
               </button>
             </center>

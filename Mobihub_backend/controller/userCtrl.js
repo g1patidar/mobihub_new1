@@ -35,6 +35,7 @@ const loginUserCtrl = asyncHandler(
                 LastName: finduser?.LastName,
                 Email: finduser?.Email,
                 Address: finduser?.Address,
+                Role: finduser?.Role,
                 token: Tokengenreter(
 
                     finduser?.id,

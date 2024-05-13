@@ -2,6 +2,32 @@
 
 /* ... (existing styles) */
 
+.navbar11 {
+  background-color: #333;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo */
+.logo1 img {
+  width: 100px;
+  height: auto;
+}
+
+/* Logout button */
+.logout-btn1 {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+
+
+
+
 .app {
   display: flex;
 }

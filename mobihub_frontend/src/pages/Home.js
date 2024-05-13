@@ -14,27 +14,27 @@ import axios from "axios";
 
 const Home = () => {
 
-    const [productss, setproducts] = useState()
-    const dispatch = useDispatch();
-    const mydaata = useSelector((state) => state.allProducts.allProducts);
-    console.log(mydaata);
+    // const [productss, setproducts] = useState()
+    // const dispatch = useDispatch();
+    // const mydaata = useSelector((state) => state.allProducts.allProducts);
+    // console.log(mydaata);
 
-    const mydata = async () => {
-        const response = await axios.post("https://mobihub-new1.onrender.com/api/user/DisplayProduct").then((res) => {
-            // console.log(res.data, "hello")
-            // setallproductsdisplay(res.data);
-            setproducts(res.data);
-            dispatch(setAllProducts(productss));
-            // console.log("all product", productss)
-        })
+    // const mydata = async () => {
+    //     const response = await axios.post("https://mobihub-new1.onrender.com/DisplayProduct").then((res) => {
+    //         // console.log(res.data, "hello")
+    //         // setallproductsdisplay(res.data);
+    //         setproducts(res.data);
+    //         dispatch(setAllProducts(productss));
+    //         // console.log("all product", productss)
+    //     })
 
-    }
-    useEffect(() => {
-        mydata()
-    }, [])
+    // }
+    // useEffect(() => {
+    //     mydata()
+    // }, [])
 
 
-    
+
     return (
         <>
             <Carousel />
