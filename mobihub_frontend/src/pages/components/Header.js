@@ -12,7 +12,9 @@ import { useNavigate } from "react-router-dom";
 
 const Header = ({ count }) => {
 
-  const navigate =  useNavigate();
+
+  const navigate = useNavigate();
+
   const cartdata = useSelector((state) => state.cartslice.cart);
   const wishlistdata = useSelector((state) => state.WishlistSlice.wishlist);
 
@@ -23,7 +25,9 @@ const Header = ({ count }) => {
   // }
 
   const handlelogout = async () => {
-    await axios.post("http://localhost:5000/logout", null, { withCredentials: true });
+
+    await axios.post("https://mobihub-new1.onrender.com/logout", null, { withCredentials: true });
+
     // setUserData(null);
     localStorage.removeItem("name")
     localStorage.removeItem("token");
@@ -79,11 +83,13 @@ const Header = ({ count }) => {
         
         <Link to="/loginpage" style={{ "--i": 7 }}>
 
-        {localStorage.getItem("name")?<button onClick={()=>handlelogout()} className="login-button">Logout</button>:<button className="login-button">Login</button>}
+
+          {localStorage.getItem("name") ? <button onClick={() => handlelogout()} className="login-button">Logout</button> : <button className="login-button">Login</button>}
         </Link>
-        
-      
-      <span className="user_name">{localStorage.getItem("name")?`Hello, ${localStorage.getItem("name")}`:""}</span>
+
+
+        <span className="user_name">{localStorage.getItem("name") ? `Hello, ${localStorage.getItem("name")}` : ""}</span>
+
       </nav>
     </header>
   );

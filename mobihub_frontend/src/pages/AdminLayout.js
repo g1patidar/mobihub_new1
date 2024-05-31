@@ -70,11 +70,13 @@ const AdminLayout = () => {
     <>
       {/* <div style={{ border: "1px solid black", padding: "2%" }}>Header </div> */}
       <div className="navbar11">
-      <div className="logo1">
-        <img src="../../public/images/main_logo.png" alt="Logo" />
+
+        <div className="logo1">
+          <img src="../../public/images/main_logo.png" alt="Logo" />
+        </div>
+        <button onClick={handlelogout} className="logout-btn1">Logout</button>
       </div>
-      <button onClick={handlelogout}  className="logout-btn1">Logout</button>
-    </div>
+
 
 
       <div className="app">
