@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 const OrderDetails = () => {
     const [orderdata, setOrderData] = useState([]);
     const [orderStatus, setOrderStatus] = useState("Order Processing")
+
+    const [depen, setDepent] = useState(0);
     useEffect(() => {
-        const fetchOrderData = async () => {
+        async function fetchOrderData() {
             try {
-                const res = await axios.post("http://localhost:5000/api/user/getOrderData");
+                const res = await axios.post("https://mobihub-new1.onrender.com/getOrderData");
                 setOrderData(res.data);
-                console.log(res.data);
             } catch (err) {
                 console.log(err);
             }
@@ -17,14 +18,15 @@ const OrderDetails = () => {
 
 
         fetchOrderData();
-    }, []);
+    }, [depen]);
 
-    const changeOrderStatus = async (e) => {
+    const changeOrderStatus = async (e, id) => {
         const newStatus = e.target.value;
-        setOrderStatus(newStatus);
+
+        alert(id)
         try {
-            const res = await axios.post("http://localhost:5000/api/user/orderStatuschange", { OrderStatus: newStatus });
-            alert(res.data);
+            const res = await axios.post("https://mobihub-new1.onrender.com/orderStatuschange", { id: id, update_OrderStatus: newStatus });
+            setDepent(depen + 1);
         } catch (err) {
             console.log(err);
         }
@@ -37,7 +39,9 @@ const OrderDetails = () => {
             <div>{key.orderID}</div>
             <div>{key.amount}</div>
             <div>
-                <select value={orderStatus} onChange={changeOrderStatus} style={{ border: "none" }}>
+
+                <select value={key.OrderStatus} onChange={(e) => { changeOrderStatus(e, key._id) }} style={{ border: "none" }}>
+
                     <option value="Order Processing">Order Processing</option>
                     <option value="Shipment">Shipment</option>
                     <option value="Delivery">Delivery</option>

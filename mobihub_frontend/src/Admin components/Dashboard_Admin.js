@@ -1,21 +1,43 @@
-import React from 'react';
-
+import axios from 'axios';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
 const Dashboard_Admin = () => {
+  const [user, setuser] = useState(0);
+  const [allorder, setAllorder] = useState(0);
+  const [revenue, setRevenue] = useState([]);
+
+  useEffect(() => {
+    axios.post("https://mobihub-new1.onrender.com/countusers").then((res) => {
+      setuser(res.data.count);
+    })
+    axios.post("https://mobihub-new1.onrender.com/countOrders").then((res) => {
+      setAllorder(res.data.count);
+    })
+    axios.post("https://mobihub-new1.onrender.com/getOrderData").then((res) => {
+      setRevenue(res.data);
+    })
+  })
+
+  const totalRevenue = revenue.reduce((accumulator, product) => {
+    return accumulator + product.amount;
+  }, 0);
+
+
   return (
     <div className="dashboard-container">
       <h1>Dashboard</h1>
       <div className="stats">
         <div className="stat-box">
           <h2>Total Users</h2>
-          <p>100</p>
+          <p>{user}</p>
         </div>
         <div className="stat-box">
           <h2>Orders</h2>
-          <p>50</p>
+          <p>{allorder}</p>
         </div>
         <div className="stat-box">
           <h2>Revenue</h2>
-          <p>$5000</p>
+          <p>₹{totalRevenue}</p>
         </div>
       </div>
       {/* Additional content goes here */}

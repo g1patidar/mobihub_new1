@@ -72,12 +72,10 @@ const AdminLayout = () => {
       <div className="navbar11">
 
         <div className="logo1">
-          <img src="../../public/images/main_logo.png" alt="Logo" />
+          
         </div>
         <button onClick={handlelogout} className="logout-btn1">Logout</button>
       </div>
-
-
 
       <div className="app">
         <div className="navbar">

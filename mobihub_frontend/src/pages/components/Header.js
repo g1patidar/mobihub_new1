@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 
 const Header = ({ count }) => {
 
-
   const navigate = useNavigate();
 
   const cartdata = useSelector((state) => state.cartslice.cart);
@@ -80,9 +79,8 @@ const Header = ({ count }) => {
             <span className="badge">{wishlistdata.length}</span>
           </Link>
         </span>
-        
-        <Link to="/loginpage" style={{ "--i": 7 }}>
 
+        <Link to="/loginpage" style={{ "--i": 7 }}>
 
           {localStorage.getItem("name") ? <button onClick={() => handlelogout()} className="login-button">Logout</button> : <button className="login-button">Login</button>}
         </Link>

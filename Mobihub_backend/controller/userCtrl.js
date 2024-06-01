@@ -119,8 +119,20 @@ const ManageAddress = (req, res) => {
 }
 
 
+// count our website users 
+
+const countUsers=async(req, res) => {
+    try {
+      const count = await User.countDocuments({});
+      res.json({ count: count });
+    
+    } catch (err) {
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  }
+
 module.exports = {
 
-    createUser, loginUserCtrl, getalluser, getauser, getauserdelete, getauserupdated, ManageAddress
-
+    createUser, loginUserCtrl, getalluser, getauser, getauserdelete, getauserupdated, ManageAddress,
+    countUsers
 };

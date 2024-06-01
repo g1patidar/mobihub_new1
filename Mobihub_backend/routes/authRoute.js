@@ -2,11 +2,11 @@
 const express = require("express");
 const router = express.Router();
 
-const { createUser, loginUserCtrl, getalluser, getauser, getauserdelete, getauserupdated, ManageAddress } = require("../controller/userCtrl");
+const {countUsers, createUser, loginUserCtrl, getalluser, getauser, getauserdelete, getauserupdated, ManageAddress } = require("../controller/userCtrl");
 
 const { ProductAdd, DisplayProduct, DeleteProduct, AddBrand, AddCoupon, DisplayBrands, DeleteBrand, DisplayCoupons, DeleteCoupon,Applycoupon } = require("../controller/AdminControler");
 
-const {OrderStatuschange, CreateOrder,GetOrderData} = require("../controller/OrderController")
+const {CountOrders, OrderStatuschange, CreateOrder,GetOrderData} = require("../controller/OrderController")
 
 router.post('/register', createUser);
 router.post('/login', loginUserCtrl);
@@ -18,6 +18,7 @@ router.post('/ProdoctAdd', ProductAdd);
 router.post('/DisplayProduct', DisplayProduct);
 router.delete('/DeleteProduct/:id', DeleteProduct);
 router.post('/ManagedlyAddress', ManageAddress);
+router.post("/countusers", countUsers);
 
 // brand API ///////
 router.post('/AddBrand', AddBrand);
@@ -37,7 +38,11 @@ router.post("/Createorder", CreateOrder);
 
 router.post("/getOrderData", GetOrderData);
 
-router.post("/orderStatuschange", OrderStatuschange)
+router.post("/orderStatuschange", OrderStatuschange);
+
+router.post("/countOrders", CountOrders);
+
+
 
 
 
